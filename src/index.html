@@ -2,401 +2,421 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ЦБИ — экспертный центр инвестиций в недвижимость</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ЦБИ — Центр Бизнес Инвестиций</title>
     <meta
       name="description"
-      content="ЦБИ: решения по недвижимости через проверку и расчёт. Документы, реестры, финмодель, риски, сопровождение сделки и шаги после неё."
+      content="ЦБИ — экспертный центр отбора и сопровождения инвестиционных решений в недвижимости и проектах развития. Документы, цифры, сценарии, риски и понятный процесс."
     />
-    <link rel="icon" type="image/png" href="./assets/logo.png" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/png" href="assets/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="onepage.css" />
   </head>
   <body>
     <header class="topbar">
       <div class="container topbar__inner">
-        <div class="brand" aria-label="Бренд">
-          <div class="brand__mark" aria-hidden="true">
-            <img
-              class="brand__logo"
-              src="./assets/logo.png"
-              alt="Логотип"
-            />
-          </div>
+        <a class="brand" href="#hero" aria-label="ЦБИ — на главную">
+          <div class="brand__mark">ЦБИ</div>
           <div class="brand__copy">
-            <div class="brand__titleRow">
-              <div class="brand__name">Центр Бизнес-Инвестиций</div>
-              <div class="brand__fio">БОЧАРОВА ЕЛЕНА ЮРЬЕВНА</div>
-            </div>
-            <div class="brand__tag">экспертный центр · недвижимость России</div>
+            <div class="brand__name">Центр Бизнес Инвестиций</div>
+            <div class="brand__tag">не продаю — отбираю</div>
           </div>
-        </div>
+        </a>
 
-        <nav class="topnav" aria-label="Навигация">
-          <a href="#about">О ЦБИ</a>
-          <a href="#trust">Почему доверяют</a>
-          <a href="#method">Как работаю</a>
-          <a href="#services">С чего начать</a>
+        <nav class="nav" aria-label="Основная навигация">
+          <a href="#about">О проекте</a>
           <a href="#directions">Направления</a>
-          <a href="#calculator">Калькулятор</a>
-          <a href="#screening">Скрининг</a>
-          <a href="#materials">Разборы</a>
-          <a href="#faq">FAQ</a>
-          <a class="topnav__cta" href="#contact">Связаться</a>
+          <a href="#process">Как работаем</a>
+          <a href="#formats">Форматы</a>
+          <a href="#elena">Елена</a>
+          <a href="#contact">Контакт</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="container hero__grid">
-          <div class="hero__copy">
-            <div class="heroLogoWrap" aria-label="Логотип компании">
-              <img
-                class="heroLogo"
-                src="./assets/logo.png"
-                alt="Логотип Центр Бизнес-Инвестиций"
-              />
+      <section class="hero" id="hero">
+        <div class="container hero__layout">
+          <div class="hero__content reveal">
+            <div class="eyebrow">Экспертный центр инвестиционных решений</div>
+
+            <h1 class="hero__title">
+              Здесь не продают.
+              <strong>Здесь помогают принять сильное решение.</strong>
+            </h1>
+
+            <div class="hero__text">
+              <p class="lead">
+                ЦБИ — центр отбора и сопровождения инвестиционных решений в недвижимости и проектах развития.
+              </p>
+              <p class="lead">
+                Сначала документы, цифры, ограничения и сценарии. Потом вывод: заходить, не заходить или менять логику входа.
+              </p>
             </div>
-
-            <h1>Решения по недвижимости через проверку и расчёт</h1>
-
-            <p class="lead">
-              Сначала документы и цифры. Потом решение — покупать или нет.
-            </p>
-
-            <p class="lead">
-              Я не продаю объекты. Я отбираю решения, которые выдерживают проверку под вашу задачу.
-            </p>
 
             <div class="hero__actions">
-              <a class="btn btn--primary" href="#screening">Отправить объект на проверку</a>
-              <a class="btn btn--ghost" href="#contact">Обсудить задачу</a>
+              <a class="btn btn--primary" href="#formats">Выбрать формат первого шага</a>
+              <a class="btn btn--secondary" href="#contact">Записаться на консультацию</a>
             </div>
 
-            <div class="trust">
-              <div class="trust__item">
-                <div class="trust__label">Проверка</div>
-                <div class="trust__text">документы, реестры, ограничения и структура сделки</div>
+            <div class="hero__meta">
+              <div class="card">
+                <strong>Проверка</strong>
+                <p class="small">Реестры, документы, ограничения и конструкция сделки.</p>
               </div>
-
-              <div class="trust__item">
-                <div class="trust__label">Расчёт</div>
-                <div class="trust__text">финмодель, сценарии и чувствительность к вводным</div>
+              <div class="card">
+                <strong>Расчёт</strong>
+                <p class="small">Финмодель, сценарии, чувствительность и цена ошибки.</p>
               </div>
-
-              <div class="trust__item">
-                <div class="trust__label">Сопровождение</div>
-                <div class="trust__text">выезд «как есть», сделка и шаги после покупки</div>
+              <div class="card">
+                <strong>Сопровождение</strong>
+                <p class="small">Следующий шаг, сделка и действия после входа.</p>
               </div>
             </div>
           </div>
 
-          <aside class="hero__panel" aria-label="Контекст для скрининга">
-            <h2 class="panel__title">С чего обычно начинают</h2>
-            <p class="panel__hint">
-              Ниже — типовые запросы. Нажмите на вариант, чтобы подставить формулировку в блок скрининга.
+          <div class="hero__side">
+            <div class="card hero__quote reveal">
+              <p>
+                Не продаю объект.
+                Отбираю решение,
+                которое выдерживает проверку.
+              </p>
+              <span>Главная логика бренда ЦБИ</span>
+            </div>
+
+            <div class="card hero__signal reveal">
+              <div class="eyebrow">Что человек должен понять за 10 секунд</div>
+              <ul>
+                <li>Это не агентство и не каталог.</li>
+                <li>Здесь можно услышать «не заходить».</li>
+                <li>Решение строится на фактах, а не на подаче.</li>
+                <li>Первый контакт — это не давление, а ясность.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section__head reveal">
+            <div class="eyebrow">О проекте ЦБИ</div>
+            <h2>ЦБИ — не витрина объектов и не продажи ради сделки</h2>
+            <p class="lead">
+              Это экспертный центр, где недвижимость и проекты развития рассматриваются как инвестиционное решение. Не по обещаниям. По фактам, ограничениям и логике входа.
             </p>
-
-            <div class="chips" role="group" aria-label="Примеры запроса">
-              <button class="chip" type="button" data-chip="Нужен разбор одного лота: документы, красные флаги, что запросить у продавца и стоит ли идти дальше.">разбор лота</button>
-              <button class="chip" type="button" data-chip="Интересует коммерческая недвижимость под аренду. Нужна проверка документов и осторожная финмодель по двум сценариям.">коммерция · сценарии</button>
-              <button class="chip" type="button" data-chip="Новостройка: хочу понять, что проверить до брони — проектная декларация, эскроу, сроки, застройщик, ограничения.">новостройка · проверка</button>
-              <button class="chip" type="button" data-chip="Нужен экспресс-аудит 24 часа: один объект, документы, три сценария и вывод — разбираться дальше или остановиться.">экспресс-аудит</button>
-            </div>
-
-            <div class="panel__divider" aria-hidden="true"></div>
-
-            <div class="mini-cards" aria-label="Ключевые принципы">
-              <div class="mini-card">
-                <div class="mini-card__name">Не витрина</div>
-                <div class="mini-card__meta">здесь не каталог лотов, а логика проверки и отбора</div>
-              </div>
-
-              <div class="mini-card">
-                <div class="mini-card__name">Право сказать «не покупать»</div>
-                <div class="mini-card__meta">если факты не сходятся — это фиксируется прямо</div>
-              </div>
-
-              <div class="mini-card">
-                <div class="mini-card__name">Следующий шаг понятен</div>
-                <div class="mini-card__meta">скрининг, аудит или сопровождение — в зависимости от задачи</div>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section id="trust" class="section">
-        <div class="container">
-          <h2>Почему ко мне приходят</h2>
-          <p class="section__lead muted">
-            Не за «лучшим предложением», а за спокойным решением, где цена ошибки ниже.
-          </p>
-
-          <div class="about-grid">
-            <div class="feature">
-              <div class="feature__title">Нет задачи продать</div>
-              <p>
-                Я не привязана к лотам и не собираю каталог. Смотрю только на соответствие вашей задаче.
-              </p>
-            </div>
-
-            <div class="feature">
-              <div class="feature__title">Можно услышать «не покупать»</div>
-              <p>
-                Если риски не сходятся, рекомендую остановиться. Это нормальный и профессиональный результат.
-              </p>
-            </div>
-
-            <div class="feature">
-              <div class="feature__title">Решение на фактах</div>
-              <p>
-                Документы, ограничения, модель, сценарии выхода. Не обещания и не эмоции.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" class="section section--soft">
-        <div class="container">
-          <h2>О ЦБИ</h2>
-          <p class="section__lead muted">
-            ЦБИ — экспертный центр инвестиций в недвижимость. Фокус не на витрине объектов, а на принятии решения.
-          </p>
-
-          <div class="about-grid">
-            <div class="feature">
-              <div class="feature__title">Не продаю — отбираю</div>
-              <p>
-                Каждый объект рассматриваю как инвестиционное решение. Если факты не сходятся — рекомендую не покупать.
-              </p>
-            </div>
-
-            <div class="feature">
-              <div class="feature__title">Сначала документы и реестры</div>
-              <p>
-                Проверяю право, ограничения, структуру сделки и красные флаги до любых эмоций и красивых презентаций.
-              </p>
-            </div>
-
-            <div class="feature">
-              <div class="feature__title">Сделка и после неё</div>
-              <p>
-                Важно не только купить. Важно понимать, что делать дальше: аренда, эксплуатация, следующий этап проекта.
-              </p>
-            </div>
           </div>
 
-          <p class="muted disclaimer-inline">
-            Доходность в расчётах носит оценочный характер и зависит от вводных. Результат не гарантирую — уменьшаю риск ошибки и даю вывод по фактам.
-          </p>
-        </div>
-      </section>
-
-      <section id="method" class="section">
-        <div class="container">
-          <h2>Как принимается решение</h2>
-          <p class="section__lead muted">
-            Работа идёт по шагам. На практике они могут пересекаться, но логика всегда одна: сначала проверка, потом действие.
-          </p>
-
-          <ol class="method-steps">
-            <li class="method-step">
-              <span class="method-step__n">1</span>
-              <div>
-                <div class="method-step__title">Задача</div>
-                <p class="muted">Фиксируем цель, бюджет, срок, допустимый риск и ограничения.</p>
-              </div>
-            </li>
-
-            <li class="method-step">
-              <span class="method-step__n">2</span>
-              <div>
-                <div class="method-step__title">Отбор</div>
-                <p class="muted">Оставляем только те варианты, которые подходят под задачу.</p>
-              </div>
-            </li>
-
-            <li class="method-step">
-              <span class="method-step__n">3</span>
-              <div>
-                <div class="method-step__title">Проверка</div>
-                <p class="muted">Документы, реестры, ограничения, структура и условия сделки.</p>
-              </div>
-            </li>
-
-            <li class="method-step">
-              <span class="method-step__n">4</span>
-              <div>
-                <div class="method-step__title">Расчёт</div>
-                <p class="muted">Базовый и осторожный сценарии. Чувствительность к вводным.</p>
-              </div>
-            </li>
-
-            <li class="method-step">
-              <span class="method-step__n">5</span>
-              <div>
-                <div class="method-step__title">Решение</div>
-                <p class="muted">Покупать, не покупать или возвращаться к вводным.</p>
-              </div>
-            </li>
-
-            <li class="method-step">
-              <span class="method-step__n">6</span>
-              <div>
-                <div class="method-step__title">Сопровождение</div>
-                <p class="muted">Сделка и действия после покупки.</p>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <section id="services" class="section section--soft">
-        <div class="container">
-          <h2>С чего начать</h2>
-          <p class="section__lead muted">
-            Вход зависит от стадии задачи. Можно начать с короткого скрининга или сразу идти в предметный разбор лота.
-          </p>
-
-          <div class="servicesGrid">
-            <article class="serviceCard">
-              <h3 class="serviceCard__title">Скрининг</h3>
-              <p class="muted">
-                Быстрый взгляд на объект или направление. Показываю риски, чего не хватает в данных и что делать дальше.
+          <div class="about__grid">
+            <article class="card feature-card reveal">
+              <h3>Не продаю — отбираю</h3>
+              <p>
+                Каждый объект и каждый проект проходят через фильтр задачи, риска и сценария. Если конструкция слабая, это называется прямо.
               </p>
             </article>
 
-            <article class="serviceCard">
-              <h3 class="serviceCard__title">Экспресс-аудит 24 часа</h3>
-              <p class="muted">
-                Один объект. Документы, модель, три сценария и чёткий вывод — разбираться дальше или остановиться.
+            <article class="card feature-card reveal">
+              <h3>Решение важнее подачи</h3>
+              <p>
+                В центре работы не презентация и не эмоция. В центре — документы, цифры, ограничения, следующий шаг и цена ошибки.
               </p>
             </article>
 
-            <article class="serviceCard">
-              <h3 class="serviceCard__title">Консультация</h3>
-              <p class="muted">
-                Разбор вашей ситуации без навязывания. Смотрим на факты, ограничения и следующий шаг.
-              </p>
-            </article>
-
-            <article class="serviceCard">
-              <h3 class="serviceCard__title">Сопровождение</h3>
-              <p class="muted">
-                От задачи до сделки и действий после неё. С постоянной проверкой вводных по пути.
+            <article class="card feature-card reveal">
+              <h3>Сделка — не финал</h3>
+              <p>
+                Сильное решение оценивается не моментом входа, а тем, что происходит после: реализация, управление, выход, развитие.
               </p>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="directions" class="section">
+      <section class="section section--soft" id="directions">
         <div class="container">
-          <h2>Направления</h2>
-          <p class="section__lead muted">
-            Работаю с разными форматами недвижимости. Стандарт один: проверить, посчитать, сопровождать решение.
-          </p>
+          <div class="section__head reveal">
+            <div class="eyebrow">Два направления работы</div>
+            <h2>Готовые решения и проекты развития</h2>
+            <p class="lead">
+              Сайт не делит мир на «объекты» и «не объекты». Он делит его на типы решений. Под каждый тип — своя логика анализа и входа.
+            </p>
+          </div>
 
-          <ul class="directions" aria-label="Направления работы">
-            <li class="directions__item">Новостройки и жилая недвижимость</li>
-            <li class="directions__item">Коммерческая недвижимость</li>
-            <li class="directions__item">Земельные участки</li>
-            <li class="directions__item">Строительство домов</li>
-            <li class="directions__item">Коттеджные проекты</li>
-            <li class="directions__item">Кемпинги и глэмпинги</li>
-            <li class="directions__item">Реконструкция</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="fit" class="section section--soft">
-        <div class="container">
-          <h2>Кому это подходит</h2>
-
-          <div class="fit-grid">
-            <div class="feature">
-              <div class="feature__title">Подходит</div>
+          <div class="directions__grid">
+            <article class="card direction-card reveal">
+              <h3>Готовые инвестиционные решения</h3>
               <p class="muted">
-                Если вам нужны проверка, цифры и спокойное сопровождение без давления. Если вы готовы принимать решение по фактам.
+                Для тех, кто рассматривает покупку конкретного актива и хочет понимать, что именно он покупает на самом деле.
               </p>
-            </div>
+              <ul>
+                <li>новостройки</li>
+                <li>коммерция</li>
+                <li>земля</li>
+                <li>дома</li>
+                <li>реконструкция</li>
+                <li>доходные форматы</li>
+              </ul>
+            </article>
 
-            <div class="feature">
-              <div class="feature__title">Может не подойти</div>
+            <article class="card direction-card reveal">
+              <h3>Проекты развития</h3>
               <p class="muted">
-                Если нужен быстрый каталог лотов или гарантии доходности. Здесь этого нет. Есть проверка, расчёт и честный вывод.
+                Для тех, кто смотрит шире отдельного объекта и работает с территорией, концепцией, девелопментом и инфраструктурой.
               </p>
-            </div>
+              <ul>
+                <li>жилые комплексы</li>
+                <li>отели и санатории</li>
+                <li>апарт-форматы</li>
+                <li>коттеджные посёлки</li>
+                <li>благоустройство</li>
+                <li>редевелопмент и инфраструктурные проекты</li>
+              </ul>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="calculator" class="section">
+      <section class="section" id="process">
         <div class="container">
-          <h2>Ипотечный калькулятор</h2>
-          <p class="section__lead muted">
-            Вспомогательный инструмент. Даёт ориентир по платежу при заданных вводных. Не заменяет банковский расчёт и не является рекомендацией.
-          </p>
+          <div class="section__head reveal">
+            <div class="eyebrow">Как мы работаем</div>
+            <h2>Понятный процесс вместо тумана</h2>
+            <p class="lead">
+              Каждый следующий блок сайта должен снижать неопределённость. Этот блок отвечает за главное: что именно происходит от первого контакта до сильного решения.
+            </p>
+          </div>
 
-          <div class="calculator-layout">
-            <div class="mortgageProgramCard" id="mortgageProgramCard" aria-live="polite">
-              <div class="mortgageProgramCard__name" id="mortgageProgramName">Ипотека на новостройку</div>
-              <div class="mortgageProgramCard__meta" id="mortgageProgramMeta">Иллюстративный сценарий · параметры можно менять вручную</div>
-              <div class="mortgageProgramCard__note" id="mortgageProgramNote">Расчёт служит ориентиром. Фактические условия зависят от банка, программы и объекта.</div>
+          <div class="process">
+            <article class="card process__item reveal">
+              <div class="process__num">01</div>
+              <div class="process__content">
+                <h3>Задача клиента</h3>
+                <p>Сначала фиксируется не объект, а задача. Цель, срок, бюджет, допустимый риск, горизонт, ограничения и контекст принятия решения.</p>
+              </div>
+            </article>
+
+            <article class="card process__item reveal">
+              <div class="process__num">02</div>
+              <div class="process__content">
+                <h3>Анализ конструкции</h3>
+                <p>Смотрим, из чего вообще состоит решение. Что за актив, в чём его экономическая логика, за счёт чего он должен работать и где слабые места.</p>
+              </div>
+            </article>
+
+            <article class="card process__item reveal">
+              <div class="process__num">03</div>
+              <div class="process__content">
+                <h3>Документы и ограничения</h3>
+                <p>Реестры, права, ограничения, разрешительная часть, юридическая чистота, конфигурация входа и рамки, которые нельзя игнорировать.</p>
+              </div>
+            </article>
+
+            <article class="card process__item reveal">
+              <div class="process__num">04</div>
+              <div class="process__content">
+                <h3>Финмодель и риски</h3>
+                <p>Базовый сценарий, осторожный сценарий, чувствительность к изменению вводных. Не чтобы впечатлить цифрами, а чтобы понять предел устойчивости решения.</p>
+              </div>
+            </article>
+
+            <article class="card process__item reveal">
+              <div class="process__num">05</div>
+              <div class="process__content">
+                <h3>Сценарии и следующий шаг</h3>
+                <p>Итог — это не «нравится / не нравится», а следующий сильный шаг: заходить, пересобирать условия, менять логику входа или останавливаться.</p>
+              </div>
+            </article>
+
+            <article class="card process__item reveal">
+              <div class="process__num">06</div>
+              <div class="process__content">
+                <h3>Сопровождение</h3>
+                <p>Если решение сильное, дальше идёт сопровождение: переговоры, структура движения, контроль и действия после входа.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft" id="audience">
+        <div class="container">
+          <div class="section__head reveal">
+            <div class="eyebrow">Для кого это</div>
+            <h2>Для тех, кому нужен не шум, а ясность</h2>
+            <p class="lead">
+              Этот сайт не для случайного клика. Он для людей, которым важно понимать, за что именно они платят и почему конкретное решение стоит или не стоит принимать.
+            </p>
+          </div>
+
+          <div class="audience__grid">
+            <article class="card feature-card reveal">
+              <h3>Инвесторы</h3>
+              <p>Когда нужен не набор вариантов, а фильтр решений, которые реально выдерживают проверку.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Предприниматели</h3>
+              <p>Когда недвижимость рассматривается как часть более широкой стратегии капитала и бизнеса.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Семейный капитал</h3>
+              <p>Когда важна не скорость входа, а сохранность, управляемость и понятный горизонт.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Инициаторы проектов</h3>
+              <p>Когда нужно собрать сильную конструкцию проекта, а не только показать красивую идею.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Девелоперские команды</h3>
+              <p>Когда требуется внешний взрослый взгляд на ограничения, сценарии и устойчивость решения.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Те, кто уже почти зашёл</h3>
+              <p>Когда объект или проект уже найден, но нужно второе мнение до необратимого шага.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="trust">
+        <div class="container">
+          <div class="section__head reveal">
+            <div class="eyebrow">Почему нам доверяют</div>
+            <h2>Доверие здесь строится не на обещаниях</h2>
+            <p class="lead">
+              Этот блок нужен не для «продающих триггеров». Он нужен, чтобы снять главный вопрос: чем ЦБИ отличается от рынка, который привык продавать сам вход.
+            </p>
+          </div>
+
+          <div class="trust__grid">
+            <article class="card feature-card reveal">
+              <h3>Не обещаем, а проверяем</h3>
+              <p>Сильное решение не начинается с красивых цифр. Оно начинается с того, что выдерживает проверку.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Есть право сказать «не покупать»</h3>
+              <p>Если конструкция слабая, это называется прямо. Такой отказ — часть качества работы, а не потерянная сделка.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Смотрим шире сделки</h3>
+              <p>Вход сам по себе ничего не решает. Важно, что будет после: управление, развитие, выход, устойчивость.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Высокий стандарт</h3>
+              <p>Ясность, порядок, сдержанность, фактология. Без пафоса, без шума и без рынка обещаний.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Личная ответственность Елены</h3>
+              <p>Сайт должен транслировать не безликую компанию, а понятную фигуру куратора инвестиционного решения.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Человеку не страшно обратиться</h3>
+              <p>Первый контакт здесь не похож на продажу. Он похож на взрослый разговор, где можно спросить и получить ясность.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft" id="formats">
+        <div class="container">
+          <div class="section__head reveal">
+            <div class="eyebrow">Форматы входа</div>
+            <h2>Мягкий первый шаг вместо давления</h2>
+            <p class="lead">
+              Цель сайта — не заставить человека «оставить заявку любой ценой». Цель — перевести его в первый осмысленный контакт.
+            </p>
+          </div>
+
+          <div class="formats__grid">
+            <article class="card feature-card reveal">
+              <h3>Скрининг</h3>
+              <p>Первичный взгляд на ситуацию. Подходит, если нужно быстро понять, есть ли смысл идти дальше и где главный риск.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Второе мнение</h3>
+              <p>Для тех, у кого уже есть объект или проект. Нужен внешний трезвый взгляд до решения о входе.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Экспресс-аудит</h3>
+              <p>Сжатый формат предметной проверки: документы, конструкция, риски, сценарии и следующий сильный шаг.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Сопровождение</h3>
+              <p>Полный путь от задачи до решения, сделки и действий после входа. Для случаев, где нужен не совет, а системная работа.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Формат для проектов развития</h3>
+              <p>Отдельный тип работы для девелопмента, редевелопмента, инфраструктурных и концептуальных проектов.</p>
+            </article>
+
+            <article class="card feature-card reveal">
+              <h3>Следующий шаг всегда понятен</h3>
+              <p>После контакта человек должен понимать, что будет происходить дальше. Без неясности и без чувства, что его втягивают.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="elena">
+        <div class="container">
+          <div class="section__head reveal">
+            <div class="eyebrow">О Елене</div>
+            <h2>Не биография. Способ мышления.</h2>
+            <p class="lead">
+              Блок о Елене не должен быть «водой про путь». Он должен отвечать на вопрос: почему именно ей можно доверить инвестиционное решение.
+            </p>
+          </div>
+
+          <div class="elena">
+            <div class="elena__portrait reveal">
+              Здесь можно поставить портрет Елены<br />
+              или спокойное бренд-фото в светлой гамме
             </div>
 
-            <div class="mortgageCalc" aria-label="Калькулятор ипотеки">
-              <div class="mortgageCalc__head">
-                <h3 class="mortgageCalc__title">Параметры расчёта</h3>
-                <button
-                  id="mortgageProgramToggle"
-                  class="mortgageProgramToggle"
-                  type="button"
-                  aria-label="Переключить тип сценария ипотеки"
-                  title="Переключить тип сценария ипотеки"
-                >
-                  Сценарий: Новостройка
-                </button>
-              </div>
+            <div class="card elena__card reveal">
+              <h3>Елена Бочарова — куратор инвестиционного решения</h3>
+              <p class="muted">
+                Елена не подбирает объекты ради входа. Она проверяет, считает, показывает ограничения, удерживает от слабого шага и ведёт к сильному решению.
+              </p>
 
-              <div class="mortgageCalc__grid">
-                <label class="mortgageCalc__field">
-                  <span>Стоимость, ₽</span>
-                  <input id="mortgageAmount" type="number" min="100000" step="100000" value="12000000" />
-                </label>
-
-                <label class="mortgageCalc__field">
-                  <span>Первоначальный взнос, ₽</span>
-                  <input id="mortgageDownPayment" type="number" min="0" step="50000" value="2400000" />
-                </label>
-
-                <label class="mortgageCalc__field">
-                  <span>Ставка, % годовых</span>
-                  <input id="mortgageRate" type="number" min="0.1" max="40" step="0.1" value="11.8" />
-                </label>
-
-                <label class="mortgageCalc__field">
-                  <span>Срок, лет</span>
-                  <input id="mortgageYears" type="number" min="1" max="40" step="1" value="20" />
-                </label>
-              </div>
-
-              <div class="mortgageCalc__results" id="mortgageResults" aria-live="polite">
-                <div class="mortgageCalc__result">
-                  <span>Ежемесячный платёж</span>
-                  <strong id="mortgageMonthly">—</strong>
+              <div class="elena__list">
+                <div class="elena__item">
+                  <strong>Смотрит шире сделки</strong>
+                  <p class="small">Что именно покупается, как это будет работать, где ограничения и что произойдёт после входа.</p>
                 </div>
 
-                <div class="mortgageCalc__result">
-                  <span>Переплата</span>
-                  <strong id="mortgageOverpayment">—</strong>
+                <div class="elena__item">
+                  <strong>Держит рамку фактов</strong>
+                  <p class="small">Без красивой подмены реальности. Если данных нет, это называется прямо. Если вход слабый, это фиксируется.</p>
                 </div>
 
-                <div class="mortgageCalc__result">
-                  <span>Общая выплата</span>
-                  <strong id="mortgageTotal">—</strong>
+                <div class="elena__item">
+                  <strong>Лично отвечает за ход мысли</strong>
+                  <p class="small">Сайт должен передавать ощущение личной ответственности, а не обезличенного потока.</p>
+                </div>
+
+                <div class="elena__item">
+                  <strong>Мягко к человеку, жёстко к фактам</strong>
+                  <p class="small">Это не холодный консалтинг и не давящая продажа. Это взрослый спокойный диалог с высоким стандартом.</p>
                 </div>
               </div>
             </div>
@@ -404,265 +424,21 @@
         </div>
       </section>
 
-      <section id="screening" class="section section--agent">
-        <div class="container agent">
-          <div class="agent__header">
+      <section class="section section--tight" id="contact">
+        <div class="container">
+          <div class="card cta reveal">
             <div>
-              <h2>Скрининг — первый шаг</h2>
-              <p class="muted">
-                Вы даёте задачу или объект. Я смотрю вводные и говорю: есть смысл идти дальше или лучше остановиться. Ниже — демо-версия логики брифа.
+              <div class="eyebrow">Первый контакт</div>
+              <h2>Можно начать спокойно</h2>
+              <p class="lead">
+                Если у вас уже есть задача, объект или проект — достаточно первого разговора. Без давления. С понятным следующим шагом.
               </p>
             </div>
 
-            <div class="agent__header-actions">
-              <button id="btnNewChat" class="btn btn--ghost" type="button">Очистить диалог</button>
+            <div class="cta__actions">
+              <a class="btn btn--primary" href="mailto:e.u.bocharowa@yandex.ru">Записаться на консультацию</a>
+              <a class="btn btn--secondary" href="tel:+79109434422">Связаться по телефону</a>
             </div>
-          </div>
-
-          <div class="agent__grid">
-            <div class="agent__chat" role="application" aria-label="Скрининг">
-              <div id="chatLog" class="chatlog" aria-live="polite" aria-relevant="additions">
-                <div class="msg msg--bot">
-                  <div class="msg__bubble">
-                    Здравствуйте. Это блок скрининга ЦБИ.
-                    Коротко опишите задачу: тип актива, регион или объект, цель, бюджет, срок и что уже проверяли.
-                    Начнём с главного: <b>какая у вас цель</b> — для себя, аренда, перепродажа, строительство или сохранение капитала?
-                  </div>
-                </div>
-              </div>
-
-              <div class="chatComposer" aria-label="Поле ввода">
-                <div class="composer__quick" aria-label="Быстрые сообщения">
-                  <button class="quick" type="button" data-quick="Нужен скрининг одного лота: документы, красные флаги, что запросить у продавца и есть ли смысл идти дальше.">скрининг лота</button>
-                  <button class="quick" type="button" data-quick="Задача — коммерция: нужна финмодель с базовым и осторожным сценарием аренды.">коммерция · сценарии</button>
-                  <button class="quick" type="button" data-quick="Новостройка: что проверить до брони — декларация, эскроу, сроки, застройщик, ограничения?">новостройка · чек-лист</button>
-                </div>
-
-                <form id="chatForm" class="composer__form">
-                  <label class="srOnly" for="chatInput">Сообщение</label>
-                  <input
-                    id="chatInput"
-                    name="message"
-                    type="text"
-                    placeholder="Например: «Участок 12 соток, цель — глэмпинг, бюджет до …, что проверить первым?»"
-                    autocomplete="off"
-                    maxlength="700"
-                  />
-                  <button class="btn btn--primary" type="submit">Отправить</button>
-                </form>
-
-                <div class="composer__meta">
-                  Enter — отправить. Данные не уходят на сервер. Это локальное демо.
-                </div>
-              </div>
-            </div>
-
-            <aside class="agent__side" aria-label="Бриф и контакты">
-              <div class="sideCard">
-                <div class="sideCard__title">Что полезно закрыть в брифе</div>
-                <div class="checklist" id="checklist">
-                  <label class="check">
-                    <input type="checkbox" disabled />
-                    <span>цель и горизонт</span>
-                  </label>
-
-                  <label class="check">
-                    <input type="checkbox" disabled />
-                    <span>бюджет / источник средств</span>
-                  </label>
-
-                  <label class="check">
-                    <input type="checkbox" disabled />
-                    <span>тип объекта и локация</span>
-                  </label>
-
-                  <label class="check">
-                    <input type="checkbox" disabled />
-                    <span>сроки и ограничения</span>
-                  </label>
-
-                  <label class="check">
-                    <input type="checkbox" disabled />
-                    <span>что уже есть из документов</span>
-                  </label>
-                </div>
-              </div>
-
-              <div class="sideCard">
-                <div class="sideCard__title">Как смотрю на риски</div>
-                <ul class="bullets">
-                  <li>Сначала право и ограничения. Потом экономика и сценарии.</li>
-                  <li>Если данных мало — говорю прямо, чего не хватает.</li>
-                  <li>Отказ от сделки при несходящихся фактах — нормальный исход.</li>
-                </ul>
-              </div>
-
-              <div class="sideCard sideCard--contact" id="contact">
-                <div class="sideCard__title">Связаться</div>
-                <p class="muted contact-intro">
-                  Елена Бочарова. Основной фокус — недвижимость России. Зарубежные задачи — по согласованию запроса.
-                </p>
-
-                <div class="contactRow">
-                  <span class="contactRow__label">Телефон</span>
-                  <a class="contactRow__value" href="tel:+79109434422">+7 (910) 943-44-22</a>
-                </div>
-
-                <div class="contactRow">
-                  <span class="contactRow__label">Email</span>
-                  <a class="contactRow__value" href="mailto:e.u.bocharowa@yandex.ru">e.u.bocharowa@yandex.ru</a>
-                </div>
-
-                <div class="contactRow">
-                  <span class="contactRow__label">Telegram</span>
-                  <a class="contactRow__value" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">@CENTR_BIZNES_INVEST</a>
-                </div>
-
-                <div class="contactRow">
-                  <span class="contactRow__label">Telegram</span>
-                  <a class="contactRow__value" href="https://t.me/ELENA_BOCHAROWA" target="_blank" rel="noopener noreferrer">@ELENA_BOCHAROWA</a>
-                </div>
-
-                <a class="btn btn--primary btn--full" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <section id="materials" class="section">
-        <div class="container">
-          <h2>Примеры объектов для разбора</h2>
-          <p class="section__lead muted">
-            Ниже — реальные проекты с рынка Сочи. Это не витрина и не рекомендация к покупке.
-            Это примеры того, какие объекты можно брать в проверку и расчёт под задачу.
-          </p>
-
-          <div class="objectsGrid">
-            <article class="objectCard">
-              <div class="objectCard__head">
-                <div>
-                  <div class="objectCard__title">ЖК Olivia</div>
-                  <div class="objectCard__meta">Сочи, Адлерский район, ул. Ленина 290/8</div>
-                </div>
-              </div>
-              <p class="muted">
-                Пример для разбора новостройки по документам, срокам, формату покупки и логике сценария.
-              </p>
-              <div class="objectCard__actions">
-                <a class="btn btn--ghost" href="https://alpika-group.ru/" target="_blank" rel="noopener noreferrer">Источник проекта</a>
-              </div>
-            </article>
-
-            <article class="objectCard">
-              <div class="objectCard__head">
-                <div>
-                  <div class="objectCard__title">DOM XIII</div>
-                  <div class="objectCard__meta">Сочи, Центральный район, пересечение ул. Воровского и пер. Зеленый</div>
-                </div>
-              </div>
-              <p class="muted">
-                Пример для разбора центральной локации: формат объекта, ограничения, цена входа и сценарии использования.
-              </p>
-              <div class="objectCard__actions">
-                <a class="btn btn--ghost" href="https://alpika-group.ru/" target="_blank" rel="noopener noreferrer">Источник проекта</a>
-              </div>
-            </article>
-
-            <article class="objectCard">
-              <div class="objectCard__head">
-                <div>
-                  <div class="objectCard__title">АК Korse</div>
-                  <div class="objectCard__meta">Сочи, Курортный проспект, 71</div>
-                </div>
-              </div>
-              <p class="muted">
-                Пример для разбора апартаментного формата: статус, ограничения, модель использования и риски.
-              </p>
-              <div class="objectCard__actions">
-                <a class="btn btn--ghost" href="https://alpika-group.ru/" target="_blank" rel="noopener noreferrer">Источник проекта</a>
-              </div>
-            </article>
-
-            <article class="objectCard">
-              <div class="objectCard__head">
-                <div>
-                  <div class="objectCard__title">ЖК «Новая Альпика»</div>
-                  <div class="objectCard__meta">Сочи, Хостинский район, ул. Ломоносовская, 2Б</div>
-                </div>
-              </div>
-              <p class="muted">
-                Пример для разбора жилого проекта: документы, окружение, формат сделки и логика отбора под задачу.
-              </p>
-              <div class="objectCard__actions">
-                <a class="btn btn--ghost" href="https://alpika-group.ru/" target="_blank" rel="noopener noreferrer">Источник проекта</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="faq" class="section section--faq section--soft">
-        <div class="container">
-          <h2>Частые вопросы</h2>
-
-          <div class="faq">
-            <details class="faq__item" open>
-              <summary>Вы гарантируете доходность?</summary>
-              <p>
-                Нет. Я не даю гарантий. Я даю проверку и расчёт. Показываю сценарии и риски. Решение принимается по фактам.
-              </p>
-            </details>
-
-            <details class="faq__item">
-              <summary>Почему так много вопросов в начале?</summary>
-              <p>
-                Без вводных цифры становятся фантазией. Уточнения экономят время и позволяют честно понять, есть ли смысл идти дальше.
-              </p>
-            </details>
-
-            <details class="faq__item">
-              <summary>Я сам могу найти объект. Зачем тогда ЦБИ?</summary>
-              <p>
-                Найти можно самому. Сложнее — проверить и посчитать риски. Часто обращаются уже с коротким списком — нужна вторая голова по документам и модели.
-              </p>
-            </details>
-
-            <details class="faq__item">
-              <summary>Боюсь неликвида. Вы это «предсказываете»?</summary>
-              <p>
-                Я не предсказываю рынок. Я смотрю на ликвидность через локацию, расходы, аренду, ограничения и сценарии простоя — чтобы решение было осознанным.
-              </p>
-            </details>
-
-            <details class="faq__item">
-              <summary>Это агентство продаж?</summary>
-              <p>
-                Нет. ЦБИ — экспертное сопровождение: проверка, цифры, сопровождение. Витрина лотов и навязывание «лучшего предложения» — не этот формат.
-              </p>
-            </details>
-
-            <details class="faq__item">
-              <summary>Кто ведёт работу?</summary>
-              <p>
-                Лично Елена Бочарова: бриф, логика проверки и коммуникация по проекту.
-              </p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <section class="section cta-band" aria-label="Следующий шаг">
-        <div class="container cta-band__inner">
-          <h2 class="cta-band__title">Следующий шаг</h2>
-          <p class="cta-band__text muted">
-            Пришлите задачу или объект. Коротко: цель, бюджет, что уже есть по документам и что именно нужно понять на старте.
-          </p>
-
-          <div class="cta-band__actions">
-            <a class="btn btn--primary" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">Отправить объект</a>
-            <a class="btn btn--ghost" href="mailto:e.u.bocharowa@yandex.ru">Написать на почту</a>
-            <a class="btn btn--ghost" href="#screening">Сначала пройти скрининг</a>
           </div>
         </div>
       </section>
@@ -670,20 +446,48 @@
 
     <footer class="footer">
       <div class="container footer__inner">
-        <div class="muted">
-          Материалы на сайте не являются публичной офертой и не заменяют юридическую, налоговую или инвестиционную консультацию. Решение принимаете вы.
+        <div class="footer__brand">
+          <strong>ЦБИ — Центр Бизнес Инвестиций</strong>
+          <p class="small" style="margin-top: 8px">
+            Здесь не продают объект. Здесь помогают принять сильное инвестиционное решение.
+          </p>
         </div>
 
-        <div class="footer__right">
-          <a href="#screening">Скрининг</a>
-          <span class="dot" aria-hidden="true">•</span>
-          <a href="#contact">Контакты</a>
-          <span class="dot" aria-hidden="true">•</span>
-          <a href="#about">О ЦБИ</a>
-        </div>
+        <nav class="footer__nav" aria-label="Навигация в подвале">
+          <a href="#about">О проекте</a>
+          <a href="#directions">Направления</a>
+          <a href="#process">Процесс</a>
+          <a href="#formats">Форматы</a>
+          <a href="#contact">Контакт</a>
+        </nav>
       </div>
     </footer>
 
-    <script src="./app.js"></script>
+    <script>
+      (function () {
+        const elements = document.querySelectorAll(".reveal");
+
+        if (!("IntersectionObserver" in window) || !elements.length) {
+          elements.forEach((el) => el.classList.add("is-visible"));
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.12,
+          }
+        );
+
+        elements.forEach((el) => observer.observe(el));
+      })();
+    </script>
   </body>
 </html>
