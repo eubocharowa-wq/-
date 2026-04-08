@@ -1,29 +1,33 @@
 :root {
-  --bg: #0c0d10;
-  --bg-soft: #13161b;
-  --bg-soft-2: #171b21;
-  --panel: linear-gradient(180deg, rgba(22, 25, 31, 0.92), rgba(16, 18, 23, 0.96));
-  --panel-light: rgba(255, 255, 255, 0.03);
+  --bg: #05070b;
+  --bg-soft: #0a0f16;
+  --bg-soft-2: #101722;
 
-  --text: #f5f1e8;
-  --muted: #c4b8a4;
-  --muted-2: #978d7d;
+  --panel: linear-gradient(180deg, rgba(15, 19, 28, 0.94), rgba(10, 13, 20, 0.96));
+  --panel-2: linear-gradient(180deg, rgba(18, 22, 32, 0.94), rgba(12, 16, 24, 0.98));
+  --panel-light: rgba(255, 255, 255, 0.02);
 
-  --gold: #d8b35d;
-  --gold-2: #f0cc82;
-  --green-deep: #20352f;
-  --green-soft: #2d4b42;
+  --text: #f4efe6;
+  --muted: #c9bda8;
+  --muted-2: #9e9384;
 
-  --line: rgba(240, 204, 130, 0.16);
-  --line-strong: rgba(240, 204, 130, 0.32);
+  --gold: #d7b15f;
+  --gold-2: #ecd08d;
 
-  --shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+  --line: rgba(215, 177, 95, 0.18);
+  --line-strong: rgba(215, 177, 95, 0.34);
+
+  --accent-green: #20372f;
+  --accent-blue: #152235;
+  --accent-deep: #0d1622;
+
+  --shadow: 0 18px 60px rgba(0, 0, 0, 0.42);
   --radius: 22px;
   --radius-sm: 14px;
   --radius-xs: 10px;
 
   --container: 1180px;
-  --ring: 0 0 0 4px rgba(240, 204, 130, 0.14);
+  --ring: 0 0 0 4px rgba(215, 177, 95, 0.14);
 }
 
 * {
@@ -44,10 +48,10 @@ body {
   color: var(--text);
   font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background:
-    radial-gradient(900px 400px at 10% -10%, rgba(216, 179, 93, 0.14), transparent 60%),
-    radial-gradient(1000px 520px at 95% 10%, rgba(32, 53, 47, 0.28), transparent 62%),
-    radial-gradient(900px 500px at 50% 100%, rgba(92, 73, 35, 0.16), transparent 68%),
-    var(--bg);
+    radial-gradient(circle at 12% 18%, rgba(215, 177, 95, 0.1), transparent 28%),
+    radial-gradient(circle at 82% 14%, rgba(21, 34, 53, 0.24), transparent 34%),
+    radial-gradient(circle at 70% 78%, rgba(32, 55, 47, 0.18), transparent 30%),
+    linear-gradient(180deg, #04060a 0%, #070b12 48%, #05070b 100%);
   line-height: 1.5;
 }
 
@@ -83,7 +87,7 @@ input {
   top: 0;
   z-index: 50;
   backdrop-filter: blur(14px);
-  background: rgba(9, 11, 14, 0.72);
+  background: rgba(5, 7, 11, 0.82);
   border-bottom: 1px solid var(--line);
 }
 
@@ -107,8 +111,8 @@ input {
   height: 68px;
   border-radius: 999px;
   overflow: hidden;
-  border: 2px solid rgba(240, 204, 130, 0.54);
-  box-shadow: 0 0 0 5px rgba(240, 204, 130, 0.08);
+  border: 2px solid rgba(236, 208, 141, 0.64);
+  box-shadow: 0 0 0 5px rgba(215, 177, 95, 0.08);
   flex-shrink: 0;
   background: #fff;
 }
@@ -134,6 +138,7 @@ input {
   font-size: 20px;
   font-weight: 800;
   letter-spacing: 0.01em;
+  color: var(--text);
 }
 
 .brand__fio {
@@ -174,11 +179,11 @@ input {
 }
 
 .topnav__cta {
-  color: #1f1810 !important;
+  color: #21180e !important;
   background: linear-gradient(135deg, var(--gold-2), var(--gold));
   border-color: transparent !important;
   font-weight: 800;
-  box-shadow: 0 12px 28px rgba(216, 179, 93, 0.22);
+  box-shadow: 0 12px 28px rgba(215, 177, 95, 0.22);
 }
 
 .section {
@@ -186,7 +191,7 @@ input {
 }
 
 .section--soft {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.008));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.005));
   border-top: 1px solid rgba(255, 255, 255, 0.02);
   border-bottom: 1px solid rgba(255, 255, 255, 0.02);
 }
@@ -197,6 +202,7 @@ input {
   line-height: 1.08;
   font-weight: 800;
   letter-spacing: -0.03em;
+  color: var(--text);
 }
 
 .section__lead {
@@ -204,6 +210,7 @@ input {
   margin: 0 0 24px;
   font-size: 17px;
   line-height: 1.65;
+  color: var(--muted);
 }
 
 .muted {
@@ -235,6 +242,7 @@ input {
   letter-spacing: -0.05em;
   max-width: 11ch;
   text-wrap: balance;
+  color: var(--text);
 }
 
 .heroLogoWrap {
@@ -244,7 +252,7 @@ input {
 .heroLogo {
   width: clamp(104px, 16vw, 164px);
   border-radius: 999px;
-  border: 2px solid rgba(240, 204, 130, 0.68);
+  border: 2px solid rgba(236, 208, 141, 0.68);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
   background: #fff;
 }
@@ -296,14 +304,15 @@ summary:focus {
 }
 
 .btn--primary {
-  color: #22180e;
+  color: #21180e !important;
   background: linear-gradient(135deg, var(--gold-2), var(--gold));
-  border-color: transparent;
-  box-shadow: 0 12px 30px rgba(216, 179, 93, 0.18);
+  border-color: transparent !important;
+  box-shadow: 0 12px 28px rgba(215, 177, 95, 0.22);
 }
 
 .btn--ghost {
   background: rgba(255, 255, 255, 0.01);
+  color: var(--text);
 }
 
 .btn--full {
@@ -328,7 +337,10 @@ summary:focus {
 .mortgageCalc,
 .agent__chat,
 .hero__panel,
-.cta-band__inner {
+.cta-band__inner,
+.method-step,
+.direction-card,
+.contactRow {
   border-radius: var(--radius);
   border: 1px solid var(--line);
   background: var(--panel);
@@ -363,6 +375,7 @@ summary:focus {
   margin: 0;
   font-size: 18px;
   font-weight: 800;
+  color: var(--text);
 }
 
 .panel__hint {
@@ -419,6 +432,7 @@ summary:focus {
 .mini-card__name {
   font-weight: 800;
   font-size: 15px;
+  color: var(--text);
 }
 
 .mini-card__meta {
@@ -459,6 +473,7 @@ summary:focus {
   font-weight: 800;
   margin-bottom: 10px;
   letter-spacing: -0.02em;
+  color: var(--text);
 }
 
 .feature p,
@@ -466,6 +481,7 @@ summary:focus {
 .objectCard p {
   margin: 0;
   line-height: 1.62;
+  color: var(--muted);
 }
 
 .objectCard__meta {
@@ -495,10 +511,6 @@ summary:focus {
   gap: 16px;
   align-items: start;
   padding: 18px;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  background: var(--panel);
-  box-shadow: var(--shadow);
 }
 
 .method-step__n {
@@ -507,8 +519,8 @@ summary:focus {
   display: grid;
   place-items: center;
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(240, 204, 130, 0.18), rgba(216, 179, 93, 0.08));
-  border: 1px solid rgba(240, 204, 130, 0.22);
+  background: linear-gradient(135deg, rgba(236, 208, 141, 0.18), rgba(215, 177, 95, 0.08));
+  border: 1px solid rgba(236, 208, 141, 0.22);
   color: var(--gold);
   font-size: 22px;
   font-weight: 800;
@@ -518,6 +530,7 @@ summary:focus {
   font-size: 18px;
   font-weight: 800;
   margin-bottom: 6px;
+  color: var(--text);
 }
 
 .directions {
@@ -555,6 +568,7 @@ summary:focus {
 .mortgageProgramCard__name {
   font-size: 18px;
   font-weight: 800;
+  color: var(--text);
 }
 
 .mortgageProgramCard__meta {
@@ -581,6 +595,7 @@ summary:focus {
   margin: 0;
   font-size: 18px;
   font-weight: 800;
+  color: var(--text);
 }
 
 .mortgageCalc__grid {
@@ -621,7 +636,7 @@ summary:focus {
   padding: 11px 12px;
   border-radius: 12px;
   border: 1px solid var(--line);
-  background: var(--panel-light);
+  background: rgba(255, 255, 255, 0.015);
   font-size: 14px;
 }
 
@@ -657,8 +672,8 @@ summary:focus {
   overflow: auto;
   padding: 18px;
   background:
-    radial-gradient(520px 260px at 8% 2%, rgba(216, 179, 93, 0.12), transparent 60%),
-    radial-gradient(620px 320px at 95% 8%, rgba(45, 75, 66, 0.14), transparent 62%),
+    radial-gradient(520px 260px at 8% 2%, rgba(215, 177, 95, 0.1), transparent 60%),
+    radial-gradient(620px 320px at 95% 8%, rgba(21, 34, 53, 0.14), transparent 62%),
     transparent;
 }
 
@@ -683,10 +698,11 @@ summary:focus {
   background: rgba(255, 255, 255, 0.02);
   line-height: 1.6;
   white-space: pre-wrap;
+  color: var(--text);
 }
 
 .msg--user .msg__bubble {
-  color: #22180e;
+  color: #21180e;
   background: linear-gradient(135deg, var(--gold-2), var(--gold));
   border-color: transparent;
 }
@@ -728,11 +744,13 @@ summary:focus {
   font-size: 18px;
   font-weight: 800;
   margin-bottom: 10px;
+  color: var(--text);
 }
 
 .contact-intro {
   margin-top: 0;
   line-height: 1.55;
+  color: var(--muted);
 }
 
 .checklist {
@@ -765,8 +783,6 @@ summary:focus {
   margin: 10px 0;
   padding: 11px 12px;
   border-radius: 12px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.02);
   display: flex;
   justify-content: space-between;
   gap: 8px;
@@ -802,6 +818,7 @@ summary:focus {
   cursor: pointer;
   font-size: 17px;
   font-weight: 700;
+  color: var(--text);
 }
 
 .faq__item p {
@@ -816,12 +833,14 @@ summary:focus {
 
 .cta-band__title {
   margin-bottom: 12px !important;
+  color: var(--text);
 }
 
 .cta-band__text {
   margin: 0 0 18px;
   max-width: 760px;
   line-height: 1.65;
+  color: var(--muted);
 }
 
 .cta-band__actions {
