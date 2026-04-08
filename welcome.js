@@ -1,6 +1,6 @@
 (function () {
   var STORAGE_KEY = "cbi_skip_welcome";
-  var SITE_PATH = "src/index.html";
+  var SITE_PATH = "index.html";
 
   function goToSite() {
     var remember = document.getElementById("rememberWelcome");
