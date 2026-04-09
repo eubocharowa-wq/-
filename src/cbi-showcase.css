@@ -29,13 +29,25 @@ html {
 
 body {
   margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
   font-family: Inter, "Segoe UI", Arial, sans-serif;
   color: var(--text);
   line-height: 1.55;
-  background:
-    linear-gradient(rgba(4, 5, 8, 0.78), rgba(4, 5, 8, 0.9)),
-    url("./assets/bg-city-sea.png") center center / cover no-repeat fixed;
   background-color: #050608;
+  background-image:
+    linear-gradient(rgba(4, 5, 8, 0.62), rgba(4, 5, 8, 0.82)),
+    url("assets/bg-city-sea.png");
+  background-position: center center, center center;
+  background-size: 100% 100%, cover;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: scroll, scroll;
+}
+
+@media (hover: hover) and (min-width: 1024px) {
+  body {
+    background-attachment: scroll, fixed;
+  }
 }
 
 a {
