@@ -328,6 +328,20 @@ input {
   margin-top: 18px;
 }
 
+.chips--heroSubtle {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.chip--subtle {
+  font-weight: 600;
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
 a.chip {
   text-decoration: none;
   text-align: center;
@@ -405,6 +419,22 @@ a.chip {
   color: var(--muted);
   font-size: 18px;
   line-height: 1.68;
+}
+
+.lead--heroSub {
+  margin-top: 14px;
+  max-width: 52ch;
+  color: var(--text);
+  font-size: clamp(17px, 2.1vw, 20px);
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.lead--heroHint {
+  margin-top: 12px;
+  max-width: 48ch;
+  font-size: 17px;
+  line-height: 1.62;
 }
 
 .hero__actions {
@@ -608,6 +638,61 @@ summary:focus {
 
 .objectsGrid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.objectsGrid--cases {
+  align-items: stretch;
+}
+
+.objectCard--case {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.objectCard__line {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.58;
+}
+
+.objectCard--case .objectCard__line + .objectCard__line {
+  margin-top: 10px;
+}
+
+.trustLead__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 32px 26px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-strong);
+  background:
+    linear-gradient(165deg, rgba(236, 208, 141, 0.07), transparent 42%),
+    var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.trustLead__title {
+  margin: 0 0 18px;
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.trustLead__text {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.trustLead__text--last {
+  margin-top: 14px;
+  color: var(--text);
+  font-weight: 600;
 }
 
 .feature,

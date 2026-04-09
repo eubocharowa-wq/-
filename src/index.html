@@ -45,12 +45,8 @@
 
         <nav class="topnav" aria-label="Навигация">
           <a href="#about">О ЦБИ</a>
-          <a href="#trust">Почему доверяют</a>
           <a href="#method">Как работаю</a>
-          <a href="#services">С чего начать</a>
-          <a href="#directions">Направления</a>
-          <a href="#calculator">Калькулятор</a>
-          <a href="#screening">Скрининг</a>
+          <a href="#services">Форматы</a>
           <a href="#materials">Разборы</a>
           <a href="#faq">FAQ</a>
           <a class="topnav__cta" href="#contact">Связаться</a>
@@ -74,15 +70,19 @@
                 />
               </div>
 
-              <h1>Сильное решение — на фактах и цифрах</h1>
+              <h1>Не продаю — отбираю</h1>
 
-              <p class="lead">Инвестиционные решения в недвижимости — без витрины лотов.</p>
+              <p class="lead lead--heroSub">
+                Инвестиционные решения в недвижимости через документы, расчёт и сопровождение.
+              </p>
 
-              <p class="lead">Документы. Модель. Вывод.</p>
+              <p class="lead lead--heroHint">
+                Сначала факты и модель. Потом вывод — идти дальше или остановиться.
+              </p>
 
               <div class="hero__actions">
-                <a class="btn btn--primary" href="#contact">Консультация</a>
-                <a class="btn btn--ghost" href="#services">Первый шаг</a>
+                <a class="btn btn--primary" href="#screening">Пройти скрининг</a>
+                <a class="btn btn--ghost" href="#contact">Отправить объект</a>
               </div>
             </div>
 
@@ -94,11 +94,9 @@
                   Типовые запросы ниже ведут к разделам сайта: скрининг, форматы или разборы — без давления и без каталога лотов.
                 </p>
 
-                <div class="chips chips--hero">
-                  <a class="chip" href="#screening">Скрининг</a>
-                  <a class="chip" href="#services">Форматы входа</a>
-                  <a class="chip" href="#materials">Разбор материалов</a>
-                  <a class="chip" href="#calculator">Ипотека · сценарии</a>
+                <div class="chips chips--hero chips--heroSubtle">
+                  <a class="chip chip--subtle" href="#services">Форматы входа</a>
+                  <a class="chip chip--subtle" href="#materials">Разборы</a>
                 </div>
 
                 <div class="panel__divider" aria-hidden="true"></div>
@@ -106,7 +104,7 @@
                 <div class="mini-cards">
                   <div class="mini-card">
                     <div class="mini-card__name">Не витрина</div>
-                    <div class="mini-card__meta">Не каталог и не «лучший лот», а проверка под вашу задачу и рамка риска.</div>
+                    <div class="mini-card__meta">Не каталог навязанных лотов — проверка под вашу задачу и рамка риска.</div>
                   </div>
                   <div class="mini-card">
                     <div class="mini-card__name">Право услышать «не покупать»</div>
@@ -117,14 +115,14 @@
 
               <div class="hero__statRow">
                 <div class="hero__stat">
-                  <div class="hero__statLabel">Позиция</div>
-                  <strong>Не продаю — отбираю</strong>
-                  <p>Решение сильнее любого обещания рынка.</p>
+                  <div class="hero__statLabel">Фокус</div>
+                  <strong>Документы, модель, риски</strong>
+                  <p>Без витрины и без давления к сделке ради сделки.</p>
                 </div>
                 <div class="hero__stat">
-                  <div class="hero__statLabel">Порядок</div>
-                  <strong>Сначала факты и модель</strong>
-                  <p>Потом вывод: идти, менять вход или остановиться.</p>
+                  <div class="hero__statLabel">Исход</div>
+                  <strong>Честный вывод</strong>
+                  <p>Идти дальше, менять вход или остановиться — по фактам.</p>
                 </div>
               </div>
             </div>
@@ -153,7 +151,7 @@
         <div class="container">
           <h2>Почему ко мне приходят</h2>
           <p class="section__lead muted">
-            Не за «лучшим предложением», а за спокойным решением, где цена ошибки ниже.
+            Не за обещанием «идеального варианта», а за спокойным решением, где цена ошибки ниже.
           </p>
 
           <div class="about-grid">
@@ -177,6 +175,20 @@
                 Документы, ограничения, модель, сценарии выхода. Не обещания и не эмоции.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft trustLead" aria-label="Формат работы">
+        <div class="container">
+          <div class="trustLead__inner">
+            <h2 class="trustLead__title">Лично веду ключевые этапы</h2>
+            <p class="trustLead__text">
+              Бриф, логика проверки и коммуникация по проекту — лично Елена Бочарова.
+            </p>
+            <p class="trustLead__text trustLead__text--last">
+              Это не потоковая витрина. Это персональная работа с решением.
+            </p>
           </div>
         </div>
       </section>
@@ -324,7 +336,7 @@
 
       <section id="services" class="section section--soft">
         <div class="container">
-          <h2>С чего начать</h2>
+          <h2>Форматы</h2>
           <p class="section__lead muted">
             Вход зависит от стадии задачи. Можно начать с короткого скрининга или сразу идти в предметный разбор лота.
           </p>
@@ -517,10 +529,6 @@
                   />
                   <button class="btn btn--primary" type="submit">Отправить</button>
                 </form>
-
-                <div class="composer__meta">
-                  Enter — отправить. Данные не уходят на сервер. Это локальное демо.
-                </div>
               </div>
             </div>
 
@@ -604,25 +612,31 @@
             Это не витрина объектов. Это примеры решений, которые проверяются.
           </p>
 
-          <div class="objectsGrid">
-            <article class="objectCard">
+          <div class="objectsGrid objectsGrid--cases">
+            <article class="objectCard objectCard--case">
               <div class="objectCard__title">Новостройка</div>
-              <p class="muted">Проверка документов, формата сделки и рисков</p>
+              <p class="muted objectCard__line">Проверяю документы, конструкцию сделки и сценарий выхода.</p>
+              <p class="muted objectCard__line">
+                Иногда сильнее отказаться, чем купить красиво упакованный лот.
+              </p>
             </article>
 
-            <article class="objectCard">
+            <article class="objectCard objectCard--case">
               <div class="objectCard__title">Коммерция</div>
-              <p class="muted">Сценарии аренды и устойчивость модели</p>
+              <p class="muted objectCard__line">Смотрю аренду, договор, устойчивость модели и риск простоя.</p>
+              <p class="muted objectCard__line">Фото важны меньше, чем cashflow и ограничения.</p>
             </article>
 
-            <article class="objectCard">
+            <article class="objectCard objectCard--case">
               <div class="objectCard__title">Земля</div>
-              <p class="muted">Ограничения и реальный сценарий использования</p>
+              <p class="muted objectCard__line">Проверяю не идею, а возможность её реализовать.</p>
+              <p class="muted objectCard__line">Ограничения и сценарий использования важнее обещаний.</p>
             </article>
 
-            <article class="objectCard">
+            <article class="objectCard objectCard--case">
               <div class="objectCard__title">Проект развития</div>
-              <p class="muted">Конструкция, риски и логика входа</p>
+              <p class="muted objectCard__line">Сначала правовая и финансовая логика.</p>
+              <p class="muted objectCard__line">Потом вывод: усиливать вход или тормозить.</p>
             </article>
           </div>
         </div>
@@ -664,14 +678,14 @@
             <details class="faq__item">
               <summary>Это агентство продаж?</summary>
               <p>
-                Нет. ЦБИ — экспертное сопровождение: проверка, цифры, сопровождение. Витрина лотов и навязывание «лучшего предложения» — не этот формат.
+                Нет. ЦБИ — экспертное сопровождение: проверка, цифры, сопровождение. Витрина лотов и навязывание «единственно верного» варианта — не этот формат.
               </p>
             </details>
 
             <details class="faq__item">
               <summary>Кто ведёт работу?</summary>
               <p>
-                Лично Елена Бочарова: бриф, логика проверки и коммуникация по проекту.
+                Ключевые этапы — бриф, логика проверки и коммуникация по проекту — веду лично. Подробнее в блоке выше на странице.
               </p>
             </details>
           </div>
@@ -687,8 +701,7 @@
 
           <div class="cta-band__actions">
             <a class="btn btn--primary" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">Отправить объект</a>
-            <a class="btn btn--ghost" href="mailto:e.u.bocharowa@yandex.ru">Написать на почту</a>
-            <a class="btn btn--ghost" href="#screening">Сначала пройти скрининг</a>
+            <a class="btn btn--ghost" href="#screening">Пройти скрининг</a>
           </div>
         </div>
       </section>
