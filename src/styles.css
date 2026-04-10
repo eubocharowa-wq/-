@@ -152,6 +152,14 @@ input {
   transform: scale(1.14);
   transform-origin: center center;
   filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.4));
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+@media (hover: hover) {
+  .brand__mark:hover .brand__logo {
+    transform: scale(1.2);
+    filter: drop-shadow(0 2px 8px rgba(215, 177, 95, 0.2));
+  }
 }
 
 .brand__copy {
@@ -200,7 +208,11 @@ input {
   padding: 9px 14px;
   border-radius: 12px;
   border: 1px solid transparent;
-  transition: 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
   font-size: 13px;
   letter-spacing: 0.02em;
 }
@@ -209,6 +221,34 @@ input {
   color: var(--text);
   border-color: var(--line);
   background: rgba(255, 255, 255, 0.03);
+}
+
+@media (hover: hover) {
+  .topnav a:not(.topnav__cta) {
+    position: relative;
+  }
+
+  .topnav a:not(.topnav__cta)::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 5px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0);
+    opacity: 0.85;
+    transition: transform 0.28s ease;
+    pointer-events: none;
+  }
+
+  .topnav a:not(.topnav__cta):hover::after {
+    transform: scaleX(1);
+  }
+
+  .topnav a:not(.topnav__cta):hover {
+    transform: translateY(-1px);
+  }
 }
 
 .topnav__cta {
@@ -995,6 +1035,12 @@ input {
   border-radius: 22px;
   border: 1px solid rgba(216, 177, 90, 0.12);
   background: rgba(9, 12, 18, 0.78);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.35s ease,
+    background 0.35s ease,
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-reflash__trust-card strong {
@@ -1289,6 +1335,10 @@ summary:focus {
   box-shadow:
     0 10px 32px rgba(215, 177, 95, 0.36),
     0 0 0 1px rgba(236, 208, 141, 0.22);
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
 .btn--primary:hover {
@@ -1296,6 +1346,12 @@ summary:focus {
   box-shadow:
     0 14px 40px rgba(215, 177, 95, 0.42),
     0 0 0 1px rgba(236, 208, 141, 0.3);
+}
+
+@media (hover: hover) {
+  .btn--primary:hover {
+    transform: translateY(-2px);
+  }
 }
 
 .btn--ghost {
@@ -1351,6 +1407,11 @@ summary:focus {
   box-shadow:
     0 18px 56px rgba(0, 0, 0, 0.32),
     var(--shadow);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.35s ease,
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .trust__label {
@@ -1565,6 +1626,11 @@ summary:focus {
   gap: 16px;
   align-items: start;
   padding: 18px;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.35s ease,
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .method-step__n {
@@ -1860,6 +1926,57 @@ summary:focus {
   text-decoration: underline;
 }
 
+/* Появление блоков при скролле + hover (классы reveal — из app.js) */
+.reveal-scroll {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+}
+
+.reveal-scroll--in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (hover: hover) {
+  .reveal-scroll--in.feature:hover,
+  .reveal-scroll--in.serviceCard:hover,
+  .reveal-scroll--in.objectCard:hover {
+    transform: translate3d(0, -8px, 0);
+    box-shadow:
+      0 26px 70px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(215, 177, 95, 0.16),
+      var(--shadow);
+    border-color: rgba(215, 177, 95, 0.32);
+  }
+
+  .reveal-scroll--in.method-step:hover {
+    transform: translate3d(0, -6px, 0);
+    border-color: var(--line-strong);
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.38);
+  }
+
+  .reveal-scroll--in.hero-reflash__trust-card:hover {
+    transform: translate3d(0, -6px, 0);
+    border-color: rgba(216, 177, 90, 0.32);
+    background: rgba(12, 16, 24, 0.94);
+    box-shadow: 0 22px 56px rgba(0, 0, 0, 0.45);
+  }
+
+  .reveal-scroll--in.faq__item:hover {
+    transform: translate3d(0, -4px, 0);
+    border-color: var(--line-strong);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-scroll,
+  .reveal-scroll--in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Отзывы (адаптация идеи карточной сетки без React / Tailwind / framer-motion) */
 .testimonials {
   position: relative;
@@ -2053,6 +2170,11 @@ summary:focus {
 
 .faq__item {
   padding: 16px 18px;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.35s ease,
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .faq__item summary {

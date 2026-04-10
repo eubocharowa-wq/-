@@ -428,6 +428,50 @@ function initTestimonialsReveal() {
   cards.forEach((el) => io.observe(el));
 }
 
+function initRevealOnScroll() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const sel = [
+    ".about-grid > .feature",
+    ".about-grid--tight > .feature",
+    ".fit-grid > .feature",
+    ".servicesGrid > .serviceCard",
+    ".objectsGrid--cases > .objectCard",
+    ".method-steps > .method-step",
+    ".hero-reflash__trust-grid > .hero-reflash__trust-card",
+    ".faq__item",
+  ].join(", ");
+
+  const nodes = document.querySelectorAll(sel);
+  if (!nodes.length) return;
+
+  nodes.forEach((el) => el.classList.add("reveal-scroll"));
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("reveal-scroll--in");
+        io.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px -4% 0px", threshold: 0.1 }
+  );
+
+  nodes.forEach((el) => io.observe(el));
+
+  requestAnimationFrame(() => {
+    nodes.forEach((el) => {
+      if (el.classList.contains("reveal-scroll--in")) return;
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.92 && r.bottom > 0) {
+        el.classList.add("reveal-scroll--in");
+        io.unobserve(el);
+      }
+    });
+  });
+}
+
 function init() {
   wireMortgageProgramToggle();
   wireMortgageCalculator();
@@ -436,6 +480,7 @@ function init() {
   wireNewChat();
   hydrateFromStorageOrReset();
   initTestimonialsReveal();
+  initRevealOnScroll();
 }
 
 init();
