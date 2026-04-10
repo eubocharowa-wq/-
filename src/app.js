@@ -6,8 +6,13 @@ const els = {
   chatLog: document.getElementById("chatLog"),
   chatForm: document.getElementById("chatForm"),
   chatInput: document.getElementById("chatInput"),
+  chatConsent: document.getElementById("chatConsent"),
+  chatSubmitBtn: document.getElementById("chatSubmitBtn"),
+  chatConsentHint: document.getElementById("chatConsentHint"),
   btnNewChat: document.getElementById("btnNewChat"),
   checklist: document.getElementById("checklist"),
+  mortgageConsent: document.getElementById("mortgageConsent"),
+  mortgageCalcFields: document.getElementById("mortgageCalcFields"),
   mortgageProgramToggle: document.getElementById("mortgageProgramToggle"),
   mortgageProgramName: document.getElementById("mortgageProgramName"),
   mortgageProgramMeta: document.getElementById("mortgageProgramMeta"),
@@ -151,8 +156,24 @@ function getPositiveNumber(inputEl) {
   return num;
 }
 
+function setMortgageResultsDash() {
+  if (!els.mortgageMonthly || !els.mortgageOverpayment || !els.mortgageTotal) return;
+  els.mortgageMonthly.textContent = "—";
+  els.mortgageOverpayment.textContent = "—";
+  els.mortgageTotal.textContent = "—";
+}
+
+function isMortgageConsentOk() {
+  return Boolean(els.mortgageConsent?.checked);
+}
+
 function calcMortgage() {
   if (!els.mortgageMonthly || !els.mortgageOverpayment || !els.mortgageTotal) return;
+
+  if (!isMortgageConsentOk()) {
+    setMortgageResultsDash();
+    return;
+  }
 
   const amount = getPositiveNumber(els.mortgageAmount);
   const downPayment = getPositiveNumber(els.mortgageDownPayment);
@@ -192,7 +213,18 @@ function wireMortgageCalculator() {
     if (!field) return;
     field.addEventListener("input", calcMortgage);
   });
-  calcMortgage();
+
+  if (els.mortgageConsent) {
+    const syncMortgageFieldsDisabled = () => {
+      if (els.mortgageCalcFields) els.mortgageCalcFields.disabled = !els.mortgageConsent.checked;
+      if (els.mortgageConsent.checked) calcMortgage();
+      else setMortgageResultsDash();
+    };
+    els.mortgageConsent.addEventListener("change", syncMortgageFieldsDisabled);
+    syncMortgageFieldsDisabled();
+  } else {
+    calcMortgage();
+  }
 }
 
 const initialBotText =
@@ -211,6 +243,11 @@ let state = { ...initialState };
 
 function resetChat() {
   state = { ...initialState };
+
+  if (els.chatConsentHint) {
+    els.chatConsentHint.hidden = true;
+    els.chatConsentHint.textContent = "";
+  }
 
   els.chatLog.innerHTML = "";
   state.messages.forEach((m) => {
@@ -365,20 +402,46 @@ function wireQuickButtons() {
   });
 }
 
+function syncChatSubmitBtn() {
+  const btn = els.chatSubmitBtn || els.chatForm?.querySelector("button[type='submit']");
+  if (btn) btn.disabled = !els.chatConsent?.checked;
+}
+
 function wireForm() {
+  if (!els.chatForm) return;
+
+  els.chatConsent?.addEventListener("change", syncChatSubmitBtn);
+  syncChatSubmitBtn();
+
   els.chatForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    if (!els.chatConsent?.checked) {
+      if (els.chatConsentHint) {
+        els.chatConsentHint.hidden = false;
+        els.chatConsentHint.textContent =
+          "Отметьте согласие с политикой конфиденциальности и офертой, чтобы отправить сообщение.";
+      }
+      els.chatConsent?.focus();
+      return;
+    }
+
+    if (els.chatConsentHint) {
+      els.chatConsentHint.hidden = true;
+      els.chatConsentHint.textContent = "";
+    }
 
     const value = els.chatInput.value || "";
     els.chatInput.value = "";
 
+    const submitBtn = els.chatSubmitBtn || els.chatForm.querySelector("button[type='submit']");
     els.chatInput.disabled = true;
-    els.chatForm.querySelector("button[type='submit']").disabled = true;
+    if (submitBtn) submitBtn.disabled = true;
     try {
       await handleUserMessage(value);
     } finally {
       els.chatInput.disabled = false;
-      els.chatForm.querySelector("button[type='submit']").disabled = false;
+      syncChatSubmitBtn();
       els.chatInput.focus();
     }
   });
