@@ -31,7 +31,7 @@ body {
   line-height: 1.5;
   background-color: #050608;
   background-image:
-    linear-gradient(rgba(4, 5, 8, 0.62), rgba(4, 5, 8, 0.82)),
+    linear-gradient(rgba(4, 5, 8, 0.5), rgba(4, 5, 8, 0.76)),
     url("src/assets/bg-city-sea.png");
   background-position: center center, center center;
   background-size: 100% 100%, cover;

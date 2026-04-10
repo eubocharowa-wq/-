@@ -8,16 +8,16 @@
       name="description"
       content="ЦБИ — экспертный центр отбора и сопровождения инвестиционных решений в недвижимости и проектах развития. Документы, цифры, сценарии, риски и понятный процесс."
     />
-    <link rel="icon" type="image/png" href="assets/logo.png" />
-    <link rel="preload" as="image" href="assets/logo.png" fetchpriority="high" />
-    <link rel="preload" as="image" href="assets/bg-city-sea.png" />
+    <link rel="icon" type="image/png" href="./assets/logo.png" />
+    <link rel="preload" as="image" href="./assets/hero-portrait.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="./assets/bg-city-sea.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <header class="topbar">
@@ -26,7 +26,7 @@
           <div class="brand__mark" aria-hidden="true">
             <img
               class="brand__logo"
-              src="assets/logo.png"
+              src="./assets/logo.png"
               width="1024"
               height="1536"
               decoding="async"
@@ -56,18 +56,36 @@
 
     <main>
       <section class="hero" id="top">
-        <div class="container">
+        <div class="hero__scene" aria-hidden="true">
+          <div class="hero__bg-base"></div>
+          <div class="hero__bg-water"></div>
+          <div class="hero__lights">
+            <span class="hero__light"></span>
+            <span class="hero__light"></span>
+            <span class="hero__light"></span>
+            <span class="hero__light"></span>
+            <span class="hero__light"></span>
+            <span class="hero__light"></span>
+            <span class="hero__light"></span>
+            <span class="hero__light"></span>
+            <span class="hero__light"></span>
+            <span class="hero__light"></span>
+          </div>
+          <div class="hero__scene-veil"></div>
+        </div>
+        <div class="container hero__content">
           <div class="hero-reflash">
             <div class="hero-reflash__inner">
-              <div class="hero-reflash__logo-wrap">
-                <div class="hero-reflash__logo">
+              <div class="hero-reflash__logo-wrap hero-reflash__logo-wrap--portrait">
+                <div class="hero-reflash__logo hero-reflash__logo--portrait">
                   <img
-                    src="assets/logo.png"
+                    src="./assets/hero-portrait.png"
                     width="1024"
-                    height="1536"
+                    height="1024"
+                    loading="eager"
                     decoding="async"
                     fetchpriority="high"
-                    alt="Печать ЦБИ: Центр бизнес инвестиций, развитие инвестиционных проектов"
+                    alt="Елена Бочарова — Центр бизнес-инвестиций, развитие инвестиционных проектов"
                   />
                 </div>
               </div>
@@ -76,20 +94,28 @@
                 <span class="hero-reflash__eyebrow">Экспертный центр инвестиционных решений</span>
               </div>
 
-              <h1 class="hero-reflash__title">Не продаю — отбираю</h1>
+              <div class="hero-reflash__prose">
+                <h1 class="hero-reflash__title">
+                  <span class="hero-reflash__title-line">Не продаю —</span>
+                  <span class="hero-reflash__title-line">отбираю</span>
+                </h1>
 
-              <p class="hero-reflash__subtitle">
-                Инвестиционные решения в недвижимости через документы, расчёт и сопровождение.
-              </p>
+                <p class="hero-reflash__subtitle">
+                  Инвестиционные решения в недвижимости<br />
+                  через документы, расчёт и сопровождение.
+                </p>
 
-              <p class="hero-reflash__text">
-                Вы не покупаете объект вслепую.<br />
-                Вы принимаете решение на основе фактов, модели и сценариев.
-              </p>
+                <p class="hero-reflash__text">
+                  Вы не покупаете объект вслепую.<br />
+                  Вы принимаете решение на основе фактов,<br />
+                  модели и сценариев.
+                </p>
 
-              <p class="hero-reflash__text hero-reflash__text--strong">
-                Если вход слабый — я скажу «не покупать». Это нормальный результат.
-              </p>
+                <p class="hero-reflash__text hero-reflash__text--strong">
+                  Если вход слабый — я скажу «не покупать».<br />
+                  Это нормальный результат.
+                </p>
+              </div>
 
               <div class="hero-reflash__actions">
                 <a href="#screening" class="hero-reflash__btn hero-reflash__btn--primary">Пройти скрининг</a>
@@ -199,48 +225,44 @@
         </div>
       </section>
 
-      <section class="section">
+      <section class="section section--soft section--duo" aria-label="Результат и рамки работы">
         <div class="container">
-          <h2>Что вы получаете</h2>
-          <p class="section__lead muted">
-            Не поток информации, а понятный результат.
-          </p>
+          <div class="section-duo">
+            <div class="section-duo__main">
+              <h2>Что вы получаете</h2>
+              <p class="section__lead muted">
+                Не поток информации, а понятный результат.
+              </p>
 
-          <div class="about-grid">
-            <div class="feature">
-              <div class="feature__title">Вывод</div>
-              <p>Идти дальше или остановиться</p>
+              <div class="about-grid about-grid--tight">
+                <div class="feature feature--lift">
+                  <div class="feature__title">Вывод</div>
+                  <p>Идти дальше или остановиться</p>
+                </div>
+
+                <div class="feature feature--lift">
+                  <div class="feature__title">Риски</div>
+                  <p>Что может сломать решение</p>
+                </div>
+
+                <div class="feature feature--lift">
+                  <div class="feature__title">Следующий шаг</div>
+                  <p>Понятный сценарий действий</p>
+                </div>
+              </div>
             </div>
 
-            <div class="feature">
-              <div class="feature__title">Риски</div>
-              <p>Что может сломать решение</p>
-            </div>
-
-            <div class="feature">
-              <div class="feature__title">Следующий шаг</div>
-              <p>Понятный сценарий действий</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--soft">
-        <div class="container">
-          <h2>Что здесь не делают</h2>
-
-          <div class="about-grid">
-            <div class="feature">
-              <p>Не продают ради сделки</p>
-            </div>
-
-            <div class="feature">
-              <p>Не обещают доходность</p>
-            </div>
-
-            <div class="feature">
-              <p>Не создают иллюзию уверенности</p>
-            </div>
+            <aside class="section-duo__aside" aria-label="Ограничения формата">
+              <h2 class="section-duo__aside-title">Что здесь не делают</h2>
+              <p class="section-duo__aside-lead muted">
+                Чёткие границы — часть экспертной подачи.
+              </p>
+              <ul class="section-duo__list">
+                <li>Не продают ради сделки</li>
+                <li>Не обещают доходность</li>
+                <li>Не создают иллюзию уверенности</li>
+              </ul>
+            </aside>
           </div>
         </div>
       </section>
@@ -693,6 +715,6 @@
       </div>
     </footer>
 
-    <script src="app.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>
