@@ -17,7 +17,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260415" />
+    <link rel="stylesheet" href="./styles.css?v=20260416" />
   </head>
   <body>
     <header class="topbar">
@@ -433,57 +433,71 @@
             </div>
 
             <div class="mortgageCalc" aria-label="Калькулятор ипотеки">
-              <div class="mortgageCalc__head">
-                <h3 class="mortgageCalc__title">Параметры расчёта</h3>
-                <button
-                  id="mortgageProgramToggle"
-                  class="mortgageProgramToggle"
-                  type="button"
-                  aria-label="Переключить тип сценария ипотеки"
-                  title="Переключить тип сценария ипотеки"
-                >
-                  Сценарий: Новостройка
-                </button>
-              </div>
-
-              <div class="mortgageCalc__grid">
-                <label class="mortgageCalc__field">
-                  <span>Стоимость, ₽</span>
-                  <input id="mortgageAmount" type="number" min="100000" step="100000" value="12000000" />
-                </label>
-
-                <label class="mortgageCalc__field">
-                  <span>Первоначальный взнос, ₽</span>
-                  <input id="mortgageDownPayment" type="number" min="0" step="50000" value="2400000" />
-                </label>
-
-                <label class="mortgageCalc__field">
-                  <span>Ставка, % годовых</span>
-                  <input id="mortgageRate" type="number" min="0.1" max="40" step="0.1" value="11.8" />
-                </label>
-
-                <label class="mortgageCalc__field">
-                  <span>Срок, лет</span>
-                  <input id="mortgageYears" type="number" min="1" max="40" step="1" value="20" />
+              <div class="consent consent--block">
+                <label class="consent__label" for="mortgageConsent">
+                  <input type="checkbox" id="mortgageConsent" name="mortgage_consent" />
+                  <span class="consent__text">
+                    Для использования калькулятора подтверждаю ознакомление с
+                    <a href="./privacy.html" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>
+                    и
+                    <a href="./offer.html" target="_blank" rel="noopener noreferrer">публичной офертой</a>.
+                  </span>
                 </label>
               </div>
 
-              <div class="mortgageCalc__results" id="mortgageResults" aria-live="polite">
-                <div class="mortgageCalc__result">
-                  <span>Ежемесячный платёж</span>
-                  <strong id="mortgageMonthly">—</strong>
+              <fieldset id="mortgageCalcFields" class="mortgageCalc__fieldset" disabled>
+                <div class="mortgageCalc__head">
+                  <h3 class="mortgageCalc__title">Параметры расчёта</h3>
+                  <button
+                    id="mortgageProgramToggle"
+                    class="mortgageProgramToggle"
+                    type="button"
+                    aria-label="Переключить тип сценария ипотеки"
+                    title="Переключить тип сценария ипотеки"
+                  >
+                    Сценарий: Новостройка
+                  </button>
                 </div>
 
-                <div class="mortgageCalc__result">
-                  <span>Переплата</span>
-                  <strong id="mortgageOverpayment">—</strong>
+                <div class="mortgageCalc__grid">
+                  <label class="mortgageCalc__field">
+                    <span>Стоимость, ₽</span>
+                    <input id="mortgageAmount" type="number" min="100000" step="100000" value="12000000" />
+                  </label>
+
+                  <label class="mortgageCalc__field">
+                    <span>Первоначальный взнос, ₽</span>
+                    <input id="mortgageDownPayment" type="number" min="0" step="50000" value="2400000" />
+                  </label>
+
+                  <label class="mortgageCalc__field">
+                    <span>Ставка, % годовых</span>
+                    <input id="mortgageRate" type="number" min="0.1" max="40" step="0.1" value="11.8" />
+                  </label>
+
+                  <label class="mortgageCalc__field">
+                    <span>Срок, лет</span>
+                    <input id="mortgageYears" type="number" min="1" max="40" step="1" value="20" />
+                  </label>
                 </div>
 
-                <div class="mortgageCalc__result">
-                  <span>Общая выплата</span>
-                  <strong id="mortgageTotal">—</strong>
+                <div class="mortgageCalc__results" id="mortgageResults" aria-live="polite">
+                  <div class="mortgageCalc__result">
+                    <span>Ежемесячный платёж</span>
+                    <strong id="mortgageMonthly">—</strong>
+                  </div>
+
+                  <div class="mortgageCalc__result">
+                    <span>Переплата</span>
+                    <strong id="mortgageOverpayment">—</strong>
+                  </div>
+
+                  <div class="mortgageCalc__result">
+                    <span>Общая выплата</span>
+                    <strong id="mortgageTotal">—</strong>
+                  </div>
                 </div>
-              </div>
+              </fieldset>
             </div>
           </div>
         </div>
@@ -521,17 +535,32 @@
                   <button class="quick" type="button" data-quick="Новостройка: что проверить до брони — декларация, эскроу, сроки, застройщик, ограничения?">новостройка · чек-лист</button>
                 </div>
 
-                <form id="chatForm" class="composer__form">
-                  <label class="srOnly" for="chatInput">Сообщение</label>
-                  <input
-                    id="chatInput"
-                    name="message"
-                    type="text"
-                    placeholder="Коммерция, Сочи, цель аренда, хочу понять риски"
-                    autocomplete="off"
-                    maxlength="700"
-                  />
-                  <button class="btn btn--primary" type="submit">Отправить</button>
+                <form id="chatForm" class="composer__formStack">
+                  <div class="consent consent--block">
+                    <label class="consent__label" for="chatConsent">
+                      <input type="checkbox" id="chatConsent" name="privacy_consent" />
+                      <span class="consent__text">
+                        Согласен(на) с
+                        <a href="./privacy.html" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>
+                        и
+                        <a href="./offer.html" target="_blank" rel="noopener noreferrer">публичной офертой</a>, даю согласие
+                        на обработку данных для ответа на обращение.
+                      </span>
+                    </label>
+                  </div>
+                  <p id="chatConsentHint" class="consent__hint" role="status" aria-live="polite" hidden></p>
+                  <div class="composer__form">
+                    <label class="srOnly" for="chatInput">Сообщение</label>
+                    <input
+                      id="chatInput"
+                      name="message"
+                      type="text"
+                      placeholder="Коммерция, Сочи, цель аренда, хочу понять риски"
+                      autocomplete="off"
+                      maxlength="700"
+                    />
+                    <button class="btn btn--primary" id="chatSubmitBtn" type="submit" disabled>Отправить</button>
+                  </div>
                 </form>
               </div>
             </div>
@@ -835,6 +864,10 @@
           <a href="#testimonials">Отзывы</a>
           <span class="dot" aria-hidden="true">•</span>
           <a href="#about">О ЦБИ</a>
+          <span class="dot" aria-hidden="true">•</span>
+          <a href="./privacy.html">Политика</a>
+          <span class="dot" aria-hidden="true">•</span>
+          <a href="./offer.html">Оферта</a>
         </div>
       </div>
     </footer>
