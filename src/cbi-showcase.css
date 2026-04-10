@@ -37,7 +37,7 @@ body {
   background-color: #050608;
   background-image:
     linear-gradient(rgba(4, 5, 8, 0.62), rgba(4, 5, 8, 0.82)),
-    url("assets/bg-city-sea.png");
+    url("assets/bg-city-hero.jpeg");
   background-position: center center, center center;
   background-size: 100% 100%, cover;
   background-repeat: no-repeat, no-repeat;
