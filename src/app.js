@@ -440,6 +440,11 @@ function initRevealOnScroll() {
     ".method-steps > .method-step",
     ".hero-reflash__trust-grid > .hero-reflash__trust-card",
     ".faq__item",
+    ".section-duo__aside",
+    ".mortgageCalc",
+    "#mortgageProgramCard.mortgageProgramCard",
+    ".cta-band__inner",
+    ".agent__side > .sideCard",
   ].join(", ");
 
   const nodes = document.querySelectorAll(sel);

@@ -33,6 +33,12 @@
   --ring: 0 0 0 4px rgba(215, 177, 95, 0.14);
   --section-y: 80px;
   --section-y-tight: 68px;
+
+  /* Подсветка блоков при hover (карточки, панели) */
+  --glow-hover-ring: 0 0 0 1px rgba(255, 228, 180, 0.42);
+  --glow-hover-outer: 0 0 55px rgba(215, 177, 95, 0.32), 0 0 110px rgba(215, 177, 95, 0.12);
+  --glow-hover-depth: 0 40px 100px rgba(0, 0, 0, 0.52);
+  --glow-hover-inset: inset 0 1px 0 rgba(255, 255, 255, 0.09);
 }
 
 * {
@@ -338,6 +344,12 @@ input {
     linear-gradient(155deg, rgba(215, 177, 95, 0.07), transparent 48%),
     var(--panel);
   box-shadow: var(--shadow);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.35s ease,
+    filter 0.4s ease,
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .section-duo__aside-title {
@@ -1036,10 +1048,11 @@ input {
   border: 1px solid rgba(216, 177, 90, 0.12);
   background: rgba(9, 12, 18, 0.78);
   transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
     border-color 0.35s ease,
     background 0.35s ease,
+    filter 0.45s ease,
     opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -1408,9 +1421,10 @@ summary:focus {
     0 18px 56px rgba(0, 0, 0, 0.32),
     var(--shadow);
   transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
     border-color 0.35s ease,
+    filter 0.45s ease,
     opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -1627,9 +1641,10 @@ summary:focus {
   align-items: start;
   padding: 18px;
   transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
     border-color 0.35s ease,
+    filter 0.45s ease,
     opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -1683,6 +1698,12 @@ summary:focus {
 .mortgageProgramCard,
 .mortgageCalc {
   padding: 18px;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.35s ease,
+    filter 0.4s ease,
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mortgageProgramCard__name {
@@ -1859,6 +1880,12 @@ summary:focus {
 
 .sideCard {
   padding: 16px;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.35s ease,
+    filter 0.4s ease,
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .sideCard__title {
@@ -1941,30 +1968,105 @@ summary:focus {
   .reveal-scroll--in.feature:hover,
   .reveal-scroll--in.serviceCard:hover,
   .reveal-scroll--in.objectCard:hover {
-    transform: translate3d(0, -8px, 0);
+    transform: translate3d(0, -12px, 0);
+    filter: brightness(1.06);
+    border-color: rgba(236, 208, 141, 0.45);
     box-shadow:
-      0 26px 70px rgba(0, 0, 0, 0.4),
-      0 0 0 1px rgba(215, 177, 95, 0.16),
-      var(--shadow);
-    border-color: rgba(215, 177, 95, 0.32);
+      var(--glow-hover-inset),
+      var(--glow-hover-ring),
+      var(--glow-hover-outer),
+      var(--glow-hover-depth),
+      0 18px 56px rgba(0, 0, 0, 0.28);
   }
 
   .reveal-scroll--in.method-step:hover {
-    transform: translate3d(0, -6px, 0);
-    border-color: var(--line-strong);
-    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.38);
+    transform: translate3d(0, -8px, 0);
+    filter: brightness(1.05);
+    border-color: rgba(236, 208, 141, 0.38);
+    box-shadow:
+      var(--glow-hover-inset),
+      var(--glow-hover-ring),
+      0 0 40px rgba(215, 177, 95, 0.22),
+      0 28px 64px rgba(0, 0, 0, 0.42);
   }
 
   .reveal-scroll--in.hero-reflash__trust-card:hover {
-    transform: translate3d(0, -6px, 0);
-    border-color: rgba(216, 177, 90, 0.32);
-    background: rgba(12, 16, 24, 0.94);
-    box-shadow: 0 22px 56px rgba(0, 0, 0, 0.45);
+    transform: translate3d(0, -8px, 0);
+    filter: brightness(1.07);
+    border-color: rgba(236, 208, 141, 0.5);
+    background: rgba(14, 18, 28, 0.97);
+    box-shadow:
+      var(--glow-hover-inset),
+      var(--glow-hover-ring),
+      var(--glow-hover-outer),
+      0 28px 72px rgba(0, 0, 0, 0.5);
   }
 
   .reveal-scroll--in.faq__item:hover {
-    transform: translate3d(0, -4px, 0);
-    border-color: var(--line-strong);
+    transform: translate3d(0, -6px, 0);
+    filter: brightness(1.05);
+    border-color: rgba(236, 208, 141, 0.4);
+    box-shadow:
+      var(--glow-hover-inset),
+      var(--glow-hover-ring),
+      0 0 36px rgba(215, 177, 95, 0.2),
+      0 22px 52px rgba(0, 0, 0, 0.4);
+  }
+
+  .reveal-scroll--in.section-duo__aside:hover {
+    transform: translate3d(0, -10px, 0);
+    filter: brightness(1.06);
+    border-color: rgba(236, 208, 141, 0.48);
+    box-shadow:
+      var(--glow-hover-inset),
+      var(--glow-hover-ring),
+      var(--glow-hover-outer),
+      var(--glow-hover-depth);
+  }
+
+  .reveal-scroll--in.mortgageCalc:hover,
+  .reveal-scroll--in.mortgageProgramCard:hover {
+    transform: translate3d(0, -8px, 0);
+    filter: brightness(1.05);
+    border-color: rgba(236, 208, 141, 0.4);
+    box-shadow:
+      var(--glow-hover-inset),
+      var(--glow-hover-ring),
+      0 0 44px rgba(215, 177, 95, 0.24),
+      0 26px 60px rgba(0, 0, 0, 0.45);
+  }
+
+  .reveal-scroll--in.cta-band__inner:hover {
+    transform: translate3d(0, -6px, 0);
+    filter: brightness(1.05);
+    border-color: rgba(236, 208, 141, 0.42);
+    box-shadow:
+      var(--glow-hover-inset),
+      var(--glow-hover-ring),
+      var(--glow-hover-outer),
+      0 24px 56px rgba(0, 0, 0, 0.42);
+  }
+
+  .reveal-scroll--in.sideCard:hover {
+    transform: translate3d(0, -6px, 0);
+    filter: brightness(1.05);
+    border-color: rgba(236, 208, 141, 0.38);
+    box-shadow:
+      var(--glow-hover-inset),
+      var(--glow-hover-ring),
+      0 0 36px rgba(215, 177, 95, 0.2),
+      0 20px 48px rgba(0, 0, 0, 0.4);
+  }
+
+  .testimonial-card.testimonial-card--visible:hover {
+    transform: translate3d(0, -8px, 0);
+    filter: brightness(1.06);
+    border-color: rgba(236, 208, 141, 0.5);
+    box-shadow:
+      var(--glow-hover-inset),
+      var(--glow-hover-ring),
+      var(--glow-hover-outer),
+      var(--glow-hover-depth);
   }
 }
 
@@ -1974,6 +2076,22 @@ summary:focus {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .reveal-scroll--in.feature:hover,
+  .reveal-scroll--in.serviceCard:hover,
+  .reveal-scroll--in.objectCard:hover,
+  .reveal-scroll--in.method-step:hover,
+  .reveal-scroll--in.hero-reflash__trust-card:hover,
+  .reveal-scroll--in.faq__item:hover,
+  .reveal-scroll--in.section-duo__aside:hover,
+  .reveal-scroll--in.mortgageCalc:hover,
+  .reveal-scroll--in.mortgageProgramCard:hover,
+  .reveal-scroll--in.cta-band__inner:hover,
+  .reveal-scroll--in.sideCard:hover,
+  .testimonial-card.testimonial-card--visible:hover {
+    transform: none;
+    filter: none;
   }
 }
 
@@ -2025,7 +2143,10 @@ summary:focus {
   transform: translate3d(0, 16px, 0);
   transition:
     opacity 0.75s ease,
-    transform 0.75s ease;
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.35s ease,
+    filter 0.45s ease;
 }
 
 .testimonial-card--visible {
@@ -2174,6 +2295,7 @@ summary:focus {
     transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.4s ease,
     border-color 0.35s ease,
+    filter 0.4s ease,
     opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -2192,6 +2314,12 @@ summary:focus {
 
 .cta-band__inner {
   padding: 36px 32px;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.35s ease,
+    filter 0.45s ease,
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .cta-band__title {
