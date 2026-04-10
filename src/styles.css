@@ -385,43 +385,52 @@ input {
 .hero__bg-base {
   position: absolute;
   inset: 0;
+  z-index: 0;
   background-image: url("assets/bg-city-hero.jpeg");
-  background-position: center 38%;
+  background-position: 50% 38%;
   background-size: cover;
   background-repeat: no-repeat;
   transform-origin: center 40%;
-  animation: heroBgBreath 34s ease-in-out infinite alternate;
+  animation:
+    heroBgBreath 22s ease-in-out infinite alternate,
+    heroSkyPan 18s ease-in-out infinite alternate;
 }
 
 .hero__bg-water {
   position: absolute;
+  z-index: 0;
   inset: -2% -3%;
   background-image: url("assets/bg-city-hero.jpeg");
-  background-position: center 96%;
+  background-position: 50% 96%;
   background-size: 118% 120%;
   background-repeat: no-repeat;
-  opacity: 0.22;
+  opacity: 0.26;
   mix-blend-mode: soft-light;
   -webkit-mask-image: linear-gradient(to top, #000 0%, #000 58%, transparent 88%);
   mask-image: linear-gradient(to top, #000 0%, #000 58%, transparent 88%);
-  animation: heroWaterDrift 22s ease-in-out infinite alternate;
+  animation:
+    heroWaterDrift 16s ease-in-out infinite alternate,
+    heroWaterBgShift 11s ease-in-out infinite alternate;
 }
 
 /* Второй слой — более узкая полоса воды, другой ритм = ощущение ряби */
 .hero__bg-water--ripple {
   inset: -4% -5%;
-  background-position: center 102%;
+  background-position: 50% 102%;
   background-size: 122% 126%;
-  opacity: 0.16;
+  opacity: 0.2;
   mix-blend-mode: overlay;
   -webkit-mask-image: linear-gradient(to top, #000 0%, #000 42%, transparent 76%);
   mask-image: linear-gradient(to top, #000 0%, #000 42%, transparent 76%);
-  animation: heroWaterRipple 13s ease-in-out infinite alternate-reverse;
+  animation:
+    heroWaterRipple 10s ease-in-out infinite alternate-reverse,
+    heroWaterBgShiftRipple 9s ease-in-out infinite alternate-reverse;
 }
 
 .hero__lights {
   position: absolute;
   inset: 0;
+  z-index: 2;
 }
 
 .hero__light {
@@ -599,6 +608,7 @@ input {
 .hero__scene-veil {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
     linear-gradient(180deg, rgba(5, 7, 11, 0.38) 0%, transparent 32%, transparent 68%, rgba(5, 7, 11, 0.45) 100%),
     linear-gradient(90deg, rgba(5, 7, 11, 0.22) 0%, transparent 18%, transparent 82%, rgba(5, 7, 11, 0.22) 100%);
@@ -607,36 +617,67 @@ input {
 
 .hero__content {
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 @keyframes heroBgBreath {
   0% {
-    transform: scale(1.012);
+    transform: scale(1.02);
   }
 
   100% {
-    transform: scale(1.032);
+    transform: scale(1.07);
+  }
+}
+
+/* Лёгкий панорамный сдвиг кадра — заметнее на вертикальном фото */
+@keyframes heroSkyPan {
+  0% {
+    background-position: 46% 34%;
+  }
+
+  100% {
+    background-position: 54% 42%;
+  }
+}
+
+@keyframes heroWaterBgShift {
+  0% {
+    background-position: 44% 92%;
+  }
+
+  100% {
+    background-position: 56% 100%;
+  }
+}
+
+@keyframes heroWaterBgShiftRipple {
+  0% {
+    background-position: 42% 98%;
+  }
+
+  100% {
+    background-position: 58% 106%;
   }
 }
 
 @keyframes heroWaterDrift {
   0% {
-    transform: translate3d(-0.75%, 0.45%, 0) scale(1.01);
+    transform: translate3d(-2.2%, 0.9%, 0) scale(1.02);
   }
 
   100% {
-    transform: translate3d(0.8%, -0.55%, 0) scale(1.035);
+    transform: translate3d(2.2%, -1.1%, 0) scale(1.05);
   }
 }
 
 @keyframes heroWaterRipple {
   0% {
-    transform: translate3d(-1.6%, 0.15%, 0) scale(1.02);
+    transform: translate3d(-2.8%, 0.35%, 0) scale(1.03);
   }
 
   100% {
-    transform: translate3d(1.6%, -0.25%, 0) scale(1.045);
+    transform: translate3d(2.8%, -0.55%, 0) scale(1.07);
   }
 }
 
@@ -698,12 +739,21 @@ input {
 @media (prefers-reduced-motion: reduce) {
   .hero__bg-base {
     animation: none;
-    transform: scale(1.02);
+    transform: scale(1.04);
+    background-position: 50% 38%;
   }
 
   .hero__bg-water,
   .hero__bg-water--ripple {
     animation: none;
+  }
+
+  .hero__bg-water {
+    background-position: 50% 96%;
+  }
+
+  .hero__bg-water--ripple {
+    background-position: 50% 102%;
   }
 
   .hero__light {
