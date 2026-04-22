@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Инструменты — ЦБИ</title>
-    <meta name="description" content="Ипотечный калькулятор и демо первичной оценки объекта Центра Бизнес-Инвестиций." />
+    <meta name="description" content="Инструменты для предварительной оценки объекта или проекта Центра Бизнес-Инвестиций." />
     <link rel="icon" type="image/png" href="./assets/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260423" />
+    <link rel="stylesheet" href="./styles.css?v=20260502" />
   </head>
   <body>
     <header class="topbar">
@@ -44,7 +44,7 @@
           <a href="./napravleniya.html">Направления</a>
           <a href="./razbory.html">Разборы</a>
           <a href="./osnovaniya.html">Основания</a>
-          <a class="topnav__cta" href="./svyaz.html">Обсудить задачу</a>
+          <a class="topnav__cta" href="./svyaz.html">Получить оценку</a>
         </nav>
       </div>
     </header>
@@ -54,7 +54,8 @@
         <div class="container">
           <h1>Инструменты</h1>
           <p class="section__lead muted">
-            Калькулятор и демо первичной оценки объекта перенесены с главной страницы; контакты — на <a href="./index.html#contact">главной</a>.
+            Инструменты для предварительной оценки объекта или проекта. Контактный вход — на
+            <a href="./index.html#contact">главной странице</a>.
           </p>
         </div>
       </section>
@@ -148,9 +149,10 @@
         <div class="container agent">
           <div class="agent__header">
             <div>
-              <h2>Первый шаг</h2>
+              <h2>Первичная оценка объекта или проекта</h2>
               <p class="muted">
-                Опишите задачу или объект. Достаточно нескольких вводных.
+                Отправьте объект, проект или исходные данные, чтобы получить предварительную профессиональную оценку
+                до принятия решения.
               </p>
             </div>
 
@@ -164,16 +166,16 @@
               <div id="chatLog" class="chatlog" aria-live="polite" aria-relevant="additions">
                 <div class="msg msg--bot">
                   <div class="msg__bubble">
-                    Здравствуйте. Опишите задачу: объект, цель, бюджет и что хотите понять.
+                    Опишите объект или проект, задачу, бюджет и что требуется оценить до решения.
                   </div>
                 </div>
               </div>
 
               <div class="chatComposer" aria-label="Поле ввода">
                 <div class="composer__quick" aria-label="Быстрые сообщения">
-                  <button class="quick" type="button" data-quick="Нужна первичная оценка одного лота: документы, красные флаги, что запросить у продавца и есть ли смысл идти дальше.">оценка лота</button>
-                  <button class="quick" type="button" data-quick="Задача — коммерция: нужна финмодель с базовым и осторожным сценарием аренды.">коммерция · сценарии</button>
-                  <button class="quick" type="button" data-quick="Новостройка: что проверить до брони — декларация, эскроу, сроки, застройщик, ограничения?">новостройка · чек-лист</button>
+                  <button class="quick" type="button" data-quick="Объект или проект: опишу вводные, цель вложения, бюджет и что нужно оценить до решения.">объект или проект</button>
+                  <button class="quick" type="button" data-quick="Цель вложения и бюджет: хочу понять, насколько обоснован вход и где ключевые риски.">цель вложения и бюджет</button>
+                  <button class="quick" type="button" data-quick="Документы и исходные данные: что важно проверить до решения и какие ограничения критичны.">документы и что важно понять</button>
                 </div>
 
                 <form id="chatForm" class="composer__formStack">
@@ -208,7 +210,7 @@
 
             <aside class="agent__side" aria-label="Бриф и контакты">
               <div class="sideCard">
-                <div class="sideCard__title">Что полезно закрыть в брифе</div>
+                <div class="sideCard__title">Ориентиры для предварительной оценки</div>
                 <div class="checklist" id="checklist">
                   <label class="check">
                     <input type="checkbox" disabled />
@@ -247,7 +249,7 @@
               </div>
 
               <div class="sideCard sideCard--contact">
-                <div class="sideCard__title">Обсудить задачу</div>
+                <div class="sideCard__title">Контакт для оценки объекта или проекта</div>
                 <p class="muted contact-intro">
                   Елена Бочарова. Основной фокус — недвижимость России. Зарубежные задачи — по согласованию запроса.
                 </p>
@@ -267,10 +269,9 @@
                   <a class="contactRow__value" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">@CENTR_BIZNES_INVEST</a>
                 </div>
 
-                <div class="contactRow">
-                  <span class="contactRow__label">Telegram</span>
-                  <a class="contactRow__value" href="https://t.me/ELENA_BOCHAROWA" target="_blank" rel="noopener noreferrer">@ELENA_BOCHAROWA</a>
-                </div>
+                <p class="muted contact-intro">
+                  Дополнительно: <a href="https://t.me/ELENA_BOCHAROWA" target="_blank" rel="noopener noreferrer">@ELENA_BOCHAROWA</a>
+                </p>
 
                 <a class="btn btn--primary btn--full" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
               </div>
