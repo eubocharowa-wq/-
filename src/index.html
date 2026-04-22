@@ -17,7 +17,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260424" />
+    <link rel="stylesheet" href="./styles.css?v=20260426" />
   </head>
   <body>
     <header class="topbar">
@@ -55,7 +55,7 @@
       </div>
     </header>
 
-    <main>
+    <main class="home-main">
       <section class="hero" id="top">
         <div class="hero__scene" aria-hidden="true">
           <div class="hero__bg-base"></div>
@@ -112,43 +112,13 @@
                   <span class="hero-reflash__title-line">отбираю</span>
                 </h1>
 
-                <p class="hero-reflash__subtitle">
-                  Инвестиционные решения в недвижимости<br />
-                  через документы, расчёт и сопровождение.
-                </p>
-
-                <p class="hero-reflash__text">
-                  Вы не покупаете объект вслепую.<br />
-                  Вы принимаете решение на основе фактов,<br />
-                  модели и сценариев.
-                </p>
-
-                <p class="hero-reflash__text hero-reflash__text--strong">
-                  Если вход слабый — я скажу «не покупать».<br />
-                  Это нормальный результат.
-                </p>
+                <p class="hero-reflash__subtitle">Инвестиционные решения в недвижимости через документы, расчёт и сопровождение.</p>
+                <p class="hero-reflash__text hero-reflash__text--strong">Если вход слабый — я скажу «не покупать». Это нормальный результат.</p>
               </div>
 
               <div class="hero-reflash__actions">
-                <a href="./instrumenty.html#screening" class="hero-reflash__btn hero-reflash__btn--primary">Пройти скрининг</a>
-                <a href="./razbory.html" class="hero-reflash__btn hero-reflash__btn--secondary">Посмотреть разборы</a>
-              </div>
-
-              <div class="hero-reflash__trust-grid">
-                <div class="hero-reflash__trust-card">
-                  <strong>Сначала документы и цифры</strong>
-                  <span>Не мнение, не реклама, не витрина.</span>
-                </div>
-
-                <div class="hero-reflash__trust-card">
-                  <strong>Лично веду решение</strong>
-                  <span>Бриф, логика проверки и коммуникация — лично Елена Бочарова.</span>
-                </div>
-
-                <div class="hero-reflash__trust-card">
-                  <strong>Результат после сделки важнее сделки</strong>
-                  <span>Смотрю не только на вход, но и на последствия решения.</span>
-                </div>
+                <a href="./instrumenty.html#screening" class="hero-reflash__btn hero-reflash__btn--primary">Начать со скрининга</a>
+                <a href="./razbory.html" class="hero-reflash__btn hero-reflash__btn--secondary">Смотреть разборы</a>
               </div>
             </div>
           </div>
@@ -171,13 +141,6 @@
             </div>
 
             <div class="feature">
-              <div class="feature__title">Можно услышать «не покупать»</div>
-              <p>
-                Если риски не сходятся, рекомендую остановиться. Это нормальный и профессиональный результат.
-              </p>
-            </div>
-
-            <div class="feature">
               <div class="feature__title">Решение на фактах</div>
               <p>
                 Документы, ограничения, модель, сценарии выхода. Не обещания и не эмоции.
@@ -194,13 +157,31 @@
           <p class="section__lead muted">
             Подробные материалы вынесены на отдельные страницы; здесь — вход в маршрут.
           </p>
-          <nav class="home-hub" aria-label="Переходы по разделам">
-            <a class="btn btn--ghost" href="./podhod.html">Подход</a>
-            <a class="btn btn--ghost" href="./napravleniya.html">Направления</a>
-            <a class="btn btn--ghost" href="./razbory.html">Разборы</a>
-            <a class="btn btn--ghost" href="./osnovaniya.html">Основания</a>
-            <a class="btn btn--ghost" href="./o-proekte.html">О проекте</a>
-            <a class="btn btn--ghost" href="./instrumenty.html">Инструменты</a>
+          <nav class="entry-map" aria-label="Переходы по разделам">
+            <a class="entry-card" href="./o-proekte.html">
+              <span class="entry-card__title">О проекте</span>
+              <span class="entry-card__text">Роль ЦБИ и формат экспертной работы.</span>
+            </a>
+            <a class="entry-card" href="./podhod.html">
+              <span class="entry-card__title">Подход</span>
+              <span class="entry-card__text">Логика проверки и принятия решения.</span>
+            </a>
+            <a class="entry-card" href="./napravleniya.html">
+              <span class="entry-card__title">Направления</span>
+              <span class="entry-card__text">С какими активами и задачами работаю.</span>
+            </a>
+            <a class="entry-card" href="./razbory.html">
+              <span class="entry-card__title">Разборы</span>
+              <span class="entry-card__text">Примеры задач и типовые сценарии.</span>
+            </a>
+            <a class="entry-card" href="./osnovaniya.html">
+              <span class="entry-card__title">Основания</span>
+              <span class="entry-card__text">Вопросы, рамки и рабочие принципы.</span>
+            </a>
+            <a class="entry-card" href="./instrumenty.html">
+              <span class="entry-card__title">Инструменты</span>
+              <span class="entry-card__text">Калькулятор и демо-скрининг.</span>
+            </a>
           </nav>
         </div>
       </section>

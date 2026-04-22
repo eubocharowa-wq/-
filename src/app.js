@@ -507,7 +507,6 @@ function initRevealOnScroll() {
     ".servicesGrid > .serviceCard",
     ".objectsGrid--cases > .objectCard",
     ".method-steps > .method-step",
-    ".hero-reflash__trust-grid > .hero-reflash__trust-card",
     ".faq__item",
     ".section-duo__aside",
     ".mortgageCalc",
