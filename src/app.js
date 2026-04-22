@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 
-const LS_KEY = "cbi_screening_demo_v2";
+const LS_KEY = "cbi_screening_dialog_v4";
+const TG_USERNAME = "CENTR_BIZNES_INVEST";
 
 const els = {
   chatLog: document.getElementById("chatLog"),
@@ -230,7 +231,7 @@ function wireMortgageCalculator() {
 }
 
 const initialBotText =
-  "Укажите объект или проект, цель вложения, бюджет, горизонт и что требуется оценить до решения.";
+  "Укажите объект или проект, цель вложения, бюджет, горизонт и что требуется оценить до решения. После отправки откроется личный чат в Telegram.";
 
 const initialState = {
   goal: false,
@@ -314,6 +315,16 @@ function nextQuestion() {
   return "";
 }
 
+function getMissingFields() {
+  const missing = [];
+  if (!state.goal) missing.push("цель вложения");
+  if (!state.budget) missing.push("бюджет и источник средств");
+  if (!state.type) missing.push("тип объекта или проекта и локацию");
+  if (!state.term) missing.push("горизонт / сроки");
+  if (!state.docs) missing.push("какие документы уже есть");
+  return missing;
+}
+
 function generateBotReply(userText) {
   const text = String(userText || "").trim();
   const lower = text.toLowerCase();
@@ -346,22 +357,27 @@ function generateBotReply(userText) {
     );
   }
 
-  if (reply.length === 0) {
-    if (/(привет|здравств|добрый)/i.test(lower)) {
-      reply.push("Добрый день. Опишите задачу — постараюсь задать точечные вопросы.");
-    } else {
-      reply.push("Приняла запрос. Дальше — уточнения, чтобы не гадать вслепую.");
-    }
+  if (reply.length === 0 && /(привет|здравств|добрый)/i.test(lower)) {
+    reply.push("Добрый день. Приняла запрос, уточним ключевые параметры для первичной оценки.");
   }
 
   if (!isAllCollected()) {
-    reply.push(`Уточним: ${nextQuestion()}`);
-  } else {
-    reply.push(
-      "По вводным картина складывается. Следующий шаг — короткий звонок или переписка в Telegram: согласуем формат оценки и список документов."
-    );
-    reply.push("Если есть один приоритетный лот — пришлите, что уже знаете: адрес или кадастр, цена, статус объекта.");
+    const missing = getMissingFields();
+    if (reply.length === 0) {
+      reply.push("Приняла запрос. Чтобы дать предварительную оценку, важно уточнить базовые параметры.");
+    }
+    reply.push(`Нужно уточнить: ${missing.join(", ")}.`);
+    reply.push(`Первый шаг: ${nextQuestion()}`);
+    return reply.join("\n\n");
   }
+
+  reply.push(
+    "По вводным картина складывается. На первом этапе можно сформировать предварительную позицию по качеству входа и ключевым ограничениям."
+  );
+  reply.push(
+    "Следующий шаг — короткий контакт в Telegram: согласуем формат оценки, приоритетные вопросы и список документов для проверки."
+  );
+  reply.push("Если есть приоритетный объект, пришлите адрес/кадастр, ориентир цены и текущий статус.");
 
   return reply.join("\n\n");
 }
@@ -377,13 +393,15 @@ async function handleUserMessage(text) {
   if (!text.trim()) return;
 
   addAndPersistMessage("user", text.trim());
+}
 
-  const typingEl = showTyping();
-  await new Promise((r) => setTimeout(r, 650));
-  typingEl.remove();
-
-  const botText = generateBotReply(text);
-  addAndPersistMessage("bot", botText);
+function openTelegramWithMessage(userText) {
+  const payload = String(userText || "").trim();
+  const intro =
+    "Здравствуйте. Запрос на первичную оценку объекта или проекта.\n\n";
+  const fullText = `${intro}${payload}`;
+  const url = `https://t.me/${TG_USERNAME}?text=${encodeURIComponent(fullText)}`;
+  window.open(url, "_blank", "noopener,noreferrer");
 }
 
 function wireQuickButtons() {
@@ -435,13 +453,19 @@ function wireForm() {
     }
 
     const value = els.chatInput.value || "";
+    const trimmed = value.trim();
+    if (!trimmed) {
+      els.chatInput.focus();
+      return;
+    }
     els.chatInput.value = "";
 
     const submitBtn = els.chatSubmitBtn || els.chatForm.querySelector("button[type='submit']");
     els.chatInput.disabled = true;
     if (submitBtn) submitBtn.disabled = true;
     try {
-      await handleUserMessage(value);
+      await handleUserMessage(trimmed);
+      openTelegramWithMessage(trimmed);
     } finally {
       els.chatInput.disabled = false;
       syncChatSubmitBtn();
