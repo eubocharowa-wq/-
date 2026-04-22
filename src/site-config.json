@@ -1,13 +1,19 @@
 {
   "contentRoot": "src",
   "routing": "static-html",
-  "notes": "Реестр страниц. Рабочие имена файлов: o-proekte, podhod, napravleniya, razbory, osnovaniya, svyaz. Главная — index.html, контент переносится поэтапно.",
+  "notes": "Главная — короткая входная страница. Полный лендинг сохранён в _archive/index.full-landing-backup.html. Калькулятор и скрининг — instrumenty.html.",
   "pages": [
     {
       "id": "home",
       "path": "index.html",
       "navLabel": "Главная",
-      "role": "главная (полная версия до переноса блоков)"
+      "role": "входная страница"
+    },
+    {
+      "id": "instrumenty",
+      "path": "instrumenty.html",
+      "navLabel": "Инструменты",
+      "role": "калькулятор и демо-скрининг"
     },
     {
       "id": "o-proekte",
@@ -31,7 +37,7 @@
       "id": "razbory",
       "path": "razbory.html",
       "navLabel": "Разборы",
-      "role": "каркас"
+      "role": "каркас, якорь #testimonials для ссылки «Отзывы»"
     },
     {
       "id": "osnovaniya",
@@ -43,7 +49,7 @@
       "id": "svyaz",
       "path": "svyaz.html",
       "navLabel": "Связаться",
-      "role": "каркас, контакты пока на главной #contact"
+      "role": "каркас, основной блок контактов на главной #contact"
     },
     {
       "id": "privacy",
@@ -59,20 +65,22 @@
     }
   ],
   "homeAnchors": {
-    "description": "Якоря на главной (src/index.html) для ссылок с внутренних страниц до переноса контента",
-    "contact": "contact",
-    "screening": "screening",
-    "testimonials": "testimonials",
-    "about": "about",
-    "calculator": "calculator"
+    "description": "Якоря на главной: контактный блок",
+    "contact": "contact"
   },
   "noTouchMarkers": {
-    "description": "Фрагменты, которые скрипт verify-pages проверяет в src/index.html (не удалять при правках)",
+    "description": "Фрагменты в src/index.html (юридические ссылки и контакты)",
     "indexHtmlMustContain": [
       "id=\"contact\"",
-      "id=\"screening\"",
       "href=\"./privacy.html\"",
-      "href=\"./offer.html\"",
+      "href=\"./offer.html\""
+    ]
+  },
+  "extraHtmlMustContain": {
+    "description": "Дополнительные проверки целостности перенесённого функционала",
+    "instrumenty.html": [
+      "id=\"calculator\"",
+      "id=\"screening\"",
       "id=\"chatConsent\"",
       "id=\"mortgageConsent\""
     ]

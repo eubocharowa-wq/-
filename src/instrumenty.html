@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Инструменты — ЦБИ</title>
+    <meta name="description" content="Ипотечный калькулятор и демо-скрининг Центра Бизнес-Инвестиций." />
+    <link rel="icon" type="image/png" href="./assets/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=20260423" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <a class="brand brand--link" href="./index.html" aria-label="ЦБИ — на главную">
+          <div class="brand__mark" aria-hidden="true">
+            <img
+              class="brand__logo"
+              src="./assets/logo.png"
+              width="1024"
+              height="1024"
+              decoding="async"
+              alt="Центр бизнес инвестиций — развитие инвестиционных проектов"
+            />
+          </div>
+          <div class="brand__copy">
+            <div class="brand__titleRow">
+              <div class="brand__name">Центр Бизнес-Инвестиций</div>
+              <div class="brand__fio">БОЧАРОВА ЕЛЕНА ЮРЬЕВНА</div>
+            </div>
+            <div class="brand__tag">экспертный центр · недвижимость России</div>
+          </div>
+        </a>
+
+        <nav class="topnav" aria-label="Навигация по сайту">
+          <a href="./index.html">Главная</a>
+          <a href="./o-proekte.html">О проекте</a>
+          <a href="./podhod.html">Подход</a>
+          <a href="./napravleniya.html">Направления</a>
+          <a href="./razbory.html">Разборы</a>
+          <a href="./osnovaniya.html">Основания</a>
+          <a class="topnav__cta" href="./svyaz.html">Связаться</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section section--soft">
+        <div class="container">
+          <h1>Инструменты</h1>
+          <p class="section__lead muted">
+            Калькулятор и демо-скрининг перенесены с главной страницы; контакты — на <a href="./index.html#contact">главной</a>.
+          </p>
+        </div>
+      </section>
+
+      <section id="calculator" class="section">
+        <div class="container">
+          <h2>Ипотечный калькулятор</h2>
+          <p class="section__lead muted">
+            Вспомогательный инструмент. Даёт ориентир по платежу при заданных вводных. Не заменяет банковский расчёт и не является рекомендацией.
+          </p>
+
+          <div class="calculator-layout">
+            <div class="mortgageProgramCard" id="mortgageProgramCard" aria-live="polite">
+              <div class="mortgageProgramCard__name" id="mortgageProgramName">Ипотека на новостройку</div>
+              <div class="mortgageProgramCard__meta" id="mortgageProgramMeta">Иллюстративный сценарий · параметры можно менять вручную</div>
+              <div class="mortgageProgramCard__note" id="mortgageProgramNote">Расчёт служит ориентиром. Фактические условия зависят от банка, программы и объекта.</div>
+            </div>
+
+            <div class="mortgageCalc" aria-label="Калькулятор ипотеки">
+              <div class="consent consent--block">
+                <label class="consent__label" for="mortgageConsent">
+                  <input type="checkbox" id="mortgageConsent" name="mortgage_consent" />
+                  <span class="consent__text">
+                    Для использования калькулятора подтверждаю ознакомление с
+                    <a href="./privacy.html" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>
+                    и
+                    <a href="./offer.html" target="_blank" rel="noopener noreferrer">публичной офертой</a>.
+                  </span>
+                </label>
+              </div>
+
+              <fieldset id="mortgageCalcFields" class="mortgageCalc__fieldset" disabled>
+                <div class="mortgageCalc__head">
+                  <h3 class="mortgageCalc__title">Параметры расчёта</h3>
+                  <button
+                    id="mortgageProgramToggle"
+                    class="mortgageProgramToggle"
+                    type="button"
+                    aria-label="Переключить тип сценария ипотеки"
+                    title="Переключить тип сценария ипотеки"
+                  >
+                    Сценарий: Новостройка
+                  </button>
+                </div>
+
+                <div class="mortgageCalc__grid">
+                  <label class="mortgageCalc__field">
+                    <span>Стоимость, ₽</span>
+                    <input id="mortgageAmount" type="number" min="100000" step="100000" value="12000000" />
+                  </label>
+
+                  <label class="mortgageCalc__field">
+                    <span>Первоначальный взнос, ₽</span>
+                    <input id="mortgageDownPayment" type="number" min="0" step="50000" value="2400000" />
+                  </label>
+
+                  <label class="mortgageCalc__field">
+                    <span>Ставка, % годовых</span>
+                    <input id="mortgageRate" type="number" min="0.1" max="40" step="0.1" value="11.8" />
+                  </label>
+
+                  <label class="mortgageCalc__field">
+                    <span>Срок, лет</span>
+                    <input id="mortgageYears" type="number" min="1" max="40" step="1" value="20" />
+                  </label>
+                </div>
+
+                <div class="mortgageCalc__results" id="mortgageResults" aria-live="polite">
+                  <div class="mortgageCalc__result">
+                    <span>Ежемесячный платёж</span>
+                    <strong id="mortgageMonthly">—</strong>
+                  </div>
+
+                  <div class="mortgageCalc__result">
+                    <span>Переплата</span>
+                    <strong id="mortgageOverpayment">—</strong>
+                  </div>
+
+                  <div class="mortgageCalc__result">
+                    <span>Общая выплата</span>
+                    <strong id="mortgageTotal">—</strong>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="screening" class="section section--agent">
+        <div class="container agent">
+          <div class="agent__header">
+            <div>
+              <h2>Первый шаг</h2>
+              <p class="muted">
+                Опишите задачу или объект. Достаточно нескольких вводных.
+              </p>
+            </div>
+
+            <div class="agent__header-actions">
+              <button id="btnNewChat" class="btn btn--ghost" type="button">Очистить диалог</button>
+            </div>
+          </div>
+
+          <div class="agent__grid">
+            <div class="agent__chat" role="application" aria-label="Скрининг">
+              <div id="chatLog" class="chatlog" aria-live="polite" aria-relevant="additions">
+                <div class="msg msg--bot">
+                  <div class="msg__bubble">
+                    Здравствуйте. Опишите задачу: объект, цель, бюджет и что хотите понять.
+                  </div>
+                </div>
+              </div>
+
+              <div class="chatComposer" aria-label="Поле ввода">
+                <div class="composer__quick" aria-label="Быстрые сообщения">
+                  <button class="quick" type="button" data-quick="Нужен скрининг одного лота: документы, красные флаги, что запросить у продавца и есть ли смысл идти дальше.">скрининг лота</button>
+                  <button class="quick" type="button" data-quick="Задача — коммерция: нужна финмодель с базовым и осторожным сценарием аренды.">коммерция · сценарии</button>
+                  <button class="quick" type="button" data-quick="Новостройка: что проверить до брони — декларация, эскроу, сроки, застройщик, ограничения?">новостройка · чек-лист</button>
+                </div>
+
+                <form id="chatForm" class="composer__formStack">
+                  <div class="consent consent--block">
+                    <label class="consent__label" for="chatConsent">
+                      <input type="checkbox" id="chatConsent" name="privacy_consent" />
+                      <span class="consent__text">
+                        Согласен(на) с
+                        <a href="./privacy.html" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>
+                        и
+                        <a href="./offer.html" target="_blank" rel="noopener noreferrer">публичной офертой</a>, даю согласие
+                        на обработку данных для ответа на обращение.
+                      </span>
+                    </label>
+                  </div>
+                  <p id="chatConsentHint" class="consent__hint" role="status" aria-live="polite" hidden></p>
+                  <div class="composer__form">
+                    <label class="srOnly" for="chatInput">Сообщение</label>
+                    <input
+                      id="chatInput"
+                      name="message"
+                      type="text"
+                      placeholder="Коммерция, Сочи, цель аренда, хочу понять риски"
+                      autocomplete="off"
+                      maxlength="700"
+                    />
+                    <button class="btn btn--primary" id="chatSubmitBtn" type="submit" disabled>Отправить</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <aside class="agent__side" aria-label="Бриф и контакты">
+              <div class="sideCard">
+                <div class="sideCard__title">Что полезно закрыть в брифе</div>
+                <div class="checklist" id="checklist">
+                  <label class="check">
+                    <input type="checkbox" disabled />
+                    <span>цель и горизонт</span>
+                  </label>
+
+                  <label class="check">
+                    <input type="checkbox" disabled />
+                    <span>бюджет / источник средств</span>
+                  </label>
+
+                  <label class="check">
+                    <input type="checkbox" disabled />
+                    <span>тип объекта и локация</span>
+                  </label>
+
+                  <label class="check">
+                    <input type="checkbox" disabled />
+                    <span>сроки и ограничения</span>
+                  </label>
+
+                  <label class="check">
+                    <input type="checkbox" disabled />
+                    <span>что уже есть из документов</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="sideCard">
+                <div class="sideCard__title">Как смотрю на риски</div>
+                <ul class="bullets">
+                  <li>Сначала право и ограничения. Потом экономика и сценарии.</li>
+                  <li>Если данных мало — говорю прямо, чего не хватает.</li>
+                  <li>Отказ от сделки при несходящихся фактах — нормальный исход.</li>
+                </ul>
+              </div>
+
+              <div class="sideCard sideCard--contact">
+                <div class="sideCard__title">Связаться</div>
+                <p class="muted contact-intro">
+                  Елена Бочарова. Основной фокус — недвижимость России. Зарубежные задачи — по согласованию запроса.
+                </p>
+
+                <div class="contactRow">
+                  <span class="contactRow__label">Телефон</span>
+                  <a class="contactRow__value" href="tel:+79109434422">+7 (910) 943-44-22</a>
+                </div>
+
+                <div class="contactRow">
+                  <span class="contactRow__label">Email</span>
+                  <a class="contactRow__value" href="mailto:e.u.bocharowa@yandex.ru">e.u.bocharowa@yandex.ru</a>
+                </div>
+
+                <div class="contactRow">
+                  <span class="contactRow__label">Telegram</span>
+                  <a class="contactRow__value" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">@CENTR_BIZNES_INVEST</a>
+                </div>
+
+                <div class="contactRow">
+                  <span class="contactRow__label">Telegram</span>
+                  <a class="contactRow__value" href="https://t.me/ELENA_BOCHAROWA" target="_blank" rel="noopener noreferrer">@ELENA_BOCHAROWA</a>
+                </div>
+
+                <a class="btn btn--primary btn--full" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="muted">
+          Материалы на сайте не являются публичной офертой и не заменяют юридическую, налоговую или инвестиционную консультацию. Решение принимаете вы.
+        </div>
+
+        <div class="footer__right">
+          <a href="./instrumenty.html#screening">Скрининг</a>
+          <span class="dot" aria-hidden="true">•</span>
+          <a href="./index.html#contact">Контакты</a>
+          <span class="dot" aria-hidden="true">•</span>
+          <a href="./razbory.html#testimonials">Отзывы</a>
+          <span class="dot" aria-hidden="true">•</span>
+          <a href="./o-proekte.html">О проекте</a>
+          <span class="dot" aria-hidden="true">•</span>
+          <a href="./privacy.html">Политика</a>
+          <span class="dot" aria-hidden="true">•</span>
+          <a href="./offer.html">Оферта</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

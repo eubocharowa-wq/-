@@ -9,7 +9,9 @@
 | `index.html` | Приветственный лендинг (точка входа) |
 | `welcome.css`, `welcome.js` | Стили и логика приветственной страницы |
 | `src/index.html` | Главная: полная версия до переноса блоков |
-| `src/o-proekte.html`, `podhod.html`, `napravleniya.html`, `razbory.html`, `osnovaniya.html`, `svyaz.html` | Каркас внутренних страниц (рабочие имена файлов) |
+| `src/instrumenty.html` | Калькулятор и демо-скрининг (перенесено с главной) |
+| `src/o-proekte.html`, `podhod.html`, `napravleniya.html`, `razbory.html`, `osnovaniya.html`, `svyaz.html` | Внутренние страницы (рабочие имена файлов) |
+| `src/_archive/index.full-landing-backup.html` | Резервная копия длинной главной до сокращения |
 | `src/styles.css`, `src/app.js` | Стили и скрипты основного сайта |
 | `src/site-config.json` | Реестр статических страниц и маркеров целостности главной (многостраничный каркас) |
 | `scripts/verify-pages.mjs` | Проверка: все страницы из реестра на месте, главная не потеряла no-touch фрагменты |

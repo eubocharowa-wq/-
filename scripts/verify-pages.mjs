@@ -1,6 +1,6 @@
 /**
  * Проверка каркаса многостраничности: файлы из src/site-config.json существуют,
- * в src/index.html сохранены маркеры no-touch (контакты, скрининг, согласия, политика/оферта).
+ * маркеры no-touch на главной и (опционально) на других страницах.
  * Запуск: npm run verify (из корня репозитория).
  */
 
@@ -75,6 +75,27 @@ for (const fragment of markers) {
   }
 }
 
+const extra = config.extraHtmlMustContain;
+if (extra && typeof extra === "object" && !Array.isArray(extra)) {
+  for (const [relPath, frags] of Object.entries(extra)) {
+    if (relPath === "description") continue;
+    if (!Array.isArray(frags)) continue;
+    const abs = join(srcDir, relPath);
+    if (!existsSync(abs)) {
+      fail(`extraHtmlMustContain: нет файла ${relPath}`);
+    }
+    const html = readFileSync(abs, "utf8");
+    for (const fragment of frags) {
+      if (!html.includes(fragment)) {
+        fail(`В ${relPath} не найден фрагмент: ${JSON.stringify(fragment)}`);
+      }
+    }
+  }
+}
+
 ok(`Проверено страниц: ${pages.length}`);
 ok("Маркеры главной (no-touch / целостность) на месте");
+if (extra && typeof extra === "object") {
+  ok("Дополнительные проверки страниц выполнены");
+}
 process.exit(0);
