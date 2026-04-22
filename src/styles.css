@@ -174,24 +174,25 @@ input {
 
 .brand__titleRow {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
 }
 
 .brand__name {
-  font-size: 19px;
+  font-size: clamp(22px, 1.65vw, 28px);
   font-weight: 800;
   letter-spacing: 0.01em;
   color: var(--text);
-  line-height: 1.15;
+  line-height: 1.05;
 }
 
 .brand__fio {
   color: var(--gold);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
 }
 
 .brand__tag {
@@ -398,7 +399,7 @@ input {
 
 .home-entry__title {
   margin: 10px 0 0;
-  font-size: clamp(40px, 5.2vw, 66px);
+  font-size: clamp(48px, 6.2vw, 84px);
   line-height: 1.02;
   letter-spacing: -0.04em;
   color: var(--text);
@@ -415,16 +416,17 @@ input {
 .home-entry__strong {
   margin: 10px 0 0;
   color: #f7e3ad;
-  font-size: clamp(14px, 1.2vw, 16px);
+  font-size: clamp(15px, 1.25vw, 17px);
   line-height: 1.45;
   font-weight: 700;
 }
 
 .home-entry__actions {
   margin-top: 12px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  flex-wrap: wrap;
+  max-width: 520px;
 }
 
 .home-entry__cards {
@@ -441,6 +443,7 @@ input {
   background:
     radial-gradient(140% 220% at 10% 0%, rgba(236, 208, 141, 0.06), transparent 42%),
     var(--panel);
+  min-height: 146px;
 }
 
 .home-entry__cards .entry-card__title {
@@ -2940,11 +2943,11 @@ summary:focus {
   }
 
   .brand__titleRow {
-    gap: 6px;
+    gap: 2px;
   }
 
   .brand__fio {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   .section-duo {
@@ -2971,8 +2974,8 @@ summary:focus {
   }
 
   .home-entry__actions {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr;
+    max-width: none;
   }
 
   .home-main .section {
