@@ -2873,15 +2873,33 @@ summary:focus {
 
 @media (max-width: 760px) {
   .project-page .section--project {
-    padding: 44px 0 58px;
+    padding: 40px 0 54px;
+  }
+
+  .project-page h1 {
+    font-size: clamp(26px, 7vw, 34px);
+    line-height: 1.14;
+    letter-spacing: -0.03em;
   }
 
   .project-page .section__lead {
     padding: 14px;
+    font-size: 15px;
+    line-height: 1.55;
   }
 
   .project-page .directions {
     grid-template-columns: 1fr;
+  }
+
+  .objectCard__title {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  .objectCard__line {
+    font-size: 14px;
+    line-height: 1.55;
   }
 }
 
@@ -2996,14 +3014,57 @@ summary:focus {
       "contact"
       "cards"
       "nav";
+    gap: 16px 0;
+    row-gap: 18px;
   }
 
   .home-entry__cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .home-entry__hero {
+    padding: 20px 20px 18px;
+    border-radius: 18px;
+  }
+
+  .home-entry__nav {
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .home-entry__nav a {
+    padding: 10px 14px;
+    font-size: 13px;
   }
 
   .home-entry .sideCard--contact {
-    padding: 12px;
+    padding: 16px 16px 14px;
+    border-radius: 16px;
+  }
+
+  .home-entry__cards .entry-card {
+    padding: 18px 16px 16px;
+  }
+
+  .home-entry__cards .entry-card__text {
+    font-size: 13px;
+    line-height: 1.52;
+  }
+}
+
+/* Планшет: главная — чуть плотнее типографика и ровнее сетка карточек */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .home-entry::before {
+    background-position: center 32%;
+  }
+
+  .home-entry__actions {
+    max-width: none;
+  }
+
+  .home-entry__actions .btn {
+    min-height: 46px;
   }
 }
 
@@ -3060,21 +3121,158 @@ summary:focus {
 }
 
 @media (max-width: 760px) {
+  .topbar__inner {
+    padding: 12px 0 10px;
+    row-gap: 12px;
+  }
+
+  .topnav a {
+    padding: 10px 12px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .topnav__cta {
+    padding-inline: 16px;
+  }
+
+  .home-entry {
+    padding: 16px 0 22px;
+  }
+
+  .home-entry::before {
+    background-position: center 28%;
+    opacity: 0.78;
+  }
+
+  .home-entry__grid {
+    gap: 14px 0;
+    row-gap: 16px;
+  }
+
   .home-entry__hero {
-    padding: 14px;
+    padding: 16px 16px 15px;
+    border-radius: 16px;
+    box-shadow:
+      0 18px 44px rgba(0, 0, 0, 0.38),
+      0 0 0 1px rgba(246, 224, 166, 0.12);
+  }
+
+  .home-entry__eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.09em;
   }
 
   .home-entry__title {
-    font-size: clamp(32px, 11vw, 48px);
+    font-size: clamp(30px, 10.2vw, 46px);
+    line-height: 1.07;
+    letter-spacing: -0.035em;
   }
 
-  .home-entry__cards {
-    grid-template-columns: 1fr;
+  .home-entry__lead {
+    max-width: none;
+    font-size: clamp(15px, 4vw, 18px);
+    line-height: 1.45;
+  }
+
+  .home-entry__copy {
+    max-width: none;
+    margin-top: 14px;
+  }
+
+  .home-entry__copy p {
+    font-size: 15px;
+    line-height: 1.58;
+    margin-bottom: 12px;
   }
 
   .home-entry__actions {
     grid-template-columns: 1fr;
     max-width: none;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .home-entry__actions .btn {
+    min-height: 48px;
+    width: 100%;
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
+
+  .home-entry__cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .home-entry__cards .entry-card {
+    padding: 17px 16px 16px;
+    border-radius: 15px;
+  }
+
+  .home-entry__cards .entry-card__title {
+    font-size: 16px;
+    line-height: 1.22;
+  }
+
+  .home-entry__cards .entry-card__text {
+    font-size: 14px;
+    line-height: 1.52;
+    margin-top: 9px;
+  }
+
+  .home-entry__nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 2px 0 4px;
+    width: 100%;
+  }
+
+  .home-entry__nav a {
+    width: 100%;
+    min-height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 13px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border-color: rgba(236, 208, 141, 0.24);
+    background: rgba(10, 14, 20, 0.82);
+  }
+
+  .home-entry .sideCard--contact {
+    padding: 14px 14px 12px;
+  }
+
+  .home-entry .sideCard--contact .contactRow {
+    padding: 10px 11px;
+  }
+
+  .home-entry .sideCard--contact .btn--full {
+    min-height: 48px;
+  }
+
+  .home-entry .sideCard--contact .btn--full + .btn--full {
+    margin-top: 8px;
+  }
+
+  .footer {
+    padding: 26px 0 36px;
+  }
+
+  .footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .footer__right {
+    row-gap: 6px;
   }
 
   .home-main .section {
@@ -3196,5 +3394,23 @@ summary:focus {
   .mortgageCalc,
   .cta-band__inner {
     padding: 16px;
+  }
+}
+
+/* Узкие телефоны: навигация под героем — одна колонка, спокойнее читается */
+@media (max-width: 400px) {
+  .home-entry__nav {
+    grid-template-columns: 1fr;
+  }
+
+  .home-entry__title {
+    font-size: clamp(26px, 9vw, 40px);
+  }
+}
+
+/* Планшет по ширине контейнера: чуть больше воздуха у сеток контента */
+@media (max-width: 900px) {
+  .objectsGrid {
+    gap: 16px;
   }
 }
