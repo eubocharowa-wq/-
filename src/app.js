@@ -1,8 +1,8 @@
 /* eslint-disable no-use-before-define */
 
-const LS_KEY = "cbi_screening_dialog_v4";
+const LS_KEY = "cbi_screening_dialog_v5";
 const TG_USERNAME = "CENTR_BIZNES_INVEST";
-const COLLECT_KEYS = ["goal", "budget", "type", "typeDetail", "term", "docs"];
+const REQUIRED_KEYS = ["goal", "budget", "type", "typeDetail", "term", "docs", "mainQuestion"];
 
 const els = {
   chatLog: document.getElementById("chatLog"),
@@ -31,18 +31,15 @@ const els = {
   mortgageTotal: document.getElementById("mortgageTotal"),
 };
 
-const QUESTION_FLOW = {
-  goal: {
+const FLOW_STEPS = [
+  {
+    key: "goal",
     stage: "Рамка задачи",
     question: "Какая цель вложения в приоритете?",
-    options: [
-      "Арендный доход",
-      "Перепродажа",
-      "Сохранение капитала",
-      "Развитие проекта / девелопмент",
-    ],
+    options: ["Арендный доход", "Перепродажа", "Сохранение капитала", "Развитие проекта / девелопмент"],
   },
-  budget: {
+  {
+    key: "budget",
     stage: "Рамка задачи",
     question: "Какой ориентир по бюджету и источнику средств?",
     options: [
@@ -52,37 +49,50 @@ const QUESTION_FLOW = {
       "Планирую кредитное плечо / ипотеку",
     ],
   },
-  type: {
+  {
+    key: "type",
     stage: "Конструкция объекта",
-    question: "Что именно рассматриваете и в какой локации?",
-    options: [
-      "Новостройка",
-      "Коммерческая недвижимость",
-      "Земля / строительство",
-      "Проект развития / реконструкция",
-    ],
+    question: "Что рассматриваете сейчас?",
+    options: ["Новостройка", "Коммерческая недвижимость", "Земля / строительство", "Проект развития / реконструкция"],
   },
-  term: {
+  {
+    key: "typeDetail",
+    stage: "Конструкция объекта",
+    question: "Что критично проверить по выбранному типу объекта?",
+    options: [],
+  },
+  {
+    key: "term",
     stage: "Сценарная проверка",
     question: "Какой горизонт решения или входа в сделку?",
     options: ["1–3 месяца", "3–6 месяцев", "6–12 месяцев", "12+ месяцев"],
   },
-  docs: {
+  {
+    key: "docs",
     stage: "Основание для рассмотрения",
     question: "Что уже есть из документов и исходных данных?",
     options: [
       "Есть базовый пакет документов",
-      "Есть только презентация / описание",
       "Есть адрес, цена и исходные вводные",
-      "Документов нет, нужна стартовая рамка",
+      "Есть только презентация / описание",
+      "Документов пока нет",
     ],
   },
-};
+  {
+    key: "mainQuestion",
+    stage: "Основание для рассмотрения",
+    question: "Какой главный вопрос нужно закрыть до решения?",
+    options: [
+      "Есть ли основание входить сейчас",
+      "Где ключевые ограничения и риски",
+      "Насколько устойчива модель в сценариях",
+      "Что критично уточнить перед сделкой",
+    ],
+  },
+];
 
-const TYPE_DETAIL_FLOW = {
+const TYPE_DETAIL_OPTIONS = {
   newbuild: {
-    stage: "Конструкция объекта",
-    question: "Что важнее всего по новостройке на первом этапе?",
     options: [
       "Надежность застройщика и сроки ввода",
       "Ликвидность и сценарий выхода",
@@ -91,8 +101,6 @@ const TYPE_DETAIL_FLOW = {
     ],
   },
   commercial: {
-    stage: "Конструкция объекта",
-    question: "Что критично по коммерческой недвижимости?",
     options: [
       "Качество арендатора и ставка аренды",
       "Риск простоя и расходы",
@@ -101,8 +109,6 @@ const TYPE_DETAIL_FLOW = {
     ],
   },
   land: {
-    stage: "Конструкция объекта",
-    question: "Что важно уточнить по земле/строительству?",
     options: [
       "Правовой статус и ограничения",
       "Сценарии использования участка",
@@ -111,8 +117,6 @@ const TYPE_DETAIL_FLOW = {
     ],
   },
   development: {
-    stage: "Конструкция объекта",
-    question: "Что ключевое по проекту развития/реконструкции?",
     options: [
       "Структура и этапность проекта",
       "Ограничения и уязвимости",
@@ -164,24 +168,24 @@ function getChecklistCheckboxes() {
 
 function setChecklistState(state) {
   const boxes = getChecklistCheckboxes();
-  COLLECT_KEYS.forEach((key, idx) => {
+  ["goal", "budget", "type", "term", "docs"].forEach((key, idx) => {
     const box = boxes[idx];
     if (!box) return;
-    box.checked = Boolean(state[key]);
+    box.checked = Boolean(state.answers[key]);
   });
   updateChatProgress(state);
 }
 
 function getCollectedCount(currentState) {
-  return COLLECT_KEYS.reduce((acc, key) => acc + (currentState[key] ? 1 : 0), 0);
+  return REQUIRED_KEYS.reduce((acc, key) => acc + (currentState.answers[key] ? 1 : 0), 0);
 }
 
 function updateChatProgress(currentState) {
   if (!els.chatProgress) return;
   const count = getCollectedCount(currentState);
-  els.chatProgress.textContent = `Собрано ${count}/${COLLECT_KEYS.length} параметров`;
+  els.chatProgress.textContent = `Собрано ${count}/${REQUIRED_KEYS.length} параметров`;
   els.chatProgress.classList.remove("chatProgress--low", "chatProgress--mid", "chatProgress--ready");
-  if (count >= 5) {
+  if (count >= REQUIRED_KEYS.length) {
     els.chatProgress.classList.add("chatProgress--ready");
   } else if (count >= 3) {
     els.chatProgress.classList.add("chatProgress--mid");
@@ -199,26 +203,8 @@ function detectTypeCategory(text) {
   return null;
 }
 
-function detectTypeDetail(text, typeCategory) {
-  const t = String(text || "").toLowerCase();
-  if (!typeCategory) return false;
-  if (typeCategory === "newbuild") {
-    return /(застройщик|срок|ввод|ликвид|выход|рост|конкурен|ограничен|юрид)/i.test(t);
-  }
-  if (typeCategory === "commercial") {
-    return /(арендатор|ставк|простой|расход|трафик|локац|доход)/i.test(t);
-  }
-  if (typeCategory === "land") {
-    return /(правов|ограничен|использован|инфраструкт|логист|емкост|строитель)/i.test(t);
-  }
-  if (typeCategory === "development") {
-    return /(этап|структур|уязвим|сценар|срок|модел|ограничен)/i.test(t);
-  }
-  return false;
-}
-
-function getTypeDetailFlow(typeCategory) {
-  return TYPE_DETAIL_FLOW[typeCategory] || null;
+function getTypeDetailOptions(typeCategory) {
+  return (TYPE_DETAIL_OPTIONS[typeCategory] || TYPE_DETAIL_OPTIONS.newbuild).options;
 }
 
 function getTypeLabel(typeCategory) {
@@ -245,30 +231,22 @@ function getFinalTypeSummary(typeCategory) {
   return "Фокус первичной оценки: качество входа, ограничения, сценарии и основание для следующего шага.";
 }
 
-function getCurrentStepKey() {
-  if (!state.goal) return "goal";
-  if (!state.budget) return "budget";
-  if (!state.type) return "type";
-  if (!state.typeDetail) return "typeDetail";
-  if (!state.term) return "term";
-  if (!state.docs) return "docs";
-  return null;
+function getCurrentStep() {
+  return FLOW_STEPS[state.stepIndex] || null;
 }
 
 function renderQuickOptions() {
   if (!els.quickWrap) return;
-  const stepKey = getCurrentStepKey();
-  const flow =
-    stepKey === "typeDetail"
-      ? getTypeDetailFlow(state.objectType)
-      : stepKey
-        ? QUESTION_FLOW[stepKey]
-        : null;
+  const step = getCurrentStep();
+  let options = step?.options || [];
+  if (step?.key === "typeDetail") {
+    options = getTypeDetailOptions(state.objectType);
+  }
 
   els.quickWrap.innerHTML = "";
-  if (!flow) return;
+  if (!step) return;
 
-  flow.options.forEach((option) => {
+  options.forEach((option) => {
     const btn = document.createElement("button");
     btn.className = "quick";
     btn.type = "button";
@@ -439,12 +417,8 @@ const initialBotText =
   "Укажите объект или проект, цель вложения, бюджет, горизонт и что требуется оценить до решения. Пройдём по шагам и после этого отправим заявку в Telegram.";
 
 const initialState = {
-  goal: false,
-  budget: false,
-  type: false,
-  typeDetail: false,
-  term: false,
-  docs: false,
+  stepIndex: 0,
+  answers: {},
   objectType: null,
   readyToSend: false,
   messages: [{ role: "bot", text: initialBotText }],
@@ -452,8 +426,34 @@ const initialState = {
 
 let state = { ...initialState };
 
+function normalizeStateShape(rawState) {
+  const base = { ...initialState, ...rawState };
+  const answers = typeof base.answers === "object" && base.answers ? { ...base.answers } : {};
+  const fallbackKeys = ["goal", "budget", "type", "typeDetail", "term", "docs", "mainQuestion"];
+  fallbackKeys.forEach((key) => {
+    if (!answers[key] && typeof base[key] === "string" && base[key].trim()) {
+      answers[key] = base[key].trim();
+    }
+  });
+
+  const normalized = {
+    ...initialState,
+    ...base,
+    answers,
+    stepIndex: Number.isInteger(base.stepIndex) ? base.stepIndex : 0,
+    readyToSend: Boolean(base.readyToSend),
+    objectType: base.objectType || detectTypeCategory(answers.type || "") || null,
+  };
+
+  while (normalized.stepIndex < FLOW_STEPS.length && normalized.answers[FLOW_STEPS[normalized.stepIndex].key]) {
+    normalized.stepIndex += 1;
+  }
+  if (normalized.stepIndex >= FLOW_STEPS.length) normalized.readyToSend = true;
+  return normalized;
+}
+
 function resetChat() {
-  state = { ...initialState };
+  state = normalizeStateShape({ ...initialState });
 
   if (els.chatConsentHint) {
     els.chatConsentHint.hidden = true;
@@ -473,134 +473,64 @@ function resetChat() {
   saveToStorage(state);
 }
 
-function detectGoal(text) {
-  return /(цель|для себя|саможив|жить|аренд|инвест|перепродаж|доход|строительств|бизнес|глэмпинг|кемпинг|проект|сохранен|капитал)/i.test(
-    text
-  );
-}
-
-function detectBudget(text) {
-  return /(бюджет|до\s*\d+(\s*\d+)?\s*млн|от\s*\d+(\s*\d+)?\s*млн|миллион|млн\s*руб|рубл|₽|наличн|ипотек|взнос|кредит)/i.test(
-    text
-  );
-}
-
-function detectType(text) {
-  return /(новостро|жил|квартир|коммерц|офис|ритейл|склад|земл|участок|дом|коттедж|жк|строен|реконструкц|турист)/i.test(
-    text
-  );
-}
-
-function detectTerm(text) {
-  return /(\bсрок(и|а|ов)?\b|горизонт|квартал|полугод|месяц(а|ев)?|недел(я|и|ь)|\b\d+\s*[-–]?\s*\d*\s*(мес|месяц|месяцев|год|года|лет)\b|\b\d+\s*(мес|месяц|месяцев|год|года|лет)\b|в\s*\d{4}\s*г|\b20(2[4-9]|3\d)\b|срочно|не срочно|как можно скорее|в ближайшее время|долгосрок|краткосрок)/i.test(
-    text
-  );
-}
-
-function detectDocs(text) {
-  return /(документ|декларац|реестр|эскроу|выписк|егрн|право|собствен|материал|пока ничего|нет документ)/i.test(
-    text
-  );
-}
-
-function updateStateFromMessage(text) {
-  const t = String(text || "");
-  const detectedType = detectTypeCategory(t);
-  if (detectedType && detectedType !== state.objectType) {
-    state.objectType = detectedType;
-    state.typeDetail = false;
-  }
-  if (detectGoal(t)) state.goal = true;
-  if (detectBudget(t)) state.budget = true;
-  if (detectType(t)) state.type = true;
-  if (state.type && detectTypeDetail(t, state.objectType)) state.typeDetail = true;
-  if (detectTerm(t)) state.term = true;
-  if (detectDocs(t)) state.docs = true;
-}
-
 function isAllCollected() {
-  return state.goal && state.budget && state.type && state.typeDetail && state.term && state.docs;
+  return REQUIRED_KEYS.every((key) => Boolean(state.answers[key]));
 }
 
-function nextQuestion() {
-  if (!state.goal)
-    return "какая цель: для себя, аренда, перепродажа, строительство, сохранение капитала или проект?";
-  if (!state.budget)
-    return "какой ориентир по бюджету и источнику средств (наличные, ипотека, смешанно)?";
-  if (!state.type) return "что за объект или направление (жилая, коммерция, земля, новостройка и т.д.)?";
-  if (!state.typeDetail) return "что для вас критично проверить по выбранному типу объекта?";
-  if (!state.term) return "какие сроки важны: когда нужно принять решение или выйти на сделку?";
-  if (!state.docs) return "какие документы уже есть (или чего пока нет)?";
-  return "";
+function getCurrentFlowQuestion() {
+  const step = getCurrentStep();
+  if (!step) return null;
+  if (step.key !== "typeDetail") return step;
+  return {
+    ...step,
+    options: getTypeDetailOptions(state.objectType),
+  };
 }
 
-function getMissingFields() {
-  const missing = [];
-  if (!state.goal) missing.push("цель вложения");
-  if (!state.budget) missing.push("бюджет и источник средств");
-  if (!state.type) missing.push("тип объекта или проекта и локацию");
-  if (!state.typeDetail) missing.push("критичный параметр по выбранному типу объекта");
-  if (!state.term) missing.push("горизонт / сроки");
-  if (!state.docs) missing.push("какие документы уже есть");
-  return missing;
+function setAnswerForCurrentStep(text) {
+  const step = getCurrentStep();
+  if (!step) return null;
+  const value = String(text || "").trim();
+  if (!value) return null;
+
+  state.answers[step.key] = value;
+  if (step.key === "type") {
+    const detectedType = detectTypeCategory(value);
+    state.objectType = detectedType || state.objectType || "newbuild";
+    delete state.answers.typeDetail;
+  }
+
+  state.stepIndex += 1;
+  return { step, value };
+}
+
+function getStepLabel(stepKey) {
+  if (stepKey === "goal") return "цель вложения";
+  if (stepKey === "budget") return "бюджет и источник";
+  if (stepKey === "type") return "тип объекта";
+  if (stepKey === "typeDetail") return "критичный параметр";
+  if (stepKey === "term") return "горизонт";
+  if (stepKey === "docs") return "документы и исходные данные";
+  if (stepKey === "mainQuestion") return "главный вопрос";
+  return "параметр";
 }
 
 function generateBotReply(userText) {
   const text = String(userText || "").trim();
-  const lower = text.toLowerCase();
-
-  updateStateFromMessage(text);
+  const answered = setAnswerForCurrentStep(text);
   setChecklistState(state);
-
-  const wantsDocs = /(документ|декларац|реестр|эскроу|проектн|провер|красн|флаг)/i.test(text);
-  const wantsModel = /(модел|сценари|расчёт|цифр|дохо|арендн|окупаем)/i.test(text);
-  const wantsScreening = /(скрининг|аудит|экспресс|один лот)/i.test(text);
-
   const reply = [];
 
-  if (wantsDocs) {
-    reply.push(
-      "По документам в первую очередь смотрю право, обременения, разрешённое использование и цепочку сделок — в зависимости от типа актива. Для новостройки добавляются проектная декларация, эскроу и надёжность застройщика."
-    );
-    reply.push("Напишите, на какой стадии объект: поиск, бронь, уже есть выписка или договор?");
-  }
-
-  if (wantsModel) {
-    reply.push(
-      "Финмодель строю с явными допущениями: базовый и более осторожный сценарий, плюс чувствительность к ставке аренды или срокам. Доходность не гарантирую — показываю, при каких вводных картина держится, а при каких рассыпается."
-    );
-  }
-
-  if (wantsScreening) {
-    reply.push(
-      "На первом этапе формируется короткий перечень рисков и данных, которые нужно запросить дальше. Итоговая позиция возможна после контакта и пакета исходных материалов."
-    );
-  }
-
-  if (reply.length === 0 && /(привет|здравств|добрый)/i.test(lower)) {
-    reply.push("Добрый день. Приняла запрос, уточним ключевые параметры для первичной оценки.");
+  if (answered?.step?.key) {
+    reply.push(`Принято: ${getStepLabel(answered.step.key)} — ${answered.value}.`);
   }
 
   if (!isAllCollected()) {
-    const missing = getMissingFields();
-    const stepKey = getCurrentStepKey();
-    const flow =
-      stepKey === "typeDetail"
-        ? getTypeDetailFlow(state.objectType)
-        : stepKey
-          ? QUESTION_FLOW[stepKey]
-          : null;
+    const flow = getCurrentFlowQuestion();
     state.readyToSend = false;
-    if (reply.length === 0) {
-      reply.push("Приняла запрос. Чтобы сформировать профессиональную позицию, уточним вводные по шагам.");
-    }
-    reply.push(`Нужно уточнить: ${missing.join(", ")}.`);
-    if (flow) {
-      reply.push(`${flow.stage}: ${flow.question}`);
-      reply.push("Можно выбрать вариант кнопкой ниже или написать свой.");
-    } else {
-      reply.push(`Первый шаг: ${nextQuestion()}`);
-    }
+    reply.push("Двигаемся дальше по шагам, чтобы собрать рабочую рамку решения.");
+    if (flow) reply.push(`${flow.stage}: ${flow.question}`);
+    reply.push("Можно выбрать вариант кнопкой ниже или написать свой ответ.");
     return reply.join("\n\n");
   }
 
@@ -644,14 +574,18 @@ function openTelegramWithMessage(userText) {
   const intro =
     `Здравствуйте. Запрос на первичную оценку.\nТип запроса: ${getTypeLabel(state.objectType)}.\n\n`;
   const typeSummary = `Приоритет первичного этапа: ${getFinalTypeSummary(state.objectType)}\n\n`;
-  const userMsgs = (state.messages || [])
-    .filter((m) => m.role === "user" && String(m.text || "").trim())
-    .map((m, i) => `${i + 1}. ${String(m.text).trim()}`);
-  const dialogPart = userMsgs.length
-    ? `Что уже указано в заявке:\n${userMsgs.join("\n")}\n\n`
-    : "";
-  const finalPart = payload ? `Последнее уточнение:\n${payload}` : "";
-  const fullText = `${intro}${typeSummary}${dialogPart}${finalPart}`.trim();
+  const a = state.answers || {};
+  const structured = [
+    `1) Цель вложения: ${a.goal || "—"}`,
+    `2) Бюджет / источник: ${a.budget || "—"}`,
+    `3) Формат объекта: ${a.type || "—"}`,
+    `4) Критичный параметр: ${a.typeDetail || "—"}`,
+    `5) Горизонт: ${a.term || "—"}`,
+    `6) Документы / исходные данные: ${a.docs || "—"}`,
+    `7) Главный вопрос: ${a.mainQuestion || "—"}`,
+  ].join("\n");
+  const payloadPart = payload ? `\n\nДополнение клиента:\n${payload}` : "";
+  const fullText = `${intro}${typeSummary}Собранные вводные:\n${structured}${payloadPart}`.trim();
   const url = `https://t.me/${TG_USERNAME}?text=${encodeURIComponent(fullText)}`;
   window.open(url, "_blank", "noopener,noreferrer");
 }
@@ -741,7 +675,7 @@ function hydrateFromStorageOrReset() {
     return;
   }
 
-  state = { ...initialState, ...saved };
+  state = normalizeStateShape(saved);
   els.chatLog.innerHTML = "";
   state.messages.forEach((m) => {
     const role = m.role === "user" ? "user" : "bot";
