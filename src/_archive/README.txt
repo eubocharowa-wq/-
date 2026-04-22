@@ -4,3 +4,9 @@
 Заголовки в бэкапе приведены к рабочим названиям (О проекте, Подход, «С чего можно начать», «Вопросы» и т.д.).
 
 Восстановление: скопировать содержимое <main> из бэкапа в src/index.html при необходимости отката.
+
+Архив legacy-pages (не участвует в рабочей публикационной цепочке):
+  legacy-pages/index-copy.html
+  legacy-pages/index-root-copy.html
+  legacy-pages/cbi-showcase.html
+  legacy-pages/cbi-showcase.css
