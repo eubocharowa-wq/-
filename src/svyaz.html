@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Обсудить задачу — ЦБИ</title>
-    <meta name="description" content="Центр Бизнес-Инвестиций: каркас раздела «Обсудить задачу»." />
+    <meta name="description" content="Центр Бизнес-Инвестиций: обсудить задачу и контакты." />
     <link rel="icon" type="image/png" href="./assets/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260423" />
+    <link rel="stylesheet" href="./styles.css?v=20260429" />
   </head>
   <body>
     <header class="topbar">
@@ -49,12 +49,46 @@
       </div>
     </header>
 
-    <main>
-      <section class="section">
+    <main class="project-page">
+      <section class="section section--project">
         <div class="container">
           <h1>Обсудить задачу</h1>
-          <p class="section__lead muted">Каркас страницы. Рабочие контакты и форма остаются на главной до переноса.</p>
-          <p class="muted"><a href="./index.html#contact">Перейти к блоку на главной</a></p>
+          <p class="section__lead muted">
+            Те же контакты, что и в блоке на главной: можно выбрать удобный канал связи.
+          </p>
+
+          <aside class="sideCard sideCard--contact" aria-label="Контакты">
+            <div class="sideCard__title">Контакты</div>
+            <p class="muted contact-intro">
+              Елена Бочарова. Основной фокус — недвижимость России. Зарубежные задачи — по согласованию запроса.
+            </p>
+
+            <div class="contactRow">
+              <span class="contactRow__label">Телефон</span>
+              <a class="contactRow__value" href="tel:+79109434422">+7 (910) 943-44-22</a>
+            </div>
+
+            <div class="contactRow">
+              <span class="contactRow__label">Email</span>
+              <a class="contactRow__value" href="mailto:e.u.bocharowa@yandex.ru">e.u.bocharowa@yandex.ru</a>
+            </div>
+
+            <div class="contactRow">
+              <span class="contactRow__label">Telegram</span>
+              <a class="contactRow__value" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">@CENTR_BIZNES_INVEST</a>
+            </div>
+
+            <div class="contactRow">
+              <span class="contactRow__label">Telegram</span>
+              <a class="contactRow__value" href="https://t.me/ELENA_BOCHAROWA" target="_blank" rel="noopener noreferrer">@ELENA_BOCHAROWA</a>
+            </div>
+
+            <a class="btn btn--primary btn--full" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
+          </aside>
+
+          <p class="muted">
+            <a href="./index.html#contact">Открыть тот же блок на главной</a>
+          </p>
         </div>
       </section>
     </main>
