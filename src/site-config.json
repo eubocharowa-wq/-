@@ -1,0 +1,80 @@
+{
+  "contentRoot": "src",
+  "routing": "static-html",
+  "notes": "Реестр страниц. Рабочие имена файлов: o-proekte, podhod, napravleniya, razbory, osnovaniya, svyaz. Главная — index.html, контент переносится поэтапно.",
+  "pages": [
+    {
+      "id": "home",
+      "path": "index.html",
+      "navLabel": "Главная",
+      "role": "главная (полная версия до переноса блоков)"
+    },
+    {
+      "id": "o-proekte",
+      "path": "o-proekte.html",
+      "navLabel": "О проекте",
+      "role": "каркас"
+    },
+    {
+      "id": "podhod",
+      "path": "podhod.html",
+      "navLabel": "Подход",
+      "role": "каркас"
+    },
+    {
+      "id": "napravleniya",
+      "path": "napravleniya.html",
+      "navLabel": "Направления",
+      "role": "каркас"
+    },
+    {
+      "id": "razbory",
+      "path": "razbory.html",
+      "navLabel": "Разборы",
+      "role": "каркас"
+    },
+    {
+      "id": "osnovaniya",
+      "path": "osnovaniya.html",
+      "navLabel": "Основания",
+      "role": "каркас"
+    },
+    {
+      "id": "svyaz",
+      "path": "svyaz.html",
+      "navLabel": "Связаться",
+      "role": "каркас, контакты пока на главной #contact"
+    },
+    {
+      "id": "privacy",
+      "path": "privacy.html",
+      "navLabel": "Политика",
+      "role": "юридическая страница, no-touch по смыслу"
+    },
+    {
+      "id": "offer",
+      "path": "offer.html",
+      "navLabel": "Оферта",
+      "role": "юридическая страница, no-touch по смыслу"
+    }
+  ],
+  "homeAnchors": {
+    "description": "Якоря на главной (src/index.html) для ссылок с внутренних страниц до переноса контента",
+    "contact": "contact",
+    "screening": "screening",
+    "testimonials": "testimonials",
+    "about": "about",
+    "calculator": "calculator"
+  },
+  "noTouchMarkers": {
+    "description": "Фрагменты, которые скрипт verify-pages проверяет в src/index.html (не удалять при правках)",
+    "indexHtmlMustContain": [
+      "id=\"contact\"",
+      "id=\"screening\"",
+      "href=\"./privacy.html\"",
+      "href=\"./offer.html\"",
+      "id=\"chatConsent\"",
+      "id=\"mortgageConsent\""
+    ]
+  }
+}
