@@ -2484,6 +2484,47 @@ summary:focus {
   align-items: stretch;
 }
 
+.cases-expand {
+  margin-top: 14px;
+}
+
+.cases-expand > summary,
+.case-detail > summary {
+  cursor: pointer;
+  list-style: none;
+  color: var(--gold-2);
+  font-weight: 700;
+}
+
+.cases-expand > summary::-webkit-details-marker,
+.case-detail > summary::-webkit-details-marker {
+  display: none;
+}
+
+.cases-expand > summary {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(236, 208, 141, 0.24);
+  background: rgba(12, 16, 22, 0.72);
+}
+
+.cases-expand[open] > summary {
+  margin-bottom: 12px;
+}
+
+.case-detail {
+  margin-top: 8px;
+}
+
+.case-detail > p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.58;
+  font-size: 14px;
+}
+
 .testimonial-card {
   position: relative;
   display: flex;

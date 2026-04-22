@@ -12,7 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260429" />
+    <link rel="stylesheet" href="./styles.css?v=20260502" />
   </head>
   <body>
     <header class="topbar">
@@ -127,39 +127,25 @@
           </div>
 
           <h2>С какими задачами приходят</h2>
-          <p>Чаще всего запрос формулируется как «объект выглядит сильным, но уверенности в модели нет».</p>
-          <p>На практике это выглядит так:</p>
           <ul class="directions">
-            <li class="directions__item">нужна проверка одного конкретного лота перед входом;</li>
-            <li class="directions__item">нужно сравнить 2-3 варианта по качеству инвестиционной логики;</li>
-            <li class="directions__item">нужно проверить, не скрыт ли риск в структуре сделки или параметрах проекта;</li>
-            <li class="directions__item">нужно понять, стоит ли усиливать текущий сценарий или остановиться.</li>
+            <li class="directions__item">проверить конкретный объект перед входом;</li>
+            <li class="directions__item">сравнить несколько вариантов по качеству инвестиционной логики;</li>
+            <li class="directions__item">понять, где в конструкции сделки скрыт критичный риск.</li>
           </ul>
 
-          <h2>Как проходит разбор</h2>
-          <p>Разбор строится не вокруг презентации объекта, а вокруг устойчивости модели.</p>
-          <p>В рабочем порядке оцениваются:</p>
+          <h2>Что оценивается в разборе</h2>
           <ul class="directions">
-            <li class="directions__item">правовой контур и ключевые ограничения;</li>
-            <li class="directions__item">логика спроса и сценарий использования;</li>
-            <li class="directions__item">экономика входа и чувствительность к изменению условий;</li>
-            <li class="directions__item">потенциал выхода и качество решения в целом.</li>
+            <li class="directions__item">документы, ограничения и обязательства;</li>
+            <li class="directions__item">логика объекта или проекта и реалистичность сценария;</li>
+            <li class="directions__item">устойчивость модели при изменении сроков, расходов и спроса.</li>
           </ul>
 
-          <h2>Что видно на выходе</h2>
-          <p>Результат разбора — это не набор впечатлений, а структурированный вывод.</p>
+          <h2>Что получает клиент</h2>
           <ul class="directions">
-            <li class="directions__item">где модель рабочая и за счёт чего;</li>
-            <li class="directions__item">какие уязвимости критичны уже на старте;</li>
-            <li class="directions__item">какой сценарий можно считать реалистичным;</li>
-            <li class="directions__item">есть ли основание идти дальше сейчас.</li>
+            <li class="directions__item">ясность, насколько обоснован вход в текущих условиях;</li>
+            <li class="directions__item">короткий список ключевых уязвимостей и данных для уточнения;</li>
+            <li class="directions__item">основание идти дальше, пересобирать сценарий или остановиться.</li>
           </ul>
-
-          <h2>Почему это важно</h2>
-          <p>
-            Ошибка чаще возникает не из-за отсутствия информации, а из-за неверной интерпретации и слишком ранней
-            уверенности. Разбор нужен, чтобы решение опиралось на факты, расчёт и сценарии, а не на чужую подачу.
-          </p>
 
           <section class="testimonials" aria-label="Отзывы и результаты работы">
             <h2>Отзывы и результаты работы</h2>
@@ -240,44 +226,50 @@
                 </blockquote>
               </article>
 
-              <article class="testimonial-card testimonial-card--visible" data-testimonial>
-                <div class="testimonial-card__glow" aria-hidden="true"></div>
-                <div class="testimonial-card__head">
-                  <div class="testimonial-card__avatar testimonial-card__avatar--5" aria-hidden="true">ИП</div>
-                  <div class="testimonial-card__meta">
-                    <p class="testimonial-card__name">Игорь П.</p>
-                    <span class="testimonial-card__role">Инвестор · регион</span>
-                  </div>
-                </div>
-                <blockquote class="testimonial-card__quote">
-                  <p>
-                    Формат без навязывания: можно остановиться на любом шаге. Коммуникация по делу — бриф, проверка,
-                    вывод. Ощущение партнёрства, а не продажи.
-                  </p>
-                </blockquote>
-              </article>
-
-              <article class="testimonial-card testimonial-card--visible" data-testimonial>
-                <div class="testimonial-card__glow" aria-hidden="true"></div>
-                <div class="testimonial-card__head">
-                  <div class="testimonial-card__avatar testimonial-card__avatar--6" aria-hidden="true">ОЛ</div>
-                  <div class="testimonial-card__meta">
-                    <p class="testimonial-card__name">Ольга Л.</p>
-                    <span class="testimonial-card__role">Первый опыт входа в недвижимость</span>
-                  </div>
-                </div>
-                <blockquote class="testimonial-card__quote">
-                  <p>
-                    Страшилась «не разобраться в бумагах». Получила структуру: что смотреть, в каком порядке, где
-                    красные флаги. Отказ от сделки восприняла как нормальный исход, а не провал.
-                  </p>
-                </blockquote>
-              </article>
             </div>
+
+            <details class="cases-expand">
+              <summary>Показать ещё отзывы</summary>
+              <div class="testimonials__grid">
+                <article class="testimonial-card testimonial-card--visible" data-testimonial>
+                  <div class="testimonial-card__glow" aria-hidden="true"></div>
+                  <div class="testimonial-card__head">
+                    <div class="testimonial-card__avatar testimonial-card__avatar--5" aria-hidden="true">ИП</div>
+                    <div class="testimonial-card__meta">
+                      <p class="testimonial-card__name">Игорь П.</p>
+                      <span class="testimonial-card__role">Инвестор · регион</span>
+                    </div>
+                  </div>
+                  <blockquote class="testimonial-card__quote">
+                    <p>
+                      Формат без навязывания: можно остановиться на любом шаге. Коммуникация по делу — бриф, проверка,
+                      вывод. Ощущение партнёрства, а не продажи.
+                    </p>
+                  </blockquote>
+                </article>
+
+                <article class="testimonial-card testimonial-card--visible" data-testimonial>
+                  <div class="testimonial-card__glow" aria-hidden="true"></div>
+                  <div class="testimonial-card__head">
+                    <div class="testimonial-card__avatar testimonial-card__avatar--6" aria-hidden="true">ОЛ</div>
+                    <div class="testimonial-card__meta">
+                      <p class="testimonial-card__name">Ольга Л.</p>
+                      <span class="testimonial-card__role">Первый опыт входа в недвижимость</span>
+                    </div>
+                  </div>
+                  <blockquote class="testimonial-card__quote">
+                    <p>
+                      Страшилась «не разобраться в бумагах». Получила структуру: что смотреть, в каком порядке, где
+                      красные флаги. Отказ от сделки восприняла как нормальный исход, а не провал.
+                    </p>
+                  </blockquote>
+                </article>
+              </div>
+            </details>
           </section>
 
-          <section class="section section--project" aria-label="Анонимные кейсы по типовым ситуациям">
-            <h2>Анонимные кейсы по типовым ситуациям</h2>
+          <section class="section section--project" aria-label="Типовые ситуации по форматам">
+            <h2>Типовые ситуации по форматам</h2>
             <p class="section__lead muted">
               Ниже представлены типовые ситуации клиентов. Это не отзывы от реальных людей, а структурированные кейсы
               по наиболее частым запросам.
@@ -287,34 +279,26 @@
             <div class="objectsGrid objectsGrid--cases">
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Вход в новостройку на ранней стадии</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Оценить перспективу раннего входа в проект до активной фазы роста цены.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Неясно, на чём реально будет строиться рост и не завышены ли ожидания.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Позицию проекта в локации, конкурентов, динамику спроса, риски сроков и сценарий выхода.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Понятную оценку, есть ли инвестиционный потенциал входа на этой стадии.</p>
+                <p class="muted objectCard__line">Проверка устойчивости модели роста и сценария выхода.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Сверяются ограничения, конкурентная среда и реалистичность роста в горизонте выхода.</p></details>
               </article>
 
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Новостройка под последующую продажу</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Проверить объект под стратегию перепродажи через 2-3 года.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Риск, что прирост цены не компенсирует время, расходы и налоговую нагрузку.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Прогноз ликвидности, целевую аудиторию на выходе, диапазон ценового сценария и ограничения сделки.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Решение, целесообразен ли вход под перепродажу при реальных вводных.</p>
+                <p class="muted objectCard__line">Оценка ликвидности и экономики перепродажи.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Проверяются спрос на выходе, диапазон цены, налоги и чувствительность к срокам.</p></details>
               </article>
 
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Сравнение двух новостроек в одном бюджете</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Выбрать из двух сопоставимых проектов более сильный по инвестиционной логике.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Внешне проекты похожи, но риск ошибки в выборе слишком дорогой.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Качество продукта, ценовые ориентиры, перспективу спроса, темпы насыщения конкурентами.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Сравнительный вывод с аргументацией, какой объект сильнее и почему.</p>
+                <p class="muted objectCard__line">Сравнение двух вариантов по качеству инвестиционной логики.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Сопоставляются продукт, локация, конкуренты, реалистичность спроса и сценарии выхода.</p></details>
               </article>
 
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Покупка по переуступке перед вводом</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Оценить сделку переуступки на финишной стадии строительства.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Возможные юридические и финансовые нюансы, которые снижают выгоду входа.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Структуру сделки, параметры переуступки, риски по срокам, ликвидность после ввода.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Понимание, является ли переуступка рабочим входом или несёт скрытый риск.</p>
+                <p class="muted objectCard__line">Проверка переуступки на финальной стадии строительства.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Анализируются структура сделки, риски по срокам и фактическая ликвидность после ввода.</p></details>
               </article>
             </div>
 
@@ -322,34 +306,26 @@
             <div class="objectsGrid objectsGrid--cases">
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Помещение с действующим арендатором</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Проверить объект с текущим арендным потоком перед покупкой.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Доходность выглядит привлекательной, но непонятно, насколько она устойчива.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Условия аренды, профиль арендатора, рыночность ставки, риски простоя и замены.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Ясность, работает ли объект как актив или зависит от временной конфигурации.</p>
+                <p class="muted objectCard__line">Оценка устойчивости арендного потока.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Сверяются условия аренды, профиль арендатора, риски простоя и сценарий замены.</p></details>
               </article>
 
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Стрит-ритейл в новом районе</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Оценить целесообразность покупки помещения в развивающейся локации.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Неочевидно, когда район даст стабильный трафик и арендаторов нужного качества.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Потоки людей, стадии развития района, состав конкурентов, диапазон ставок аренды.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Реалистичный сценарий запуска и выхода на рабочую доходность.</p>
+                <p class="muted objectCard__line">Проверка трафика, арендаторов и зрелости локации.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Оцениваются этап развития района, конкуренция и реалистичный сценарий загрузки помещения.</p></details>
               </article>
 
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Офисное помещение под аренду</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Проверить офис как инструмент арендного дохода.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Риск длительного простоя и затрат на доработку помещения под арендатора.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Параметры спроса по классу и локации, операционные расходы, гибкость планировки.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Понимание, какие условия делают вход оправданным в текущем рынке.</p>
+                <p class="muted objectCard__line">Оценка спроса, простоев и операционных расходов.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Проверяются класс и локация, гибкость планировки, затраты на адаптацию и риски вакансии.</p></details>
               </article>
 
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Коммерческое помещение в mixed-use проекте</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Оценить коммерцию в составе многофункционального комплекса.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Непрозрачная модель дохода и зависимость от общей концепции проекта.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Функциональный баланс комплекса, профиль трафика, ограничения использования и расходы.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Вывод, может ли помещение работать как самостоятельный актив.</p>
+                <p class="muted objectCard__line">Проверка самостоятельной устойчивости актива.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Анализируется баланс функций комплекса, профиль трафика, ограничения и операционная модель.</p></details>
               </article>
             </div>
 
@@ -357,34 +333,26 @@
             <div class="objectsGrid objectsGrid--cases">
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Земельный участок под развитие</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Оценить земельный участок для дальнейшего развития проекта.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Визуально сильная площадка, но высок риск ограничений после покупки.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Правовой статус, допустимые сценарии, инфраструктуру, логистику, инвестиционную ёмкость.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Ясность, является ли участок рабочей площадкой под реализацию.</p>
+                <p class="muted objectCard__line">Проверка правового статуса и реализуемости сценария.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Сверяются ограничения, логистика, окружение и инвестиционная ёмкость площадки.</p></details>
               </article>
 
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Участок под ИЖС как инвестиция</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Проверить участок ИЖС на предмет инвестиционной привлекательности.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Есть риск, что ожидания по росту не подтвердятся из-за ограниченного спроса.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Локацию, окружение, ограничения, ликвидность аналогов и сценарии выхода.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Понимание, подходит ли участок под инвестиционную стратегию.</p>
+                <p class="muted objectCard__line">Оценка ликвидности и ограничений в ИЖС-сценарии.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Проверяется спрос в локации, окружение, ограничения и реалистичность роста цены.</p></details>
               </article>
 
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Строительство дома под продажу</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Оценить проект строительства дома с последующей реализацией.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Неочевидно, выдержит ли бюджет и сроки рыночные требования на выходе.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Формат продукта, структуру затрат, сценарии реализации и чувствительность к отклонениям.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Решение, можно ли рассматривать проект как инвестиционно оправданный.</p>
+                <p class="muted objectCard__line">Проверка бюджета, сроков и рыночной позиции продукта.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Сверяются параметры участка, формат дома, структура затрат и сценарий реализации.</p></details>
               </article>
 
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Коттеджный проект малой очереди</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Проверить концепцию коттеджного проекта небольшой очереди запуска.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Риск ошибки в продукте и позиционировании, который сложно исправить позже.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Логику места, формат продукта, ценовой диапазон, нагрузку на капитал и сроки.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Понимание, есть ли у проекта девелоперская логика в текущем формате.</p>
+                <p class="muted objectCard__line">Оценка концепции и девелоперской логики проекта.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Проверяются формат продукта, ценовой диапазон, нагрузка на капитал и устойчивость модели.</p></details>
               </article>
             </div>
 
@@ -392,34 +360,26 @@
             <div class="objectsGrid objectsGrid--cases">
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Реконструкция здания под новый формат</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Оценить реконструкцию объекта под новый функциональный сценарий.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Потенциал есть, но высок риск перерасхода и сдвига сроков.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Ограничения, стоимость преобразования, реалистичность сценариев и устойчивость модели.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Ясность, есть ли у реконструкции рабочая инвестиционная перспектива.</p>
+                <p class="muted objectCard__line">Проверка затрат, ограничений и устойчивости проекта.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Оцениваются стоимость преобразования, реалистичность сценария и чувствительность к сдвигу сроков.</p></details>
               </article>
 
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Апарт-проект в городской локации</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Проверить апарт-модель в плотной городской среде.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Неясно, достаточен ли спрос при текущем уровне конкуренции и затрат.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Сценарии загрузки, операционную модель, правовой контур, чувствительность к ставкам и расходам.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Вывод о реализуемости проекта и условиях, при которых вход оправдан.</p>
+                <p class="muted objectCard__line">Оценка загрузки, экономики и правового контура.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Сверяются операционная модель, уровень конкуренции и запас прочности при изменении условий.</p></details>
               </article>
 
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Территория под многофункциональный сценарий</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Оценить территорию под смешанный сценарий развития.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Идея сильная, но непонятно, как собрать устойчивую модель по этапам.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Структуру проекта, ограничения, экономику этапов, ключевые точки риска и горизонты.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Стратегическую рамку проекта и понимание, с какой конфигурации начинать.</p>
+                <p class="muted objectCard__line">Проверка этапности и устойчивости многофункциональной модели.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Оцениваются ограничения, экономика этапов, горизонты и ключевые точки риска.</p></details>
               </article>
 
               <article class="objectCard objectCard--case">
                 <div class="objectCard__title">Проект развития с поэтапным входом</div>
-                <p class="muted objectCard__line"><strong>Запрос:</strong> Проверить проект с постепенным входом капитала по этапам.</p>
-                <p class="muted objectCard__line"><strong>Что беспокоило:</strong> Риск неверной точки входа и потери гибкости на следующих шагах.</p>
-                <p class="muted objectCard__line"><strong>Что проверили:</strong> Этапность модели, условия перехода между этапами, уязвимости и сценарии корректировки.</p>
-                <p class="muted objectCard__line"><strong>Что получил клиент:</strong> Понимание, как войти в проект управляемо и без избыточного риска.</p>
+                <p class="muted objectCard__line">Оценка точки входа и условий перехода между этапами.</p>
+                <details class="case-detail"><summary>Подробнее</summary><p>Проверяются этапность, уязвимости модели и сценарии корректировки по ходу реализации.</p></details>
               </article>
             </div>
           </section>
