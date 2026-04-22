@@ -2,6 +2,7 @@
 
 const LS_KEY = "cbi_screening_dialog_v4";
 const TG_USERNAME = "CENTR_BIZNES_INVEST";
+const COLLECT_KEYS = ["goal", "budget", "type", "term", "docs"];
 
 const els = {
   chatLog: document.getElementById("chatLog"),
@@ -9,7 +10,9 @@ const els = {
   chatInput: document.getElementById("chatInput"),
   chatConsent: document.getElementById("chatConsent"),
   chatSubmitBtn: document.getElementById("chatSubmitBtn"),
+  chatReadyBadge: document.getElementById("chatReadyBadge"),
   chatConsentHint: document.getElementById("chatConsentHint"),
+  chatProgress: document.getElementById("chatProgress"),
   btnNewChat: document.getElementById("btnNewChat"),
   checklist: document.getElementById("checklist"),
   mortgageConsent: document.getElementById("mortgageConsent"),
@@ -69,12 +72,30 @@ function getChecklistCheckboxes() {
 
 function setChecklistState(state) {
   const boxes = getChecklistCheckboxes();
-  const order = ["goal", "budget", "type", "term", "docs"];
-  order.forEach((key, idx) => {
+  COLLECT_KEYS.forEach((key, idx) => {
     const box = boxes[idx];
     if (!box) return;
     box.checked = Boolean(state[key]);
   });
+  updateChatProgress(state);
+}
+
+function getCollectedCount(currentState) {
+  return COLLECT_KEYS.reduce((acc, key) => acc + (currentState[key] ? 1 : 0), 0);
+}
+
+function updateChatProgress(currentState) {
+  if (!els.chatProgress) return;
+  const count = getCollectedCount(currentState);
+  els.chatProgress.textContent = `Собрано ${count}/5 параметров`;
+  els.chatProgress.classList.remove("chatProgress--low", "chatProgress--mid", "chatProgress--ready");
+  if (count >= 5) {
+    els.chatProgress.classList.add("chatProgress--ready");
+  } else if (count >= 3) {
+    els.chatProgress.classList.add("chatProgress--mid");
+  } else {
+    els.chatProgress.classList.add("chatProgress--low");
+  }
 }
 
 function createMsg(role, text) {
@@ -239,6 +260,7 @@ const initialState = {
   type: false,
   term: false,
   docs: false,
+  readyToSend: false,
   messages: [{ role: "bot", text: initialBotText }],
 };
 
@@ -363,6 +385,7 @@ function generateBotReply(userText) {
 
   if (!isAllCollected()) {
     const missing = getMissingFields();
+    state.readyToSend = false;
     if (reply.length === 0) {
       reply.push("Приняла запрос. Чтобы дать предварительную оценку, важно уточнить базовые параметры.");
     }
@@ -371,13 +394,14 @@ function generateBotReply(userText) {
     return reply.join("\n\n");
   }
 
+  state.readyToSend = true;
   reply.push(
     "По вводным картина складывается. На первом этапе можно сформировать предварительную позицию по качеству входа и ключевым ограничениям."
   );
   reply.push(
-    "Следующий шаг — короткий контакт в Telegram: согласуем формат оценки, приоритетные вопросы и список документов для проверки."
+    "Следующий шаг — отправить заявку в Telegram, чтобы согласовать формат оценки, приоритетные вопросы и список документов."
   );
-  reply.push("Если есть приоритетный объект, пришлите адрес/кадастр, ориентир цены и текущий статус.");
+  reply.push("Если всё верно, нажмите кнопку «Отправить в Telegram».");
 
   return reply.join("\n\n");
 }
@@ -393,13 +417,27 @@ async function handleUserMessage(text) {
   if (!text.trim()) return;
 
   addAndPersistMessage("user", text.trim());
+
+  const typingEl = showTyping();
+  await new Promise((r) => setTimeout(r, 420));
+  typingEl.remove();
+
+  const botText = generateBotReply(text);
+  addAndPersistMessage("bot", botText);
 }
 
 function openTelegramWithMessage(userText) {
   const payload = String(userText || "").trim();
   const intro =
     "Здравствуйте. Запрос на первичную оценку объекта или проекта.\n\n";
-  const fullText = `${intro}${payload}`;
+  const userMsgs = (state.messages || [])
+    .filter((m) => m.role === "user" && String(m.text || "").trim())
+    .map((m, i) => `${i + 1}. ${String(m.text).trim()}`);
+  const dialogPart = userMsgs.length
+    ? `Что уже указано в заявке:\n${userMsgs.join("\n")}\n\n`
+    : "";
+  const finalPart = payload ? `Последнее уточнение:\n${payload}` : "";
+  const fullText = `${intro}${dialogPart}${finalPart}`.trim();
   const url = `https://t.me/${TG_USERNAME}?text=${encodeURIComponent(fullText)}`;
   window.open(url, "_blank", "noopener,noreferrer");
 }
@@ -425,7 +463,12 @@ function wireQuickButtons() {
 
 function syncChatSubmitBtn() {
   const btn = els.chatSubmitBtn || els.chatForm?.querySelector("button[type='submit']");
-  if (btn) btn.disabled = !els.chatConsent?.checked;
+  if (!btn) return;
+  btn.disabled = !els.chatConsent?.checked;
+  btn.textContent = state.readyToSend ? "Отправить в Telegram" : "Продолжить";
+  if (els.chatReadyBadge) {
+    els.chatReadyBadge.classList.toggle("is-hidden", !state.readyToSend);
+  }
 }
 
 function wireForm() {
@@ -454,10 +497,17 @@ function wireForm() {
 
     const value = els.chatInput.value || "";
     const trimmed = value.trim();
-    if (!trimmed) {
+
+    if (!trimmed && !state.readyToSend) {
       els.chatInput.focus();
       return;
     }
+
+    if (state.readyToSend && !trimmed) {
+      openTelegramWithMessage("");
+      return;
+    }
+
     els.chatInput.value = "";
 
     const submitBtn = els.chatSubmitBtn || els.chatForm.querySelector("button[type='submit']");
@@ -465,7 +515,7 @@ function wireForm() {
     if (submitBtn) submitBtn.disabled = true;
     try {
       await handleUserMessage(trimmed);
-      openTelegramWithMessage(trimmed);
+      if (state.readyToSend) openTelegramWithMessage(trimmed);
     } finally {
       els.chatInput.disabled = false;
       syncChatSubmitBtn();

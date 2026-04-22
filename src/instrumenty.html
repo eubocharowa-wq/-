@@ -162,6 +162,7 @@
 
             <div class="agent__header-actions">
               <button id="btnNewChat" class="btn btn--ghost" type="button">Очистить диалог</button>
+              <p id="chatProgress" class="muted chatProgress chatProgress--low" aria-live="polite">Собрано 0/5 параметров</p>
             </div>
           </div>
 
@@ -170,7 +171,7 @@
               <div id="chatLog" class="chatlog" aria-live="polite" aria-relevant="additions">
                 <div class="msg msg--bot">
                   <div class="msg__bubble">
-                      Укажите объект или проект, цель вложения, бюджет, горизонт и что требуется оценить до решения. После отправки откроется личный чат в Telegram.
+                      Укажите объект или проект, цель вложения, бюджет, горизонт и что требуется оценить до решения. После сбора данных можно отправить заявку в личный чат Telegram.
                   </div>
                 </div>
               </div>
@@ -217,8 +218,9 @@
                       autocomplete="off"
                       maxlength="700"
                     />
-                    <button class="btn btn--primary" id="chatSubmitBtn" type="submit" disabled>Открыть Telegram</button>
+                    <button class="btn btn--primary" id="chatSubmitBtn" type="submit" disabled>Продолжить</button>
                   </div>
+                  <p id="chatReadyBadge" class="chatReadyBadge is-hidden">Готово к отправке</p>
                 </form>
 
                 <div class="sideCard">

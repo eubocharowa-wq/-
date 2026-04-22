@@ -2990,6 +2990,62 @@ summary:focus {
   color: #e8b87a;
 }
 
+.chatProgress {
+  margin: 8px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: color 0.2s ease;
+}
+
+.chatProgress--low {
+  color: var(--muted-2);
+}
+
+.chatProgress--mid {
+  color: var(--gold-2);
+}
+
+.chatProgress--ready {
+  color: #8bc6a0;
+}
+
+.chatReadyBadge {
+  margin: 8px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #8bc6a0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+}
+
+.chatReadyBadge::before {
+  content: "✓";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #05220f;
+  background: #8bc6a0;
+  box-shadow: 0 0 0 1px rgba(139, 198, 160, 0.3);
+}
+
+.chatReadyBadge.is-hidden {
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+}
+
 .mortgageCalc__fieldset {
   border: none;
   margin: 0;
