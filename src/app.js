@@ -231,6 +231,19 @@ function getFinalTypeSummary(typeCategory) {
   return "Фокус первичной оценки: качество входа, ограничения, сценарии и основание для следующего шага.";
 }
 
+function buildStructuredSummary() {
+  const a = state.answers || {};
+  return [
+    `1) Цель вложения: ${a.goal || "—"}`,
+    `2) Бюджет / источник: ${a.budget || "—"}`,
+    `3) Формат объекта: ${a.type || "—"}`,
+    `4) Критичный параметр: ${a.typeDetail || "—"}`,
+    `5) Горизонт: ${a.term || "—"}`,
+    `6) Документы / исходные данные: ${a.docs || "—"}`,
+    `7) Главный вопрос: ${a.mainQuestion || "—"}`,
+  ].join("\n");
+}
+
 function getCurrentStep() {
   return FLOW_STEPS[state.stepIndex] || null;
 }
@@ -535,14 +548,12 @@ function generateBotReply(userText) {
   }
 
   state.readyToSend = true;
-  reply.push(
-    "По вводным картина складывается. На первом этапе можно сформировать предварительную позицию по качеству входа и ключевым ограничениям."
-  );
+  reply.push("Готово. Я собрала сообщение для первичной оценки.");
+  reply.push(`Тип запроса: ${getTypeLabel(state.objectType)}.`);
   reply.push(getFinalTypeSummary(state.objectType));
-  reply.push(
-    "Следующий шаг — отправить заявку в Telegram, чтобы согласовать формат оценки, приоритетные вопросы и список документов."
-  );
-  reply.push("Если всё верно, нажмите кнопку «Отправить в Telegram».");
+  reply.push(`Собранные вводные:\n${buildStructuredSummary()}`);
+  reply.push("Если всё верно, нажмите «Отправить в Telegram» — сообщение будет передано в личный чат.");
+  reply.push("Спасибо за обращение. С вами свяжутся в течение дня.");
 
   return reply.join("\n\n");
 }
@@ -574,20 +585,33 @@ function openTelegramWithMessage(userText) {
   const intro =
     `Здравствуйте. Запрос на первичную оценку.\nТип запроса: ${getTypeLabel(state.objectType)}.\n\n`;
   const typeSummary = `Приоритет первичного этапа: ${getFinalTypeSummary(state.objectType)}\n\n`;
-  const a = state.answers || {};
-  const structured = [
-    `1) Цель вложения: ${a.goal || "—"}`,
-    `2) Бюджет / источник: ${a.budget || "—"}`,
-    `3) Формат объекта: ${a.type || "—"}`,
-    `4) Критичный параметр: ${a.typeDetail || "—"}`,
-    `5) Горизонт: ${a.term || "—"}`,
-    `6) Документы / исходные данные: ${a.docs || "—"}`,
-    `7) Главный вопрос: ${a.mainQuestion || "—"}`,
-  ].join("\n");
+  const structured = buildStructuredSummary();
   const payloadPart = payload ? `\n\nДополнение клиента:\n${payload}` : "";
   const fullText = `${intro}${typeSummary}Собранные вводные:\n${structured}${payloadPart}`.trim();
-  const url = `https://t.me/${TG_USERNAME}?text=${encodeURIComponent(fullText)}`;
-  window.open(url, "_blank", "noopener,noreferrer");
+  const confirmText =
+    "Заявка подготовлена: текст скопирован, открываю Telegram. Если сообщение не вставилось автоматически, вставьте его из буфера обмена.";
+  if (els.chatLog) {
+    els.chatLog.appendChild(createMsg("bot", confirmText));
+    scrollChatToBottom();
+  }
+  state.messages.push({ role: "bot", text: confirmText });
+  saveToStorage(state);
+
+  try {
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(fullText).catch(() => {});
+    }
+  } catch {
+    // ignore clipboard issues
+  }
+
+  // Открываем Telegram c предзаполненным текстом.
+  const chatUrl = `https://t.me/${TG_USERNAME}`;
+  const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(chatUrl)}&text=${encodeURIComponent(fullText)}`;
+  const popup = window.open(shareUrl, "_blank", "noopener,noreferrer");
+  if (!popup) {
+    window.location.href = shareUrl;
+  }
 }
 
 function wireQuickButtons() {
@@ -657,7 +681,6 @@ function wireForm() {
     if (submitBtn) submitBtn.disabled = true;
     try {
       await handleUserMessage(trimmed);
-      if (state.readyToSend) openTelegramWithMessage(trimmed);
     } finally {
       els.chatInput.disabled = false;
       syncChatSubmitBtn();
