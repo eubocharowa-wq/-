@@ -62,6 +62,7 @@ function scrollToScreening() {
 }
 
 function getChecklistCheckboxes() {
+  if (!els.checklist) return [];
   return Array.from(els.checklist.querySelectorAll('input[type="checkbox"]'));
 }
 
@@ -96,6 +97,7 @@ function showTyping() {
   bubble.textContent = "Формирую ответ…";
 
   wrap.appendChild(bubble);
+  if (!els.chatLog) return wrap;
   els.chatLog.appendChild(wrap);
   scrollChatToBottom();
   return wrap;
@@ -249,6 +251,7 @@ function resetChat() {
     els.chatConsentHint.textContent = "";
   }
 
+  if (!els.chatLog) return;
   els.chatLog.innerHTML = "";
   state.messages.forEach((m) => {
     els.chatLog.appendChild(createMsg(m.role, m.text));
@@ -448,6 +451,8 @@ function wireForm() {
 }
 
 function hydrateFromStorageOrReset() {
+  if (!els.chatLog) return;
+
   const saved = loadFromStorage();
   if (!saved || !saved.messages || !Array.isArray(saved.messages)) {
     resetChat();
@@ -465,6 +470,7 @@ function hydrateFromStorageOrReset() {
 }
 
 function wireNewChat() {
+  if (!els.btnNewChat) return;
   els.btnNewChat.addEventListener("click", () => resetChat());
 }
 

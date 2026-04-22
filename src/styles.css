@@ -257,6 +257,36 @@ input {
   }
 }
 
+.topnav a[aria-current="page"] {
+  color: var(--gold-2);
+  border-color: var(--line-strong);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.site-map {
+  margin: 0;
+  padding-left: 1.25em;
+  max-width: 720px;
+  line-height: 1.75;
+}
+
+.site-map li {
+  margin: 0.35em 0;
+}
+
+.site-map__title {
+  margin: 36px 0 16px;
+  padding-bottom: 0;
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.section h2.site-map__title::after {
+  display: none;
+}
+
 .topnav__cta {
   color: #1a150c !important;
   background: linear-gradient(180deg, var(--gold-2), var(--gold));
