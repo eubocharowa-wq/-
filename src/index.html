@@ -56,205 +56,84 @@
     </header>
 
     <main class="home-main">
-      <section class="hero" id="top">
-        <div class="hero__scene" aria-hidden="true">
-          <div class="hero__bg-base"></div>
-          <div class="hero__bg-water"></div>
-          <div class="hero__bg-water hero__bg-water--ripple" aria-hidden="true"></div>
-          <div class="hero__scene-veil"></div>
-          <div class="hero__lights">
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-            <span class="hero__light"></span>
-          </div>
-        </div>
-        <div class="container hero__content">
-          <div class="hero-reflash">
-            <div class="hero-reflash__inner">
-              <div class="hero-reflash__logo-wrap hero-reflash__logo-wrap--portrait">
-                <div class="hero-reflash__logo hero-reflash__logo--portrait">
-                  <img
-                    src="./assets/logo.png"
-                    width="1024"
-                    height="1024"
-                    loading="eager"
-                    decoding="async"
-                    fetchpriority="high"
-                    alt="Елена Бочарова — Центр бизнес-инвестиций, развитие инвестиционных проектов"
-                  />
-                </div>
-              </div>
+      <section class="home-entry" id="top">
+        <div class="container home-entry__grid">
+          <article class="home-entry__hero">
+            <p class="home-entry__eyebrow">Экспертный центр инвестиционных решений</p>
+            <h1 class="home-entry__title">Не продаю — отбираю</h1>
+            <p class="home-entry__lead">
+              Инвестиционные решения в недвижимости через документы, расчёт и сопровождение.
+            </p>
+            <p class="home-entry__strong">Если вход слабый — я скажу «не покупать». Это нормальный результат.</p>
 
-              <div class="hero-reflash__eyebrow-wrap">
-                <span class="hero-reflash__eyebrow">Экспертный центр инвестиционных решений</span>
-              </div>
-
-              <div class="hero-reflash__prose">
-                <h1 class="hero-reflash__title">
-                  <span class="hero-reflash__title-line">Не продаю —</span>
-                  <span class="hero-reflash__title-line">отбираю</span>
-                </h1>
-
-                <p class="hero-reflash__subtitle">Инвестиционные решения в недвижимости через документы, расчёт и сопровождение.</p>
-                <p class="hero-reflash__text hero-reflash__text--strong">Если вход слабый — я скажу «не покупать». Это нормальный результат.</p>
-              </div>
-
-              <div class="hero-reflash__actions">
-                <a href="./instrumenty.html#screening" class="hero-reflash__btn hero-reflash__btn--primary">Начать со скрининга</a>
-                <a href="./razbory.html" class="hero-reflash__btn hero-reflash__btn--secondary">Смотреть разборы</a>
-              </div>
+            <div class="home-entry__actions">
+              <a class="btn btn--primary" href="./instrumenty.html#screening">Начать со скрининга</a>
+              <a class="btn btn--ghost" href="./razbory.html">Смотреть разборы</a>
             </div>
-          </div>
-        </div>
-      </section>
+          </article>
 
-      <section id="trust" class="section section--soft" aria-label="Почему приходят и формат работы">
-        <div class="container">
-          <h2>Почему ко мне приходят</h2>
-          <p class="section__lead muted">
-            Не за обещанием «идеального варианта», а за спокойным решением, где цена ошибки ниже.
-          </p>
+          <aside class="sideCard sideCard--contact" id="contact">
+            <div class="sideCard__title">Связаться</div>
+            <p class="muted contact-intro">
+              Елена Бочарова. Основной фокус — недвижимость России. Зарубежные задачи — по согласованию запроса.
+            </p>
 
-          <div class="about-grid">
-            <div class="feature">
-              <div class="feature__title">Нет задачи продать</div>
-              <p>
-                Я не привязана к лотам и не собираю каталог. Смотрю только на соответствие вашей задаче.
-              </p>
+            <div class="contactRow">
+              <span class="contactRow__label">Телефон</span>
+              <a class="contactRow__value" href="tel:+79109434422">+7 (910) 943-44-22</a>
             </div>
 
-            <div class="feature">
-              <div class="feature__title">Решение на фактах</div>
-              <p>
-                Документы, ограничения, модель, сценарии выхода. Не обещания и не эмоции.
-              </p>
+            <div class="contactRow">
+              <span class="contactRow__label">Email</span>
+              <a class="contactRow__value" href="mailto:e.u.bocharowa@yandex.ru">e.u.bocharowa@yandex.ru</a>
             </div>
-          </div>
 
-        </div>
-      </section>
+            <div class="contactRow">
+              <span class="contactRow__label">Telegram</span>
+              <a class="contactRow__value" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">@CENTR_BIZNES_INVEST</a>
+            </div>
 
-      <section class="section section--soft" aria-label="Разделы сайта">
-        <div class="container">
-          <h2>Разделы сайта</h2>
-          <p class="section__lead muted">
-            Подробные материалы вынесены на отдельные страницы; здесь — вход в маршрут.
-          </p>
-          <nav class="entry-map" aria-label="Переходы по разделам">
-            <a class="entry-card" href="./o-proekte.html">
-              <span class="entry-card__title">О проекте</span>
-              <span class="entry-card__text">Роль ЦБИ и формат экспертной работы.</span>
-            </a>
-            <a class="entry-card" href="./podhod.html">
-              <span class="entry-card__title">Подход</span>
-              <span class="entry-card__text">Логика проверки и принятия решения.</span>
-            </a>
-            <a class="entry-card" href="./napravleniya.html">
+            <div class="contactRow">
+              <span class="contactRow__label">Telegram</span>
+              <a class="contactRow__value" href="https://t.me/ELENA_BOCHAROWA" target="_blank" rel="noopener noreferrer">@ELENA_BOCHAROWA</a>
+            </div>
+
+            <a class="btn btn--primary btn--full" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
+          </aside>
+
+          <div class="home-entry__cards">
+            <article class="entry-card">
+              <span class="entry-card__title">Почему ко мне приходят</span>
+              <span class="entry-card__text">Нет задачи продать. Решение строится на фактах, а не на витрине и обещаниях.</span>
+            </article>
+
+            <article class="entry-card">
               <span class="entry-card__title">Направления</span>
-              <span class="entry-card__text">С какими активами и задачами работаю.</span>
-            </a>
-            <a class="entry-card" href="./razbory.html">
-              <span class="entry-card__title">Разборы</span>
-              <span class="entry-card__text">Примеры задач и типовые сценарии.</span>
-            </a>
-            <a class="entry-card" href="./osnovaniya.html">
-              <span class="entry-card__title">Основания</span>
-              <span class="entry-card__text">Вопросы, рамки и рабочие принципы.</span>
-            </a>
-            <a class="entry-card" href="./instrumenty.html">
-              <span class="entry-card__title">Инструменты</span>
-              <span class="entry-card__text">Калькулятор и демо-скрининг.</span>
-            </a>
+              <span class="entry-card__text">Новостройки, коммерция, земля, строительство и реконструкция.</span>
+              <span class="entry-card__more"><a href="./napravleniya.html">Полный список направлений</a></span>
+            </article>
+
+            <article class="entry-card">
+              <span class="entry-card__title">Разбор и следующий шаг</span>
+              <span class="entry-card__text">Коротко опишите задачу или отправьте объект — разберём сценарий и риски.</span>
+              <span class="entry-card__actions">
+                <a href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">Отправить объект</a>
+                <a href="./razbory.html">Примеры разборов</a>
+                <a href="./instrumenty.html#screening">Демо-скрининг</a>
+              </span>
+            </article>
+          </div>
+
+          <nav class="home-entry__nav" aria-label="Переходы по разделам">
+            <a href="./o-proekte.html">О проекте</a>
+            <a href="./podhod.html">Подход</a>
+            <a href="./napravleniya.html">Направления</a>
+            <a href="./razbory.html">Разборы</a>
+            <a href="./osnovaniya.html">Основания</a>
+            <a href="./instrumenty.html">Инструменты</a>
           </nav>
         </div>
       </section>
-
-      <section id="directions" class="section">
-        <div class="container">
-          <h2>Направления</h2>
-          <p class="section__lead muted">
-            Работаю с разными форматами недвижимости. Стандарт один: проверить, посчитать, сопровождать решение.
-          </p>
-
-          <ul class="directions" aria-label="Направления работы">
-            <li class="directions__item">Новостройки и жилая недвижимость</li>
-            <li class="directions__item">Коммерческая недвижимость</li>
-            <li class="directions__item">Земельные участки</li>
-            <li class="directions__item">Строительство домов и реконструкция</li>
-          </ul>
-          <p class="muted home-directions-more">
-            <a href="./napravleniya.html">Полный список направлений</a>
-          </p>
-        </div>
-      </section>
-
-      <section class="section section--soft cta-band" aria-label="Разбор и следующий шаг">
-        <div class="container cta-band__inner">
-          <h2 class="cta-band__title">Разбор и следующий шаг</h2>
-          <p class="cta-band__text muted">
-            Коротко опишите задачу или отправьте объект — дальше разберём сценарий и риски на фактах.
-          </p>
-
-          <div class="cta-band__actions">
-            <a class="btn btn--primary" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">Отправить объект</a>
-            <a class="btn btn--ghost" href="./razbory.html">Примеры разборов</a>
-            <a class="btn btn--ghost" href="./instrumenty.html#screening">Демо-скрининг</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" aria-label="Контакты">
-        <div class="container">
-          <div class="home-contact-wrap">
-            <div class="sideCard sideCard--contact" id="contact">
-              <div class="sideCard__title">Связаться</div>
-              <p class="muted contact-intro">
-                Елена Бочарова. Основной фокус — недвижимость России. Зарубежные задачи — по согласованию запроса.
-              </p>
-
-              <div class="contactRow">
-                <span class="contactRow__label">Телефон</span>
-                <a class="contactRow__value" href="tel:+79109434422">+7 (910) 943-44-22</a>
-              </div>
-
-              <div class="contactRow">
-                <span class="contactRow__label">Email</span>
-                <a class="contactRow__value" href="mailto:e.u.bocharowa@yandex.ru">e.u.bocharowa@yandex.ru</a>
-              </div>
-
-              <div class="contactRow">
-                <span class="contactRow__label">Telegram</span>
-                <a class="contactRow__value" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">@CENTR_BIZNES_INVEST</a>
-              </div>
-
-              <div class="contactRow">
-                <span class="contactRow__label">Telegram</span>
-                <a class="contactRow__value" href="https://t.me/ELENA_BOCHAROWA" target="_blank" rel="noopener noreferrer">@ELENA_BOCHAROWA</a>
-              </div>
-
-              <a class="btn btn--primary btn--full" href="https://t.me/CENTR_BIZNES_INVEST" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
     </main>
 
     <footer class="footer">
