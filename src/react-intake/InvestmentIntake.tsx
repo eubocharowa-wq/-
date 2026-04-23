@@ -88,7 +88,7 @@ export function InvestmentIntake({ className }: InvestmentIntakeProps) {
     if (id === "checklist") {
       try {
         downloadChecklistFile(answers, route.id, checklist);
-        showToast("Чек-лист скачан в формате .doc — откройте в Word или Pages.");
+        showToast("Чек-лист скачан (.docx) — откройте в МойОфис, Word, Pages или Google Docs.");
       } catch (err) {
         console.error("checklist download failed", err);
         showToast("Не удалось скачать файл. Проверьте настройки браузера.");
@@ -248,9 +248,9 @@ export function InvestmentIntake({ className }: InvestmentIntakeProps) {
                         type="button"
                         className="investment-intake__cta investment-intake__cta--ghost"
                         onClick={() => handleCta("checklist")}
-                        aria-label="Скачать персональный чек-лист в формате Word (.doc)"
+                        aria-label="Скачать персональный чек-лист в формате Word (.docx)"
                       >
-                        Скачать чек-лист (.doc)
+                        Скачать чек-лист (Word)
                       </button>
                       <button type="button" className="investment-intake__cta" onClick={() => handleCta("submit_object")}>
                         Передать объект на проверку
@@ -264,7 +264,7 @@ export function InvestmentIntake({ className }: InvestmentIntakeProps) {
                       </button>
                     </div>
                     <p className="investment-intake__microcopy investment-intake__microcopy--ctas">
-                      Чек-лист скачается файлом Word (.doc) — открывается в Microsoft Word, Pages и LibreOffice. Для связи откроется чат ЦБИ в Telegram — полный текст запроса автоматически попадёт в буфер обмена, его останется вставить в чат.
+                      Чек-лист скачается файлом Word (.docx) — открывается в МойОфис, Microsoft Word, Pages, Google Docs и LibreOffice. Для связи откроется чат ЦБИ в Telegram — полный текст запроса автоматически попадёт в буфер обмена, его останется вставить в чат.
                     </p>
 
                     {toast && (
