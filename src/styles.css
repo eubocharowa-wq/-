@@ -683,6 +683,23 @@ input {
   border-bottom: 1px solid rgba(255, 255, 255, 0.025);
 }
 
+.home-main .section--intake {
+  padding-top: 44px;
+  padding-bottom: 64px;
+  border-top: 1px solid rgba(215, 177, 95, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.004)),
+    radial-gradient(ellipse 90% 50% at 50% 0%, rgba(215, 177, 95, 0.05), transparent 58%);
+}
+
+.home-main .section--intake .container {
+  max-width: min(var(--container), calc(100% - 40px));
+}
+
+#investment-intake-root {
+  width: 100%;
+}
+
 .section h2 {
   position: relative;
   margin: 0 0 20px;

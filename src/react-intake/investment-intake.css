@@ -1,0 +1,409 @@
+/* Виджет intake: тёмная палитра в логике сайта (CSS-переменные из styles.css) */
+.investment-intake {
+  --rii-radius: 20px;
+  --rii-radius-sm: 15px;
+  color: var(--text);
+  background:
+    radial-gradient(820px 360px at 10% 0%, rgba(215, 177, 95, 0.11), transparent 52%),
+    radial-gradient(640px 320px at 96% 12%, rgba(21, 34, 53, 0.42), transparent 48%),
+    linear-gradient(180deg, rgba(12, 16, 22, 0.88), rgba(7, 10, 15, 0.94));
+  border: 1px solid var(--line);
+  border-radius: var(--rii-radius);
+  padding: clamp(18px, 2.8vw, 26px);
+  box-shadow:
+    var(--shadow),
+    0 0 0 1px rgba(236, 208, 141, 0.06) inset;
+}
+
+.investment-intake__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.investment-intake__eyebrow {
+  margin: 0 0 10px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  font-weight: 700;
+}
+
+.investment-intake__title {
+  margin: 0;
+  font-size: clamp(26px, 4vw, 42px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.investment-intake__subtitle,
+.investment-intake__note {
+  margin: 14px 0 0;
+  max-width: 62ch;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.investment-intake__note {
+  margin-top: 10px;
+  color: var(--muted-2);
+}
+
+.investment-intake__intro {
+  margin-top: 22px;
+  display: grid;
+  gap: 12px;
+}
+
+.investment-intake__cta {
+  appearance: none;
+  border: 1px solid var(--line-strong);
+  background: linear-gradient(165deg, rgba(236, 208, 141, 0.22), rgba(215, 177, 95, 0.08));
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.investment-intake__cta:hover {
+  transform: translateY(-1px);
+  border-color: rgba(236, 208, 141, 0.55);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.35), 0 0 40px rgba(215, 177, 95, 0.12);
+}
+
+.investment-intake__cta:focus-visible {
+  outline: none;
+  box-shadow: var(--ring), 0 16px 44px rgba(0, 0, 0, 0.35);
+}
+
+.investment-intake__cta--ghost {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--line);
+}
+
+.investment-intake__microcopy {
+  margin: 0;
+  max-width: 72ch;
+  color: var(--muted-2);
+  line-height: 1.58;
+  font-size: 14px;
+}
+
+.investment-intake__progress {
+  margin-top: 22px;
+}
+
+.investment-intake__progress-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--muted-2);
+}
+
+.investment-intake__progress-pct {
+  color: var(--gold-2);
+  font-weight: 700;
+}
+
+.investment-intake__progress-track {
+  margin-top: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.investment-intake__progress-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(236, 208, 141, 0.95), rgba(120, 150, 190, 0.75));
+  box-shadow: 0 0 22px rgba(215, 177, 95, 0.35);
+  transition: width 0.35s ease;
+}
+
+.investment-intake__layout {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.35fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.investment-intake__live {
+  position: sticky;
+  top: 88px;
+  border-radius: var(--rii-radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(8, 12, 18, 0.72);
+  backdrop-filter: blur(12px);
+  padding: 16px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+.investment-intake__live-title {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.investment-intake__live-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.investment-intake__live-row {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.investment-intake__live-label {
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  font-weight: 700;
+}
+
+.investment-intake__live-value {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.investment-intake__main {
+  border-radius: var(--rii-radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(13, 18, 24, 0.65);
+  padding: clamp(14px, 2.4vw, 20px);
+}
+
+.investment-intake__step {
+  animation: intakeIn 0.36s ease both;
+}
+
+.investment-intake__step[data-dir="-1"] {
+  animation-name: intakeInRev;
+}
+
+@keyframes intakeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes intakeInRev {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .investment-intake__step {
+    animation: none;
+  }
+  .investment-intake__progress-bar {
+    transition: none;
+  }
+}
+
+.investment-intake__question {
+  margin: 0 0 14px;
+  font-size: clamp(19px, 2.5vw, 24px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.investment-intake__options {
+  display: grid;
+  gap: 10px;
+}
+
+.investment-intake__option {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--rii-radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.investment-intake__option:hover {
+  transform: translateY(-1px);
+  border-color: rgba(236, 208, 141, 0.45);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
+}
+
+.investment-intake__option:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.investment-intake__option-text {
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 650;
+}
+
+.investment-intake__option-arrow {
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+
+.investment-intake__nav {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+}
+
+.investment-intake__nav--end {
+  justify-content: flex-end;
+}
+
+.investment-intake__linkish {
+  border: 0;
+  background: transparent;
+  padding: 8px 4px;
+  cursor: pointer;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: 14px;
+}
+
+.investment-intake__linkish:hover {
+  color: var(--gold-2);
+}
+
+.investment-intake__inline-link {
+  font-size: 14px;
+  color: var(--gold-2);
+  text-decoration: none;
+  font-weight: 650;
+}
+
+.investment-intake__inline-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.investment-intake__result-title {
+  margin: 0 0 10px;
+  font-size: clamp(21px, 3vw, 28px);
+  letter-spacing: -0.02em;
+}
+
+.investment-intake__result-summary {
+  margin: 0 0 14px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.investment-intake__panel {
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: var(--rii-radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(6, 10, 15, 0.55);
+}
+
+.investment-intake__panel--accent {
+  background:
+    linear-gradient(165deg, rgba(236, 208, 141, 0.08), transparent 46%),
+    rgba(6, 10, 15, 0.55);
+}
+
+.investment-intake__panel-title {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  font-weight: 800;
+}
+
+.investment-intake__panel-text {
+  margin: 0;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.investment-intake__checklists {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.investment-intake__check-title {
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.investment-intake__check {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 14px;
+}
+
+.investment-intake__ctas {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+@media (min-width: 760px) {
+  .investment-intake__ctas {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .investment-intake__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .investment-intake__live {
+    position: relative;
+    top: auto;
+  }
+
+  .investment-intake__checklists {
+    grid-template-columns: 1fr;
+  }
+}

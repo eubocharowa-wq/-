@@ -488,7 +488,15 @@ function wireForm() {
     }
     const trimmed = (els.chatInput?.value || "").trim();
     if (!trimmed && !state.readyToSend) return;
-    if (state.readyToSend && !trimmed) return void openTelegramWithMessage("");
+
+    if (state.readyToSend) {
+      if (els.chatInput) els.chatInput.value = "";
+      openTelegramWithMessage(trimmed);
+      syncChatSubmitBtn();
+      els.chatInput?.focus();
+      return;
+    }
+
     if (els.chatInput) els.chatInput.value = "";
     if (els.chatInput) els.chatInput.disabled = true;
     if (els.chatSubmitBtn) els.chatSubmitBtn.disabled = true;
@@ -538,6 +546,14 @@ function hydrateEntryState() {
     ...saved,
     answers: { ...ENTRY_CHECK_INITIAL.answers, ...(saved.answers || {}), contact: { ...ENTRY_CHECK_INITIAL.answers.contact, ...(saved.answers?.contact || {}) } },
   };
+}
+
+/** После CTA в Telegram с экрана результата: убираем персональные данные из памяти и localStorage. */
+function resetEntryCheckContactsAfterTelegramSend() {
+  entryState.answers.contact = { name: "", telegram: "", phone: "", email: "" };
+  entryState.answers.writtenResult = false;
+  entryState.answers.consent = false;
+  persistEntryState();
 }
 
 function setEntryProgress(flow) {
@@ -722,7 +738,9 @@ function showEntryResult() {
         // ignore
       }
       const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(`https://t.me/${TG_USERNAME}`)}&text=${encodeURIComponent(delivery.telegramText)}`;
-      window.open(shareUrl, "_blank", "noopener,noreferrer");
+      const popup = window.open(shareUrl, "_blank", "noopener,noreferrer");
+      if (!popup) window.location.href = shareUrl;
+      resetEntryCheckContactsAfterTelegramSend();
     });
     actions.appendChild(btn);
   });
