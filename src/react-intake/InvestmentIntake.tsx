@@ -26,6 +26,8 @@ export function InvestmentIntake({ className }: InvestmentIntakeProps) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<IntakeAnswers>(emptyAnswers);
   const [dir, setDir] = useState<1 | -1>(1);
+  const [toast, setToast] = useState<string | null>(null);
+  const [pendingShareUrl, setPendingShareUrl] = useState<string | null>(null);
 
   const currentStep = INTAKE_STEPS[step];
   const route = useMemo(() => resolveRoute(answers), [answers]);
@@ -77,12 +79,19 @@ export function InvestmentIntake({ className }: InvestmentIntakeProps) {
     [answers]
   );
 
+  function showToast(message: string) {
+    setToast(message);
+    window.setTimeout(() => setToast((t) => (t === message ? null : t)), 4500);
+  }
+
   function handleCta(id: "checklist" | "submit_object" | "next_step") {
     if (id === "checklist") {
       try {
         downloadChecklistFile(answers, route.id, checklist);
+        showToast("Чек-лист скачан в формате .md");
       } catch (err) {
         console.error("checklist download failed", err);
+        showToast("Не удалось скачать файл. Проверьте настройки браузера.");
       }
       return;
     }
@@ -90,7 +99,18 @@ export function InvestmentIntake({ className }: InvestmentIntakeProps) {
       submit_object: "Передать объект на проверку",
       next_step: "Узнать следующий шаг",
     };
-    openTelegramWithIntakeText(labels[id], answers, route.id, checklist);
+    const result = openTelegramWithIntakeText(labels[id], answers, route.id, checklist);
+    if (result.opened) {
+      setPendingShareUrl(result.chatUrl);
+      showToast(
+        result.copied
+          ? "Открываем Telegram — текст уже в буфере обмена, вставьте его в чат."
+          : "Открываем Telegram. Если вкладка не открылась — воспользуйтесь ссылкой ниже."
+      );
+    } else {
+      setPendingShareUrl(result.chatUrl);
+      showToast("Не удалось открыть Telegram автоматически. Откройте чат по ссылке ниже.");
+    }
   }
 
   return (
@@ -244,8 +264,24 @@ export function InvestmentIntake({ className }: InvestmentIntakeProps) {
                       </button>
                     </div>
                     <p className="investment-intake__microcopy investment-intake__microcopy--ctas">
-                      Чек-лист скачается файлом .md. Для связи откроется Telegram с предзаполненным запросом — текст также скопируется в буфер обмена.
+                      Чек-лист скачается файлом .md. Для связи откроется чат ЦБИ в Telegram — полный текст запроса автоматически попадёт в буфер обмена, его останется вставить в чат.
                     </p>
+
+                    {toast && (
+                      <div className="investment-intake__toast" role="status" aria-live="polite">
+                        {toast}
+                      </div>
+                    )}
+
+                    {pendingShareUrl && (
+                      <p className="investment-intake__fallback">
+                        Если Telegram не открылся автоматически —{" "}
+                        <a href={pendingShareUrl} target="_blank" rel="noopener noreferrer">
+                          откройте чат ЦБИ вручную
+                        </a>
+                        .
+                      </p>
+                    )}
 
                     <div className="investment-intake__nav investment-intake__nav--end">
                       <button type="button" className="investment-intake__linkish" onClick={restart}>

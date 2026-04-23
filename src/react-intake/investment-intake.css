@@ -92,6 +92,43 @@
   font-size: 14px;
 }
 
+.investment-intake__microcopy--ctas {
+  margin-top: 10px;
+}
+
+.investment-intake__toast {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: var(--rii-radius-sm);
+  background: rgba(236, 208, 141, 0.08);
+  border: 1px solid rgba(236, 208, 141, 0.28);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+  animation: investment-intake-toast-in 180ms ease-out;
+}
+
+.investment-intake__fallback {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: var(--muted-2);
+}
+
+.investment-intake__fallback a {
+  color: var(--gold-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.investment-intake__fallback a:hover {
+  color: var(--gold);
+}
+
+@keyframes investment-intake-toast-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .investment-intake__progress {
   margin-top: 22px;
 }

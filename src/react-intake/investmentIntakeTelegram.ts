@@ -5,14 +5,42 @@ import type { Checklist } from "./investmentIntakeChecklist";
 
 const TG_USERNAME = "CENTR_BIZNES_INVEST";
 
-function safeCopyToClipboard(text: string) {
+export type TelegramOpenResult = {
+  opened: boolean;
+  copied: boolean;
+  chatUrl: string;
+  text: string;
+};
+
+function tryCopyClipboardAsync(text: string): Promise<boolean> {
   try {
     const maybe = navigator?.clipboard?.writeText?.(text);
     if (maybe && typeof (maybe as Promise<void>).then === "function") {
-      (maybe as Promise<void>).catch(() => {});
+      return (maybe as Promise<void>).then(() => true).catch(() => false);
     }
   } catch {
-    // ignore: clipboard недоступен (http, permissions, iframe и т.д.)
+    // fall through
+  }
+  return Promise.resolve(false);
+}
+
+function copyViaTextareaFallback(text: string): boolean {
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    ta.style.left = "-1000px";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    const ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+    return ok;
+  } catch {
+    return false;
   }
 }
 
@@ -53,36 +81,65 @@ export function buildIntakeTelegramText(
   ].join("\n");
 }
 
+/**
+ * Открывает чат ЦБИ в Telegram и кладёт собранный текст в буфер обмена.
+ * Используем прямую ссылку на чат (самый стабильный вариант: работает и на
+ * десктопе, и на мобильных, в т.ч. без предварительного логина в Telegram Web).
+ * `t.me/share/url` часто не срабатывает на iOS / при заблокированных popup'ах,
+ * поэтому мы его не используем.
+ */
 export function openTelegramWithIntakeText(
   ctaLabel: string,
   answers: IntakeAnswers,
   routeId: RouteId,
   checklist: Checklist
-) {
+): TelegramOpenResult {
   const text = buildIntakeTelegramText(ctaLabel, answers, routeId, checklist);
-  safeCopyToClipboard(text);
-
   const chatUrl = `https://t.me/${TG_USERNAME}`;
-  const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(chatUrl)}&text=${encodeURIComponent(text)}`;
 
-  // Популярная причина «не открывается»: popup blocker. Открываем через временный <a>,
-  // чтобы событие считалось пользовательским, плюс fallback на window.open / location.
+  // 1) Синхронный fallback-копир через textarea (работает без HTTPS/permissions).
+  let copied = copyViaTextareaFallback(text);
+  // 2) Параллельно пытаемся через современный clipboard API (если разрешён).
+  void tryCopyClipboardAsync(text).then((ok) => {
+    if (ok) copied = true;
+  });
+
+  // Открываем чат. Сначала window.open с _blank — это самый переносимый способ,
+  // и вызов идёт строго из обработчика клика, поэтому popup blocker не мешает.
   let opened = false;
   try {
-    const a = document.createElement("a");
-    a.href = shareUrl;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    opened = true;
+    const w = window.open(chatUrl, "_blank", "noopener,noreferrer");
+    if (w) opened = true;
   } catch {
     opened = false;
   }
 
+  // Доп. попытка через программный клик по <a> — покрывает edge-case'ы
+  // в iframe / WebView-like средах.
   if (!opened) {
-    const w = window.open(shareUrl, "_blank", "noopener,noreferrer");
-    if (!w) window.location.href = shareUrl;
+    try {
+      const a = document.createElement("a");
+      a.href = chatUrl;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      opened = true;
+    } catch {
+      // проглатываем
+    }
   }
+
+  // Последний fallback: переход текущей вкладкой.
+  if (!opened) {
+    try {
+      window.location.href = chatUrl;
+      opened = true;
+    } catch {
+      opened = false;
+    }
+  }
+
+  return { opened, copied, chatUrl, text };
 }
