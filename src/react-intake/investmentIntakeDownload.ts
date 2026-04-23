@@ -30,104 +30,109 @@ function slugAsset(asset: string | null): string {
     .slice(0, 40);
 }
 
-function escapeHtml(str: string): string {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
+/**
+ * Кодирование строки в RTF: служебные символы экранируем, не-ASCII символы
+ * переводим в формат Unicode-ESC `\uN?`, где N — signed int16.
+ * Так RTF-читатель (Word / Pages / LibreOffice / Google Docs) корректно
+ * отрисует кириллицу без выбора кодировки.
+ */
+function rtfEscape(input: string): string {
+  let out = "";
+  for (const ch of String(input)) {
+    const code = ch.codePointAt(0) as number;
+    if (ch === "\\") out += "\\\\";
+    else if (ch === "{") out += "\\{";
+    else if (ch === "}") out += "\\}";
+    else if (ch === "\n") out += "\\line ";
+    else if (ch === "\r") {
+      // ignore — пара \r\n уже обработана через \n
+    } else if (code < 128) {
+      out += ch;
+    } else {
+      // RTF ожидает signed 16-bit; значения > 32767 передаются как отрицательные
+      const signed = code > 32767 ? code - 65536 : code;
+      out += `\\u${signed}?`;
+    }
+  }
+  return out;
 }
 
-function paragraphize(text: string): string {
-  return escapeHtml(text).replace(/\n/g, "<br/>");
+function rtfParagraph(text: string, opts: { fontSizeHalfPt?: number; bold?: boolean; italic?: boolean; spaceBeforeTwip?: number; spaceAfterTwip?: number } = {}): string {
+  const size = opts.fontSizeHalfPt ?? 22; // 11pt
+  const sb = opts.spaceBeforeTwip ?? 80;
+  const sa = opts.spaceAfterTwip ?? 80;
+  const bold = opts.bold ? "\\b " : "";
+  const italic = opts.italic ? "\\i " : "";
+  const boldEnd = opts.bold ? "\\b0" : "";
+  const italicEnd = opts.italic ? "\\i0" : "";
+  return `{\\pard\\sa${sa}\\sb${sb}\\fs${size} ${bold}${italic}${rtfEscape(text)}${italicEnd}${boldEnd}\\par}`;
 }
 
-export function buildChecklistDocHtml(
+function rtfH1(text: string): string {
+  return `{\\pard\\sa120\\sb0\\fs40\\b ${rtfEscape(text)}\\b0\\par}`;
+}
+
+function rtfH2(text: string): string {
+  return `{\\pard\\sa80\\sb240\\fs28\\b ${rtfEscape(text)}\\b0\\par}`;
+}
+
+function rtfH3(text: string): string {
+  return `{\\pard\\sa60\\sb160\\fs24\\b ${rtfEscape(text)}\\b0\\par}`;
+}
+
+function rtfChecklistItems(items: string[]): string {
+  // «☐» (U+2610) + неразрывный пробел + текст пункта
+  return items
+    .map((item) => `{\\pard\\sa60\\sb0\\fi-280\\li360\\fs22 \\u9744? ${rtfEscape(item)}\\par}`)
+    .join("");
+}
+
+export function buildChecklistRtf(
   answers: IntakeAnswers,
   routeId: RouteId,
   checklist: Checklist
 ): string {
   const route = ROUTES[routeId];
   const created = formatDateHuman();
+  const summary = buildRequestSummary(answers) || "—";
+  const reality = buyingReality(answers.asset);
 
-  const collectItems = checklist.collect
-    .map((item) => `<li style="margin: 0 0 6pt 0;">☐ ${escapeHtml(item)}</li>`)
-    .join("");
-  const verifyItems = checklist.verify
-    .map((item) => `<li style="margin: 0 0 6pt 0;">☐ ${escapeHtml(item)}</li>`)
-    .join("");
+  const header =
+    "{\\rtf1\\ansi\\ansicpg1251\\deff0\\nouicompat" +
+    "{\\fonttbl{\\f0\\fnil\\fcharset204 Calibri;}{\\f1\\fnil\\fcharset204 Helvetica;}}" +
+    "{\\colortbl;\\red17\\green17\\blue17;\\red138\\green109\\blue30;\\red85\\green85\\blue85;}" +
+    "\\viewkind4\\uc1\\f0";
 
-  // Word-совместимый HTML. Microsoft Word и LibreOffice Writer корректно открывают
-  // такой документ, сохранённый с расширением .doc и MIME application/msword.
-  return `<!DOCTYPE html>
-<html xmlns:o="urn:schemas-microsoft-com:office:office"
-      xmlns:w="urn:schemas-microsoft-com:office:word"
-      xmlns="http://www.w3.org/TR/REC-html40">
-<head>
-<meta charset="utf-8" />
-<title>Инвестиционный запрос — ЦБИ</title>
-<!--[if gte mso 9]>
-<xml>
-  <w:WordDocument>
-    <w:View>Print</w:View>
-    <w:Zoom>100</w:Zoom>
-    <w:DoNotOptimizeForBrowser/>
-  </w:WordDocument>
-</xml>
-<![endif]-->
-<style>
-  @page WordSection1 { size: 595.3pt 841.9pt; margin: 56pt 56pt 56pt 56pt; }
-  div.WordSection1 { page: WordSection1; }
-  body { font-family: 'Calibri', 'Helvetica', 'Arial', sans-serif; color: #1a1a1a; font-size: 11pt; line-height: 1.45; }
-  h1 { font-size: 22pt; margin: 0 0 4pt 0; color: #111111; letter-spacing: -0.01em; }
-  h2 { font-size: 14pt; margin: 22pt 0 6pt 0; color: #0f0f0f; border-bottom: 1pt solid #cfc29c; padding-bottom: 3pt; }
-  h3 { font-size: 12pt; margin: 14pt 0 4pt 0; color: #2a2a2a; }
-  p  { margin: 0 0 8pt 0; }
-  ul { margin: 0 0 10pt 18pt; padding: 0; }
-  li { margin: 0 0 6pt 0; }
-  .eyebrow { font-size: 9pt; letter-spacing: 0.14em; text-transform: uppercase; color: #8a6d1e; font-weight: bold; }
-  .meta { color: #555; font-size: 10pt; margin: 0 0 14pt 0; }
-  .route { background: #faf5e7; border: 1pt solid #e6d39a; padding: 10pt 12pt; }
-  .next  { background: #111111; color: #f5e9c3; padding: 10pt 12pt; }
-  .next p { color: #f5e9c3; margin: 0; }
-  .footer { margin-top: 26pt; padding-top: 10pt; border-top: 1pt solid #ddd; font-size: 9pt; color: #666; }
-</style>
-</head>
-<body>
-<div class="WordSection1">
-  <p class="eyebrow">ЦБИ · Центр Бизнес-Инвестиций</p>
-  <h1>Ваш инвестиционный запрос</h1>
-  <p class="meta">Сформировано: ${escapeHtml(created)}</p>
+  const body = [
+    rtfParagraph("ЦБИ · Центр Бизнес-Инвестиций", { fontSizeHalfPt: 18, bold: true, spaceBeforeTwip: 0, spaceAfterTwip: 40 }),
+    rtfH1("Ваш инвестиционный запрос"),
+    rtfParagraph(`Сформировано: ${created}`, { fontSizeHalfPt: 20, italic: true, spaceBeforeTwip: 0, spaceAfterTwip: 240 }),
 
-  <h2>Собранный запрос</h2>
-  <p>${paragraphize(buildRequestSummary(answers) || "—")}</p>
+    rtfH2("Собранный запрос"),
+    rtfParagraph(summary),
 
-  <h2>Что вы покупаете на самом деле</h2>
-  <p>${paragraphize(buyingReality(answers.asset))}</p>
+    rtfH2("Что вы покупаете на самом деле"),
+    rtfParagraph(reality),
 
-  <h2>Маршрут: ${escapeHtml(route.title)}</h2>
-  <div class="route"><p>${paragraphize(route.description)}</p></div>
+    rtfH2(`Маршрут: ${route.title}`),
+    rtfParagraph(route.description),
 
-  <h2>Персональный чек-лист</h2>
+    rtfH2("Персональный чек-лист"),
+    rtfH3("Что собрать"),
+    rtfChecklistItems([...checklist.collect]),
+    rtfH3("Что проверить"),
+    rtfChecklistItems([...checklist.verify]),
 
-  <h3>Что собрать</h3>
-  <ul>${collectItems}</ul>
+    rtfH2("Следующий сильный шаг"),
+    rtfParagraph(route.nextStep, { bold: true }),
 
-  <h3>Что проверить</h3>
-  <ul>${verifyItems}</ul>
+    rtfParagraph(
+      "ЦБИ — экспертный центр отбора инвестиционных решений в недвижимости. Документ сформирован автоматически на основании ваших ответов. Не является офертой и не заменяет юридическую, налоговую или инвестиционную консультацию.",
+      { fontSizeHalfPt: 18, italic: true, spaceBeforeTwip: 320, spaceAfterTwip: 0 }
+    ),
+  ].join("");
 
-  <h2>Следующий сильный шаг</h2>
-  <div class="next"><p>${paragraphize(route.nextStep)}</p></div>
-
-  <div class="footer">
-    ЦБИ — экспертный центр отбора инвестиционных решений в недвижимости. Документ сформирован автоматически
-    на основании ваших ответов и предназначен для внутренней подготовки. Не является офертой и не заменяет
-    юридическую, налоговую или инвестиционную консультацию.
-  </div>
-</div>
-</body>
-</html>`;
+  return `${header}${body}}`;
 }
 
 export function downloadChecklistFile(
@@ -135,10 +140,12 @@ export function downloadChecklistFile(
   routeId: RouteId,
   checklist: Checklist
 ): void {
-  const html = buildChecklistDocHtml(answers, routeId, checklist);
+  const rtf = buildChecklistRtf(answers, routeId, checklist);
   const filename = `cbi-checklist-${slugAsset(answers.asset)}-${formatDateYYYYMMDD()}.doc`;
-  // BOM + application/msword = Word/Pages/LibreOffice корректно откроют файл как документ.
-  const blob = new Blob(["\ufeff", html], { type: "application/msword;charset=utf-8" });
+  // RTF открывается как документ в Word / Pages / LibreOffice / Google Docs.
+  // Сохраняем с расширением .doc — Word определяет формат по сигнатуре содержимого
+  // ({\rtf1...}) и открывает без проблем.
+  const blob = new Blob([rtf], { type: "application/msword;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
