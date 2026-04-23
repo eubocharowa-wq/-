@@ -23,6 +23,7 @@ const els = {
   entryCheckBack: document.getElementById("entryCheckBack"),
   entryCheckNext: document.getElementById("entryCheckNext"),
   entryCheckSecondary: document.getElementById("entryCheckSecondary"),
+  entryCheckReset: document.getElementById("entryCheckReset"),
   entryCheckProgressLabel: document.getElementById("entryCheckProgressLabel"),
   entryCheckProgressText: document.getElementById("entryCheckProgressText"),
   entryCheckProgressBar: document.getElementById("entryCheckProgressBar"),
@@ -556,6 +557,32 @@ function resetEntryCheckContactsAfterTelegramSend() {
   persistEntryState();
 }
 
+/** Полный сброс модуля «Выдержит ли ваш вход?»: обнуляем все ответы, снимаем результат, возвращаемся на старт. */
+function resetEntryCheckAll({ rerender = true } = {}) {
+  entryState = {
+    ...ENTRY_CHECK_INITIAL,
+    answers: {
+      ...ENTRY_CHECK_INITIAL.answers,
+      assetChecks: [],
+      materials: [],
+      contact: { ...ENTRY_CHECK_INITIAL.answers.contact },
+    },
+  };
+  try {
+    localStorage.removeItem(ENTRY_CHECK_LS_KEY);
+  } catch {
+    // ignore
+  }
+  if (rerender) {
+    if (els.entryCheckResult) {
+      els.entryCheckResult.innerHTML = "";
+      els.entryCheckResult.classList.add("is-hidden");
+    }
+    if (els.entryCheckStep) els.entryCheckStep.classList.remove("is-hidden");
+    renderEntryStep();
+  }
+}
+
 function setEntryProgress(flow) {
   const total = flow.length + 1;
   const current = entryState.isResult ? total : entryState.stepIndex + 1;
@@ -738,16 +765,38 @@ function showEntryResult() {
         // ignore
       }
       const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(`https://t.me/${TG_USERNAME}`)}&text=${encodeURIComponent(delivery.telegramText)}`;
-      const popup = window.open(shareUrl, "_blank", "noopener,noreferrer");
-      if (!popup) window.location.href = shareUrl;
-      resetEntryCheckContactsAfterTelegramSend();
+      try {
+        const a = document.createElement("a");
+        a.href = shareUrl;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } catch {
+        const popup = window.open(shareUrl, "_blank", "noopener,noreferrer");
+        if (!popup) window.location.href = shareUrl;
+      }
+      resetEntryCheckAll();
     });
     actions.appendChild(btn);
   });
-  els.entryCheckResult.append(title, text, actions);
+
+  const resetRow = document.createElement("div");
+  resetRow.className = "entryCheck__resultReset";
+  const resetBtn = document.createElement("button");
+  resetBtn.type = "button";
+  resetBtn.className = "btn btn--ghost";
+  resetBtn.textContent = "Пройти заново";
+  resetBtn.setAttribute("aria-label", "Очистить все ответы и начать диагностику заново");
+  resetBtn.addEventListener("click", () => resetEntryCheckAll());
+  resetRow.appendChild(resetBtn);
+
+  els.entryCheckResult.append(title, text, actions, resetRow);
   setEntryProgress(getEntryFlow());
   if (els.entryCheckNext) els.entryCheckNext.classList.add("is-hidden");
   if (els.entryCheckSecondary) els.entryCheckSecondary.classList.add("is-hidden");
+  if (els.entryCheckReset) els.entryCheckReset.classList.add("is-hidden");
 }
 
 function renderEntryStep() {
@@ -886,6 +935,7 @@ function renderEntryStep() {
   setEntryProgress(flow);
   if (els.entryCheckBack) els.entryCheckBack.classList.toggle("is-hidden", entryState.stepIndex === 0 || entryState.isResult);
   if (els.entryCheckSecondary) els.entryCheckSecondary.classList.toggle("is-hidden", stepKey !== "start");
+  if (els.entryCheckReset) els.entryCheckReset.classList.toggle("is-hidden", stepKey === "start" || entryState.isResult);
   if (els.entryCheckNext) {
     els.entryCheckNext.classList.remove("is-hidden");
     els.entryCheckNext.textContent = stepKey === "contacts" ? "Показать результат" : stepKey === "start" ? "Начать проверку" : "Далее";
@@ -922,6 +972,11 @@ function initEntryCheck() {
   renderEntryStep();
   els.entryCheckNext?.addEventListener("click", moveEntryNext);
   els.entryCheckBack?.addEventListener("click", moveEntryBack);
+  els.entryCheckReset?.addEventListener("click", () => {
+    const ok = window.confirm("Очистить все ответы и начать диагностику заново?");
+    if (!ok) return;
+    resetEntryCheckAll();
+  });
   els.entryCheckSecondary?.addEventListener("click", () => {
     if (!els.entryCheckStep) return;
     const note = document.createElement("p");

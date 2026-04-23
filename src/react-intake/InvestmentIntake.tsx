@@ -4,6 +4,7 @@ import { buildChecklist } from "./investmentIntakeChecklist";
 import { resolveRoute } from "./investmentIntakeRouting";
 import { buildRequestSummary, buyingReality } from "./investmentIntakeCopy";
 import { openTelegramWithIntakeText } from "./investmentIntakeTelegram";
+import { downloadChecklistFile } from "./investmentIntakeDownload";
 
 type Phase = "intro" | "steps" | "result";
 
@@ -77,8 +78,15 @@ export function InvestmentIntake({ className }: InvestmentIntakeProps) {
   );
 
   function handleCta(id: "checklist" | "submit_object" | "next_step") {
-    const labels: Record<typeof id, string> = {
-      checklist: "Получить чек-лист",
+    if (id === "checklist") {
+      try {
+        downloadChecklistFile(answers, route.id, checklist);
+      } catch (err) {
+        console.error("checklist download failed", err);
+      }
+      return;
+    }
+    const labels: Record<"submit_object" | "next_step", string> = {
       submit_object: "Передать объект на проверку",
       next_step: "Узнать следующий шаг",
     };
@@ -220,8 +228,9 @@ export function InvestmentIntake({ className }: InvestmentIntakeProps) {
                         type="button"
                         className="investment-intake__cta investment-intake__cta--ghost"
                         onClick={() => handleCta("checklist")}
+                        aria-label="Скачать персональный чек-лист в формате Markdown"
                       >
-                        Получить чек-лист
+                        Скачать чек-лист
                       </button>
                       <button type="button" className="investment-intake__cta" onClick={() => handleCta("submit_object")}>
                         Передать объект на проверку
@@ -234,6 +243,9 @@ export function InvestmentIntake({ className }: InvestmentIntakeProps) {
                         Узнать следующий шаг
                       </button>
                     </div>
+                    <p className="investment-intake__microcopy investment-intake__microcopy--ctas">
+                      Чек-лист скачается файлом .md. Для связи откроется Telegram с предзаполненным запросом — текст также скопируется в буфер обмена.
+                    </p>
 
                     <div className="investment-intake__nav investment-intake__nav--end">
                       <button type="button" className="investment-intake__linkish" onClick={restart}>

@@ -2292,6 +2292,16 @@ summary:focus {
   margin-top: 16px;
 }
 
+.entryCheck__resultReset {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.entryCheck__resultReset .btn {
+  opacity: 0.9;
+}
+
 .entryCheck__footer {
   margin-top: 14px;
   display: flex;
