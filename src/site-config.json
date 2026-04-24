@@ -16,6 +16,12 @@
       "role": "калькулятор и демо-скрининг"
     },
     {
+      "id": "app",
+      "path": "app.html",
+      "navLabel": "Кабинет инвестора",
+      "role": "страница о web-кабинете и раннем доступе"
+    },
+    {
       "id": "o-proekte",
       "path": "o-proekte.html",
       "navLabel": "О проекте",
